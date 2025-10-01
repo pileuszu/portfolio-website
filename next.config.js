@@ -2,8 +2,8 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  // 환경별로 다른 basePath 설정 (빌드 시점에 NODE_ENV가 제대로 설정되지 않아서 homepage로 판단)
-  basePath: process.env.npm_package_homepage ? '/portfolio-website' : '',
+  // 환경별로 다른 basePath 설정
+  basePath: process.env.NEXT_PUBLIC_IS_PRODUCTION ? '/portfolio-website' : '',
   sassOptions: {
     includePaths: ['./src/styles'],
   },

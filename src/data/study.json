@@ -2,7 +2,7 @@
   {
     "title": "React 성능 최적화 가이드",
     "desc": "React 애플리케이션의 성능을 향상시키는 다양한 기술들",
-    "images": ["/portfolio-website/images/blog_title.png"],
+    "images": ["/images/blog_title.png"],
     "details": "React 애플리케이션에서 성능 최적화는 사용자 경험을 크게 향상시킬 수 있습니다. 코드 스플리팅, 메모이제이션, 가상화 등 다양한 기술을 통해 번들 크기를 줄이고 렌더링 성능을 개선할 수 있습니다.\n\n주요 최적화 기법으로는 React.memo, useMemo, useCallback을 활용한 불필요한 리렌더링 방지와 React.lazy를 통한 코드 스플리팅이 있습니다.",
     "tech": ["React", "JavaScript", "성능 최적화"],
     "year": "2024",

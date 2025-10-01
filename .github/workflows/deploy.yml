@@ -63,7 +63,7 @@ jobs:
         run: ${{ steps.detect-pm.outputs.manager }} ${{ steps.detect-pm.outputs.command }}
 
       - name: Build with Next.js
-        run: ${{ steps.detect-pm.outputs.runner }} next build
+        run: npm run build:prod
 
       - name: Test image loading
         run: npm run build:test

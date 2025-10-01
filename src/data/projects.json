@@ -2,7 +2,7 @@
   {
     "title": "Portfolio Website",
     "desc": "A sleek and modern portfolio website built with TypeScript, React, Next.js, and SCSS. Features a clean design with smooth animations and responsive layout.",
-    "images": ["/portfolio-website/images/blog_title.png"],
+    "images": ["/images/blog_title.png"],
     "details": "This portfolio website was developed using cutting-edge web technologies. Built on React 18 and Next.js 15 with TypeScript for type safety, and SCSS for sophisticated styling.\n\nKey Features:\n- Efficient routing using Next.js App Router\n- Modern design with CSS Modules and SCSS\n- Smooth animations and responsive layout\n- JSON-based content management system\n- Code quality management through ESLint\n\nThe project features a systematic directory structure and was designed with component reusability and maintainability in mind. In particular, JSON files were separated for data management to facilitate easy content updates.",
     "tech": [
       "TypeScript",
@@ -19,7 +19,7 @@
   {
     "title": "ChzzkStreamDeck",
     "desc": "A comprehensive streaming widget system for OBS Studio with real-time chat overlay, Spotify integration, and music bot functionality.",
-    "images": ["/portfolio-website/images/streamdeck_title.png"],
+    "images": ["/images/streamdeck_title.png"],
     "details": "ChzzkStreamDeck is a feature-rich streaming widget system designed for OBS Studio integration. The system provides real-time CHZZK chat overlay, Spotify music control, and an interactive music bot.\n\nKey Features:\n- Real-time chat overlay with SSE and CHZZK emoticon support\n- Spotify integration with OAuth 2.0 authentication\n- Music bot with chat commands for queue management\n- Server-based token management system\n- Multiple theme options (Simple Purple, Neon Green)\n- Comprehensive API endpoints for chat and music control\n\nThe project demonstrates advanced web development concepts including WebSocket communication, OAuth implementation, and real-time data streaming. The codebase features a modular architecture with clear separation between chat, music, and bot functionalities.",
     "tech": [
       "Node.js",
@@ -37,7 +37,7 @@
   {
     "title": "3D Train Simulator",
     "desc": "A real-time 3D train simulator built with WebGL and JavaScript, featuring customizable camera controls and track configurations",
-    "images": ["/portfolio-website/images/3dtrain_title.png"],
+    "images": ["/images/3dtrain_title.png"],
     "details": "This project implements a real-time 3D train simulator using WebGL and JavaScript. The simulator features highly customizable camera controls and easy-to-edit track configurations, allowing users to control their train and its routes in third-person view.\n\nKey features include:\n- 3D modeling with hierarchical structure using tree-based traversal\n- Realistic textures and animations for train components like doors and pantographs\n- Dynamic track generation with intuitive CSV-like syntax\n- Comprehensive camera controls with keyboard support\n- Customizable lighting parameters\n- Performance optimization with FPS limiting and conditional re-rendering\n\nThe project demonstrates advanced graphics programming concepts including WebGL rendering, shader programming, texture mapping, and 3D transformations. The codebase is well-structured with clear separation of concerns between rendering, physics, controls, and asset management.",
     "tech": [
       "JavaScript",
@@ -54,7 +54,7 @@
   {
     "title": "SSALON: Digital Badge Card-Based One-Time Gathering Management Service",
     "desc": "A web service providing one-time gathering communities based on 'Interactive 3D Badge Cards'",
-    "images": ["/portfolio-website/images/ssalon_title.png"],
+    "images": ["/images/ssalon_title.png"],
     "details": "Recently, people tend to be more individualistic rather than collectivistic, often hesitating to join new groups or form new relationships. Against this backdrop, the demand for one-time gatherings continues to grow. However, existing services in the market fail to fully satisfy consumer needs due to various issues such as inconvenient participant verification, difficulties in promoting gatherings, demand for additional memory preservation means, and unsatisfactory user experiences.\n\nTo address these problems, SSALON is a web service that provides one-time gathering communities based on 'Interactive 3D Badge Cards'. Users can conveniently engage in all activities related to one-time gatherings, including hosting, participating, managing, preserving memories, and verification, using digital badge cards. In particular, memory recording using badge cards serves as a unique selling point (USP) compared to other services, offering an easier and more enjoyable one-time gathering experience through SSALON's unique '3D badge cards'.\n\nThis project was developed from March to June 2024 by Team SKYTeam (Team 11) as part of the Ajou University SW Capstone Design course in the first semester of 2024.",
     "tech": [
       "Javascript", "Angular", "React", "Three.js", "HTML5", "SCSS",
