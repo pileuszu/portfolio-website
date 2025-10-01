@@ -1,84 +1,40 @@
-# Modern Portfolio Website
+# JiHwan Kim
 
-A sleek and modern portfolio website built with TypeScript, React, Next.js, and SCSS. Features a clean design with smooth animations and responsive layout.
+> **Software Engineer** | Passionate about creating innovative web applications and user experiences
 
-## Tech Stack
+## 🚀 About Me
 
-- **Frontend**: React 18, Next.js 15, TypeScript
-- **Styling**: SCSS, CSS Modules
-- **Design**: Modern Gray & White Theme with Beige Accents
-- **Animation**: CSS Animations, Smooth Transitions
-- **Development**: ESLint 9, Modern Build Tools
+I'm a software engineer with a passion for building modern, responsive web applications. I specialize in React, TypeScript, and Next.js development, with a keen eye for clean design and user experience.
 
-## Project Structure
+## 🛠️ Tech Stack
 
-```
-src/
-├── app/                    # Next.js App Router
-│   ├── layout.tsx         # Root layout with navigation
-│   └── page.tsx           # Home page with all sections
-├── data/                  # Static data files
-│   ├── projects.json      # Featured projects data
-│   ├── experience.json    # Professional experience
-│   ├── study.json         # Learning & blog posts
-│   └── contact.json       # Contact information
-└── styles/               # Global styles
-    └── globals.scss      # Global SCSS variables and base styles
-```
+- **Frontend**: React, Next.js, TypeScript, SCSS
+- **Backend**: Node.js, Express
+- **Database**: MongoDB, PostgreSQL
+- **Tools**: Git, Docker, AWS
 
-## Installation & Setup
+## 📚 Featured Projects
 
-### Prerequisites
-- Node.js 18 or higher
-- npm or yarn
+### Modern Portfolio Website
+A sleek portfolio website built with React, Next.js, and SCSS featuring:
+- Responsive design with smooth animations
+- Interactive project cards and timeline layouts
+- Email integration with custom overlay forms
+- Modern gray & white theme with beige accents
 
-### Installation
-```bash
-# Install dependencies
-npm install
+**[View Live Demo](https://your-portfolio-url.com)** | **[Source Code](https://github.com/jihwan-kim/portfolio)**
 
-# Start development server
-npm run dev
-```
+## 🎓 Education
 
-The development server will start at [http://localhost:3000](http://localhost:3000).
+- **B.S. in Software Engineering** - Ajou University (2019 - 2025)
+- **Boostcamp AI Tech 8th** - NAVER Connect Foundation (2025)
 
-### Build for Production
-```bash
-# Create production build
-npm run build
+## 📞 Contact
 
-# Start production server
-npm start
-```
+- **Email**: jihwan.kim@email.com
+- **GitHub**: [jihwan.kim](https://github.com/jihwan.kim)
+- **LinkedIn**: [JiHwan Kim](https://linkedin.com/in/jihwan-kim)
 
-## Content Management
-Update data in the JSON files in `src/data/`:
+---
 
-- **projects.json**: Featured projects with descriptions and tech stacks
-- **experience.json**: Professional experience and education
-- **study.json**: Learning posts and blog articles
-- **contact.json**: Contact methods and information
-
-## Deployment
-
-### Vercel (Recommended)
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-```
-
-### Netlify
-```bash
-# Build
-npm run build
-
-# Upload the generated files to Netlify
-```
-
-## License
-
-MIT License - Feel free to use and modify as needed.
+⭐ **Check out my portfolio website for more projects and details!**
