@@ -2,7 +2,7 @@
 
 A sleek and modern portfolio website built with TypeScript, React, Next.js, and SCSS. Features a clean design with smooth animations and responsive layout.
 
-## 🚀 Tech Stack
+## Tech Stack
 
 - **Frontend**: React 18, Next.js 15, TypeScript
 - **Styling**: SCSS, CSS Modules
@@ -10,18 +10,7 @@ A sleek and modern portfolio website built with TypeScript, React, Next.js, and 
 - **Animation**: CSS Animations, Smooth Transitions
 - **Development**: ESLint 9, Modern Build Tools
 
-## ✨ Key Features
-
-- 🎨 **Modern Design**: Clean gray and white theme with sophisticated beige accents
-- 📱 **Fully Responsive**: Optimized experience across all devices
-- 🃏 **Interactive Cards**: Clickable project and study cards with detailed overlays
-- ⚡ **Smooth Animations**: Subtle hover effects and seamless transitions
-- 📊 **Timeline Layout**: Professional experience displayed in timeline format
-- 📧 **Email Integration**: Custom email composition overlay with form validation
-- 🎯 **Portfolio Sections**: Organized sections for projects, experience, study, and contact
-- ⚡ **Performance Optimized**: Built with modern React patterns and optimizations
-
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 src/
@@ -37,7 +26,7 @@ src/
     └── globals.scss      # Global SCSS variables and base styles
 ```
 
-## 🛠️ Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 - Node.js 18 or higher
@@ -63,23 +52,7 @@ npm run build
 npm start
 ```
 
-## 🎨 Customization
-
-### Color Theme
-Modify CSS variables in `src/styles/globals.scss`:
-
-```scss
-:root {
-  --primary-dark: #222831;      # Main dark color
-  --secondary-dark: #393E46;    # Secondary dark
-  --accent-beige: #DFD0B8;      # Beige accent
-  --light-beige: #948979;       # Light beige
-  --white: #ffffff;             # Background white
-  --light-gray: #f8f8f8;        # Light gray background
-}
-```
-
-### Content Management
+## Content Management
 Update data in the JSON files in `src/data/`:
 
 - **projects.json**: Featured projects with descriptions and tech stacks
@@ -87,15 +60,7 @@ Update data in the JSON files in `src/data/`:
 - **study.json**: Learning posts and blog articles
 - **contact.json**: Contact methods and information
 
-## 📱 Responsive Design
-
-- **Desktop**: 1200px and above
-- **Tablet**: 768px - 1199px
-- **Mobile**: 767px and below
-
-All sections are optimized for each screen size.
-
-## 🚀 Deployment
+## Deployment
 
 ### Vercel (Recommended)
 ```bash
@@ -114,24 +79,6 @@ npm run build
 # Upload the generated files to Netlify
 ```
 
-## 📄 License
+## License
 
 MIT License - Feel free to use and modify as needed.
-
-## 🤝 Contributing
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📞 Contact
-
-- Email: jihwan.kim@email.com
-- GitHub: [jihwan.kim](https://github.com/jihwan.kim)
-- LinkedIn: [JiHwan Kim](https://linkedin.com/in/jihwan-kim)
-
----
-
-⭐ If this project helped you, please give it a star!
