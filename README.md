@@ -1,4 +1,4 @@
-# Modern Portfolio Website
+# Portfolio Website
 
 A sleek and modern portfolio website built with TypeScript, React, Next.js, and SCSS. Features a clean design with smooth animations and responsive layout.
 
