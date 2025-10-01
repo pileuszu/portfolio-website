@@ -6,7 +6,6 @@ import projectsData from '../data/projects.json'
 import experienceData from '../data/experience.json'
 import studyData from '../data/study.json'
 import contactData from '../data/contact.json'
-import { getDefaultImagePath } from '../data/config'
 
 // 타입 단언
 const typedProjectsData = projectsData as ProjectItem[]
@@ -349,10 +348,10 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={item.images?.[0] || getDefaultImagePath()}
+                            src={item.images?.[0] || '/portfolio-website/images/sample.png'}
                             alt={item.title}
                             onError={(e) => {
-                              e.currentTarget.src = getDefaultImagePath()
+                              e.currentTarget.src = '/portfolio-website/images/sample.png'
                             }}
                           />
                         </div>
@@ -470,10 +469,10 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={item.images?.[0] || getDefaultImagePath()}
+                            src={item.images?.[0] || '/portfolio-website/images/sample.png'}
                             alt={item.title}
                             onError={(e) => {
-                              e.currentTarget.src = getDefaultImagePath()
+                              e.currentTarget.src = '/portfolio-website/images/sample.png'
                             }}
                           />
                 </div>
