@@ -13,6 +13,13 @@ const typedStudyData = studyData as BlogItem[]
 const typedExperienceData = experienceData as { title: string; company: string; desc: string }[]
 const typedContactData = contactData as { title: string; desc: string; details: string; action: string }[]
 
+// Next.js basePath를 고려한 이미지 경로 헬퍼 함수
+const getImagePath = (path: string) => {
+  // 프로덕션 환경에서는 basePath가 '/portfolio-website'로 설정됨
+  const basePath = process.env.NEXT_PUBLIC_IS_PRODUCTION ? '/portfolio-website' : ''
+  return `${basePath}${path}`
+}
+
 interface ProjectItem {
   title: string
   desc: string
@@ -57,7 +64,14 @@ export default function Home() {
     }
   }, [])
 
-  // 배경 이미지는 SCSS에서 설정됨 (assetPrefix 자동 적용)
+  // 배경 이미지 설정 (basePath 고려)
+  useEffect(() => {
+    const overviewSection = document.getElementById('overview') as HTMLElement
+    if (overviewSection) {
+      const imagePath = getImagePath('/images/profile.jpg')
+      overviewSection.style.backgroundImage = `url('${imagePath}')`
+    }
+  }, [])
 
   // 섹션 감지 (화면 중앙 기준)
   const detectActiveSection = useCallback(() => {
@@ -350,7 +364,7 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={item.images?.[0]}
+                            src={getImagePath(item.images?.[0] || '/images/sample.png')}
                             alt={item.title}
                             onError={(e) => {
                               e.currentTarget.style.display = 'none'
@@ -471,7 +485,7 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={item.images?.[0]}
+                            src={getImagePath(item.images?.[0] || '/images/sample.png')}
                             alt={item.title}
                             onError={(e) => {
                               e.currentTarget.style.display = 'none'
@@ -586,7 +600,7 @@ export default function Home() {
               </button>
               <div className={styles.overlayImage}>
                 <img
-                  src={selectedProject.images?.[0]}
+                  src={getImagePath(selectedProject.images?.[0] || '/images/sample.png')}
                   alt={selectedProject.title}
                   onError={(e) => {
                     e.currentTarget.style.display = 'none'
