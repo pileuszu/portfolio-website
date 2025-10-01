@@ -60,8 +60,6 @@ export default function Home() {
     const sections = ['overview', 'projects', 'experience', 'study', 'contact']
     const scrollPosition = window.scrollY + window.innerHeight / 2
 
-    console.log('섹션 감지 시작, 스크롤 위치:', scrollPosition)
-
     let newActiveSection = 'overview' // 기본값
     let closestSection = 'overview'
     let minDistance = Infinity
@@ -74,19 +72,9 @@ export default function Home() {
         const elementBottom = elementTop + rect.height
         const elementCenter = elementTop + rect.height / 2
 
-        console.log(`${sections[i]} 섹션:`, {
-          elementTop,
-          elementBottom,
-          elementCenter,
-          scrollPosition,
-          isInRange: scrollPosition >= elementTop && scrollPosition < elementBottom,
-          distance: Math.abs(scrollPosition - elementCenter)
-        })
-
         // 정확한 범위 내에 있는지 확인
         if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
           newActiveSection = sections[i]
-          console.log(`현재 섹션 (화면 중앙): ${sections[i]}`)
           break
         }
 
@@ -96,23 +84,17 @@ export default function Home() {
           minDistance = distance
           closestSection = sections[i]
         }
-      } else {
-        console.log(`${sections[i]} 섹션 요소를 찾을 수 없음`)
       }
     }
 
     // 범위 내에 섹션이 없으면 가장 가까운 섹션 사용
     if (newActiveSection === 'overview' && closestSection !== 'overview') {
       newActiveSection = closestSection
-      console.log(`범위 밖 - 가장 가까운 섹션: ${closestSection}`)
     }
 
     // 상태가 실제로 변경되었을 때만 업데이트
     if (newActiveSection !== activeSection) {
-      console.log(`섹션 변경: ${activeSection} → ${newActiveSection}`)
       setActiveSection(newActiveSection)
-    } else {
-      console.log(`섹션 변경 없음: ${activeSection}`)
     }
   }, [activeSection])
 
@@ -125,11 +107,9 @@ export default function Home() {
       if (!isScrolling) {
         isScrolling = true
         animationId = requestAnimationFrame(() => {
-          console.log('스크롤 이벤트 발생!')
-          
           // 1. 섹션 감지 (화면 중앙 기준)
           detectActiveSection()
-          
+
           isScrolling = false
         })
       }
@@ -138,7 +118,6 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll, { passive: true })
     // 초기 로드 시에도 확인
     setTimeout(() => {
-      console.log('초기 로드 시 섹션 감지 시작')
       detectActiveSection()
     }, 100)
     
