@@ -357,10 +357,10 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={item.images?.[0] || '/images/sample.png'}
+                            src={item.images?.[0]}
                             alt={item.title}
                             onError={(e) => {
-                              e.currentTarget.src = '/images/sample.png'
+                              e.currentTarget.style.display = 'none'
                             }}
                           />
                         </div>
@@ -478,10 +478,10 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={item.images?.[0] || '/images/sample.png'}
+                            src={item.images?.[0]}
                             alt={item.title}
                             onError={(e) => {
-                              e.currentTarget.src = '/images/sample.png'
+                              e.currentTarget.style.display = 'none'
                             }}
                           />
                 </div>
@@ -593,10 +593,10 @@ export default function Home() {
               </button>
               <div className={styles.overlayImage}>
                 <img
-                  src={selectedProject.images?.[0] || '/images/sample.png'}
+                  src={selectedProject.images?.[0]}
                   alt={selectedProject.title}
                   onError={(e) => {
-                    e.currentTarget.src = '/images/sample.png'
+                    e.currentTarget.style.display = 'none'
                   }}
                 />
               </div>
