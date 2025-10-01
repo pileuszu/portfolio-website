@@ -1054,11 +1054,46 @@
   font-weight: 500;
 }
 
+.projectLink {
+  margin-top: 25px;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(223, 208, 184, 0.1);
+    color: #DFD0B8;
+    text-decoration: none;
+    border: 2px solid rgba(223, 208, 184, 0.3);
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(223, 208, 184, 0.2);
+      border-color: #DFD0B8;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(223, 208, 184, 0.2);
+
+      svg {
+        transform: scale(1.1);
+      }
+    }
+
+    svg {
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+  }
+}
+
 .projectYear {
   margin-top: 20px;
   padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1); // 흰색 경계선
-  
+
   span {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
