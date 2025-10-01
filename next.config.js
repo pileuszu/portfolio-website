@@ -2,8 +2,7 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  // GitHub Pages 배포 경로 설정
-  basePath: '/portfolio-website',
+  // GitHub Pages 저장소 루트 배포용 설정 (서브디렉토리 사용 안함)
   sassOptions: {
     includePaths: ['./src/styles'],
   },
