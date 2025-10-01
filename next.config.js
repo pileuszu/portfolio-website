@@ -2,8 +2,10 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  // GitHub Pages 배포 경로 설정 - 실제로는 서브디렉토리에서 실행됨
-  basePath: '/portfolio-website',
+  // 개발 모드에서는 basePath 제거, 프로덕션에서만 설정
+  ...(process.env.NODE_ENV === 'production' && {
+    basePath: '/portfolio-website',
+  }),
   sassOptions: {
     includePaths: ['./src/styles'],
   },
