@@ -45,10 +45,18 @@ export default function Home() {
   const [isDarkBackground, setIsDarkBackground] = useState(true)
   const [showEmailOverlay, setShowEmailOverlay] = useState(false)
 
-  // 초기 애니메이션
+  // 초기 애니메이션 및 환경별 클래스 설정
   useEffect(() => {
     const timer1 = setTimeout(() => setShowNameText(true), 500)
     const timer2 = setTimeout(() => setShowJobText(true), 1000)
+
+    // 프로덕션 환경에서는 올바른 백그라운드 이미지 경로 설정
+    if (process.env.NODE_ENV === 'production') {
+      const overviewSection = document.getElementById('overview')
+      if (overviewSection) {
+        overviewSection.style.backgroundImage = "url('/portfolio-website/images/profile.jpg')"
+      }
+    }
 
     return () => {
       clearTimeout(timer1)
