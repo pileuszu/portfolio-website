@@ -66,7 +66,7 @@ jobs:
         run: ${{ steps.detect-pm.outputs.runner }} next build
 
       - name: Test image loading
-        run: ${{ steps.detect-pm.outputs.runner }} run build:test
+        run: npm run build:test
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
