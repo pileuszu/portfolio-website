@@ -2,7 +2,7 @@
   {
     "title": "SSALON: Digital Badge Card-Based One-Time Gathering Management Service",
     "desc": "A web service providing one-time gathering communities based on 'Interactive 3D Badge Cards'",
-    "images": ["/portfolio-website/images/ssalon_title.png"],
+    "images": ["/images/ssalon_title.png"],
     "details": "Recently, people tend to be more individualistic rather than collectivistic, often hesitating to join new groups or form new relationships. Against this backdrop, the demand for one-time gatherings continues to grow. However, existing services in the market fail to fully satisfy consumer needs due to various issues such as inconvenient participant verification, difficulties in promoting gatherings, demand for additional memory preservation means, and unsatisfactory user experiences.\n\nTo address these problems, SSALON is a web service that provides one-time gathering communities based on 'Interactive 3D Badge Cards'. Users can conveniently engage in all activities related to one-time gatherings, including hosting, participating, managing, preserving memories, and verification, using digital badge cards. In particular, memory recording using badge cards serves as a unique selling point (POD) compared to other services, offering an easier and more enjoyable one-time gathering experience through SSALON's unique '3D badge cards'.\n\nThis project was developed from March to June 2024 by Team SKYTeam (Team 11) as part of the SW Capstone Design course in the first semester of 2024.",
     "tech": [
       "Javascript", "Angular", "React", "Three.js", "HTML5", "SCSS",

@@ -37,8 +37,8 @@ async function testImages() {
       console.log(`경로: ${src}`);
 
       // 이미지 파일 존재 확인
-      // 빌드된 파일에서는 out/images/에 있지만 모든 이미지가 sample.png이므로
-      // 실제로는 src 경로와 무관하게 sample.png 파일 존재 여부만 확인
+      // 빌드된 파일에서는 out/images/에 있지만 프로덕션에서는 /portfolio-website/images/ 경로 사용
+      // 실제로는 src 경로와 무관하게 빌드된 파일 존재 여부만 확인
       const imagePath = path.join(__dirname, '..', 'out', 'images', 'sample.png');
 
       if (fs.existsSync(imagePath)) {

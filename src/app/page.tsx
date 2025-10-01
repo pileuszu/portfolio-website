@@ -50,13 +50,6 @@ export default function Home() {
     const timer1 = setTimeout(() => setShowNameText(true), 500)
     const timer2 = setTimeout(() => setShowJobText(true), 1000)
 
-    // 프로덕션 환경에서는 올바른 백그라운드 이미지 경로로 오버라이드
-    if (process.env.NODE_ENV === 'production') {
-      const overviewSection = document.getElementById('overview')
-      if (overviewSection) {
-        overviewSection.style.backgroundImage = "url('/portfolio-website/images/profile.jpg')"
-      }
-    }
 
     return () => {
       clearTimeout(timer1)
@@ -356,10 +349,10 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={item.images?.[0] || '/portfolio-website/images/sample.png'}
+                            src={item.images?.[0] || '/images/sample.png'}
                             alt={item.title}
                             onError={(e) => {
-                              e.currentTarget.src = '/portfolio-website/images/sample.png'
+                              e.currentTarget.src = '/images/sample.png'
                             }}
                           />
                         </div>
@@ -477,10 +470,10 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={item.images?.[0] || '/portfolio-website/images/sample.png'}
+                            src={item.images?.[0] || '/images/sample.png'}
                             alt={item.title}
                             onError={(e) => {
-                              e.currentTarget.src = '/portfolio-website/images/sample.png'
+                              e.currentTarget.src = '/images/sample.png'
                             }}
                           />
                 </div>

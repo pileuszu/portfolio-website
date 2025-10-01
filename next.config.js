@@ -2,10 +2,8 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  // 개발 모드에서는 basePath 제거, 프로덕션에서만 설정
-  ...(process.env.NODE_ENV === 'production' && {
-    basePath: '/portfolio-website',
-  }),
+  // 환경별로 다른 basePath 설정
+  basePath: process.env.NODE_ENV === 'production' ? '/portfolio-website' : '',
   sassOptions: {
     includePaths: ['./src/styles'],
   },
