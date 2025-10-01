@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Email",
+    "desc": "jihwan.kim@email.com",
+    "details": "Feel free to reach out for collaborations, project inquiries, or just to say hello! I typically respond within 24 hours.",
+    "action": "Send Email"
+  },
+  {
+    "title": "GitHub",
+    "desc": "github.com/jihwankim",
+    "details": "Check out my code repositories and contributions to open source projects. See my coding style and project architecture.",
+    "action": "View Repositories"
+  }
+  
+]

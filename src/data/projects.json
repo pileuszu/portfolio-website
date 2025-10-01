@@ -1,0 +1,65 @@
+[
+  {
+    "title": "샘플 프로젝트 1",
+    "desc": "샘플 프로젝트 설명 1",
+    "images": ["/images/sample.png"],
+    "details": "샘플 프로젝트의 상세 설명입니다. 이 프로젝트는 웹 기술을 활용한 종합적인 플랫폼입니다. 주요 기능으로는 사용자 인증, 데이터 관리, 실시간 통신 등이 있습니다.",
+    "tech": ["React", "Node.js", "MongoDB", "WebSocket", "AWS"],
+    "year": "2024",
+    "type": "team"
+  },
+  {
+    "title": "샘플 프로젝트 2",
+    "desc": "샘플 프로젝트 설명 2",
+    "images": ["/images/sample.png"],
+    "details": "모바일 애플리케이션 개발 프로젝트입니다. iOS와 Android 플랫폼을 모두 지원하며, 사용자 경험을 최적화하였습니다.",
+    "tech": ["React Native", "Firebase", "Redux", "TypeScript"],
+    "year": "2024",
+    "type": "individual"
+  },
+  {
+    "title": "샘플 프로젝트 3",
+    "desc": "샘플 프로젝트 설명 3",
+    "images": ["/images/sample.png"],
+    "details": "데이터 시각화 대시보드 프로젝트입니다. 복잡한 데이터를 직관적인 차트와 그래프로 표현하여 사용자가 쉽게 이해할 수 있도록 구현했습니다.",
+    "tech": ["D3.js", "React", "Python", "PostgreSQL"],
+    "year": "2023",
+    "type": "team"
+  },
+  {
+    "title": "샘플 프로젝트 4",
+    "desc": "샘플 프로젝트 설명 4",
+    "images": ["/images/sample.png"],
+    "details": "인공지능 기반 챗봇 서비스입니다. 자연어 처리 기술을 활용하여 사용자의 질문에 적절한 답변을 제공합니다.",
+    "tech": ["Python", "TensorFlow", "FastAPI", "Docker"],
+    "year": "2024",
+    "type": "individual"
+  },
+  {
+    "title": "샘플 프로젝트 5",
+    "desc": "샘플 프로젝트 설명 5",
+    "images": ["/images/sample.png"],
+    "details": "블록체인 기반 탈중앙화 애플리케이션입니다. 스마트 계약을 통해 안전한 거래와 투명한 기록 관리를 구현했습니다.",
+    "tech": ["Solidity", "Web3.js", "React", "IPFS"],
+    "year": "2023",
+    "type": "team"
+  },
+  {
+    "title": "샘플 프로젝트 6",
+    "desc": "샘플 프로젝트 설명 6",
+    "images": ["/images/sample.png"],
+    "details": "클라우드 마이그레이션 프로젝트입니다. 기존 시스템을 클라우드 환경으로 성공적으로 이전하여 확장성과 안정성을 개선했습니다.",
+    "tech": ["AWS", "Docker", "Kubernetes", "Terraform"],
+    "year": "2023",
+    "type": "individual"
+  },
+  {
+    "title": "샘플 프로젝트 7",
+    "desc": "샘플 프로젝트 설명 7",
+    "images": ["/images/sample.png"],
+    "details": "데이터 분석 플랫폼입니다. 빅데이터 처리와 머신러닝 알고리즘을 활용하여 의미있는 인사이트를 도출합니다.",
+    "tech": ["Python", "TensorFlow", "Apache Spark", "ElasticSearch"],
+    "year": "2024",
+    "type": "team"
+  }
+]

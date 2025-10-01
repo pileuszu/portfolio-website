@@ -1,0 +1,29 @@
+[
+  {
+    "title": "샘플 타이틀1",
+    "desc": "샘플 설명1",
+    "images": ["/images/sample.png"],
+    "details": "샘플 상세 내용1",
+    "tech": ["샘플 기술1", "샘플 기술2", "샘플 기술3"],
+    "year": "2024",
+    "type": "blog"
+  },
+  {
+    "title": "샘플 타이틀2", 
+    "desc": "샘플 설명2",
+    "images": ["/images/sample.png"],
+    "details": "샘플 상세 내용2",
+    "tech": ["샘플 기술1", "샘플 기술2", "샘플 기술3"],
+    "year": "2024",
+    "type": "blog"
+  },
+  {
+    "title": "샘플 타이틀3",
+    "desc": "샘플 설명3",
+    "images": ["/images/sample.png"],
+    "details": "샘플 상세 내용3",
+    "tech": ["샘플 기술1", "샘플 기술2", "샘플 기술3"],
+    "year": "2024",
+    "type": "blog"
+  }
+]
