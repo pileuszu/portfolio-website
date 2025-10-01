@@ -2,6 +2,8 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
+  basePath: '/portfolio-website',
+  assetPrefix: '/portfolio-website',
   sassOptions: {
     includePaths: ['./src/styles'],
   },

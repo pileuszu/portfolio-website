@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "build:test": "npm run build && npm run test:images",
-    "build:prod": "cross-env NEXT_PUBLIC_IS_PRODUCTION=true next build && node scripts/fix-paths.js",
+    "build:prod": "cross-env NEXT_PUBLIC_IS_PRODUCTION=true next build",
     "start": "next start",
     "lint": "next lint",
     "test:images": "node scripts/test-images.js"

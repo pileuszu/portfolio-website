@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import styles from './page.module.scss'
 import projectsData from '../data/projects.json'
 import experienceData from '../data/experience.json'
@@ -44,7 +44,6 @@ export default function Home() {
   const [currentStudyPage, setCurrentStudyPage] = useState(0)
   const [isDarkBackground, setIsDarkBackground] = useState(true)
   const [showEmailOverlay, setShowEmailOverlay] = useState(false)
-  const overviewSectionRef = useRef<HTMLElement>(null)
 
   // 초기 애니메이션 및 환경별 클래스 설정
   useEffect(() => {
@@ -58,13 +57,7 @@ export default function Home() {
     }
   }, [])
 
-  // 배경 이미지 설정
-  useEffect(() => {
-    if (overviewSectionRef.current) {
-      const imagePath = '/images/profile.jpg'
-      overviewSectionRef.current.style.backgroundImage = `url('${imagePath}')`
-    }
-  }, [])
+  // 배경 이미지는 SCSS에서 설정됨 (assetPrefix 자동 적용)
 
   // 섹션 감지 (화면 중앙 기준)
   const detectActiveSection = useCallback(() => {
@@ -296,7 +289,7 @@ export default function Home() {
         
 
         {/* Overview 섹션 */}
-        <section id="overview" className={styles.overviewSection} ref={overviewSectionRef}>
+        <section id="overview" className={styles.overviewSection}>
           {/* 이름과 직업 텍스트 */}
           {(showNameText || showJobText) && (
             <div className={styles.textContainer}>
