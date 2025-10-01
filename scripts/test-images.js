@@ -8,11 +8,28 @@ async function testImages() {
   console.log('🧪 이미지 로딩 테스트 시작...\n');
 
   try {
-    // 빌드된 HTML 파일 읽기
-    const htmlPath = path.join(__dirname, '..', 'out', 'index.html');
+    // 빌드된 HTML 파일 읽기 (프로덕션 환경에서는 portfolio-website 폴더 안)
+    const htmlPath = process.env.NEXT_PUBLIC_IS_PRODUCTION
+      ? path.join(__dirname, '..', 'out', 'portfolio-website', 'index.html')
+      : path.join(__dirname, '..', 'out', 'index.html');
     if (!fs.existsSync(htmlPath)) {
-      console.error('❌ 빌드된 HTML 파일을 찾을 수 없습니다. 먼저 빌드를 실행해주세요.');
-      process.exit(1);
+      console.log('📦 빌드된 파일을 찾을 수 없습니다. 빌드를 먼저 실행합니다...\n');
+      const { execSync } = require('child_process');
+
+      try {
+        // 현재 환경에 맞는 빌드 실행
+        if (process.env.NEXT_PUBLIC_IS_PRODUCTION) {
+          console.log('🏗️  프로덕션 빌드 실행 중...');
+          execSync('npm run build:prod', { stdio: 'inherit', cwd: path.join(__dirname, '..') });
+        } else {
+          console.log('🏗️  개발 빌드 실행 중...');
+          execSync('npm run build', { stdio: 'inherit', cwd: path.join(__dirname, '..') });
+        }
+        console.log('✅ 빌드 완료!\n');
+      } catch (error) {
+        console.error('❌ 빌드 실패:', error.message);
+        process.exit(1);
+      }
     }
 
     const htmlContent = fs.readFileSync(htmlPath, 'utf8');
