@@ -6,6 +6,7 @@ import projectsData from '../data/projects.json'
 import experienceData from '../data/experience.json'
 import studyData from '../data/study.json'
 import contactData from '../data/contact.json'
+import { getDefaultImagePath } from '../data/config'
 
 // 타입 단언
 const typedProjectsData = projectsData as ProjectItem[]
@@ -348,10 +349,10 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={item.images?.[0] || `${process.env.NODE_ENV === 'production' ? '/portfolio-website' : ''}/images/sample.png`}
+                            src={item.images?.[0] || getDefaultImagePath()}
                             alt={item.title}
                             onError={(e) => {
-                              e.currentTarget.src = `${process.env.NODE_ENV === 'production' ? '/portfolio-website' : ''}/images/sample.png`
+                              e.currentTarget.src = getDefaultImagePath()
                             }}
                           />
                         </div>
@@ -469,10 +470,10 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={item.images?.[0] || `${process.env.NODE_ENV === 'production' ? '/portfolio-website' : ''}/images/sample.png`}
+                            src={item.images?.[0] || getDefaultImagePath()}
                             alt={item.title}
                             onError={(e) => {
-                              e.currentTarget.src = `${process.env.NODE_ENV === 'production' ? '/portfolio-website' : ''}/images/sample.png`
+                              e.currentTarget.src = getDefaultImagePath()
                             }}
                           />
                 </div>
