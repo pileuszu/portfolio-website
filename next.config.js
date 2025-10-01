@@ -2,8 +2,8 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  // GitHub Pages는 리포지토리 이름으로 자동 서브패스 제공하므로 basePath 제거
-  // basePath: process.env.NEXT_PUBLIC_IS_PRODUCTION ? '/portfolio-website' : '',
+  // GitHub Pages 서브패스 문제를 해결하기 위해 basePath 재설정
+  basePath: '/portfolio-website',
   sassOptions: {
     includePaths: ['./src/styles'],
   },
