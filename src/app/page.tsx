@@ -349,7 +349,7 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={item.images?.[0] || '/images/sample.png'}
+                            src={item.images?.[0] || `${process.env.NODE_ENV === 'production' ? '/portfolio-website' : ''}/images/sample.png`}
                             alt={item.title}
                             onError={(e) => {
                               e.currentTarget.src = '/images/sample.png'
@@ -470,7 +470,7 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={item.images?.[0] || '/images/sample.png'}
+                            src={item.images?.[0] || `${process.env.NODE_ENV === 'production' ? '/portfolio-website' : ''}/images/sample.png`}
                             alt={item.title}
                             onError={(e) => {
                               e.currentTarget.src = '/images/sample.png'
@@ -585,10 +585,10 @@ export default function Home() {
               </button>
               <div className={styles.overlayImage}>
                 <img
-                  src={selectedProject.images?.[0] || '/portfolio-website/images/sample.png'}
+                  src={selectedProject.images?.[0] || `${process.env.NODE_ENV === 'production' ? '/portfolio-website' : ''}/images/sample.png`}
                   alt={selectedProject.title}
                   onError={(e) => {
-                    e.currentTarget.src = '/portfolio-website/images/sample.png'
+                    e.currentTarget.src = `${process.env.NODE_ENV === 'production' ? '/portfolio-website' : ''}/images/sample.png`
                   }}
                 />
               </div>

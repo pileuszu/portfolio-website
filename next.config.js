@@ -2,8 +2,8 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  // 실제 GitHub Pages 배포 경로에 맞게 설정 (루트 배포)
-  basePath: '',
+  // 환경별로 다른 basePath 설정
+  basePath: process.env.NODE_ENV === 'production' ? '/portfolio-website' : '',
   sassOptions: {
     includePaths: ['./src/styles'],
   },
@@ -12,6 +12,10 @@ const nextConfig = {
     images: {
       unoptimized: true, // GitHub Pages에서 이미지 최적화 비활성화
     },
+  },
+  // 빌드 에러 해결을 위한 설정
+  generateBuildId: async () => {
+    return 'build-id'
   },
   // 번들 분석을 위한 설정 (선택사항)
   webpack: (config) => {
