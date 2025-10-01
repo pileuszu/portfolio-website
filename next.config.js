@@ -2,6 +2,8 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
+  // GitHub Pages 배포 경로 설정
+  basePath: '/portfolio-website',
   sassOptions: {
     includePaths: ['./src/styles'],
   },

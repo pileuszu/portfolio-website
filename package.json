@@ -2,7 +2,7 @@
   "name": "portfolio-site",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jihwan-kim.github.io/pileuszu",
+  "homepage": "https://pileuszu.github.io/portfolio-website",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

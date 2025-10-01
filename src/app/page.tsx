@@ -366,7 +366,7 @@ export default function Home() {
                         onClick={() => handleProjectSelect(item as ProjectItem)}
                       >
                         <div className={styles.gridImage}>
-                          <img 
+                          <img
                             src={item.images?.[0] || '/images/sample.png'}
                             alt={item.title}
                             onError={(e) => {
@@ -602,7 +602,7 @@ export default function Home() {
                 ×
               </button>
               <div className={styles.overlayImage}>
-                <img 
+                <img
                   src={selectedProject.images?.[0] || '/images/sample.png'}
                   alt={selectedProject.title}
                   onError={(e) => {
