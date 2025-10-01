@@ -58,10 +58,10 @@ export default function Home() {
     }
   }, [])
 
-  // 배경 이미지 설정 (환경별로 다른 경로 사용)
+  // 배경 이미지 설정
   useEffect(() => {
     if (overviewSectionRef.current) {
-      const imagePath = `${process.env.NEXT_PUBLIC_IS_PRODUCTION ? '/portfolio-website' : ''}/images/profile.jpg`
+      const imagePath = '/images/profile.jpg'
       overviewSectionRef.current.style.backgroundImage = `url('${imagePath}')`
     }
   }, [])
@@ -357,7 +357,7 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={`${process.env.NEXT_PUBLIC_IS_PRODUCTION ? '/portfolio-website' : ''}${item.images?.[0] || '/images/sample.png'}`}
+                            src={item.images?.[0] || '/images/sample.png'}
                             alt={item.title}
                             onError={(e) => {
                               e.currentTarget.src = '/images/sample.png'
@@ -478,7 +478,7 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={`${process.env.NEXT_PUBLIC_IS_PRODUCTION ? '/portfolio-website' : ''}${item.images?.[0] || '/images/sample.png'}`}
+                            src={item.images?.[0] || '/images/sample.png'}
                             alt={item.title}
                             onError={(e) => {
                               e.currentTarget.src = '/images/sample.png'
@@ -593,10 +593,10 @@ export default function Home() {
               </button>
               <div className={styles.overlayImage}>
                 <img
-                  src={`${process.env.NEXT_PUBLIC_IS_PRODUCTION ? '/portfolio-website' : ''}${selectedProject.images?.[0] || '/images/sample.png'}`}
+                  src={selectedProject.images?.[0] || '/images/sample.png'}
                   alt={selectedProject.title}
                   onError={(e) => {
-                    e.currentTarget.src = `${process.env.NEXT_PUBLIC_IS_PRODUCTION ? '/portfolio-website' : ''}/images/sample.png`
+                    e.currentTarget.src = '/images/sample.png'
                   }}
                 />
               </div>
