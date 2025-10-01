@@ -349,10 +349,10 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={item.images?.[0] || `${process.env.NODE_ENV === 'production' ? '/portfolio-website' : ''}/images/sample.png`}
+                            src={item.images?.[0] || '/images/sample.png'}
                             alt={item.title}
                             onError={(e) => {
-                              e.currentTarget.src = `${process.env.NODE_ENV === 'production' ? '/portfolio-website' : ''}/images/sample.png`
+                              e.currentTarget.src = '/images/sample.png'
                             }}
                           />
                         </div>
@@ -470,10 +470,10 @@ export default function Home() {
                       >
                         <div className={styles.gridImage}>
                           <img
-                            src={item.images?.[0] || `${process.env.NODE_ENV === 'production' ? '/portfolio-website' : ''}/images/sample.png`}
+                            src={item.images?.[0] || '/images/sample.png'}
                             alt={item.title}
                             onError={(e) => {
-                              e.currentTarget.src = `${process.env.NODE_ENV === 'production' ? '/portfolio-website' : ''}/images/sample.png`
+                              e.currentTarget.src = '/images/sample.png'
                             }}
                           />
                 </div>
