@@ -568,7 +568,7 @@ export default function Home() {
                       <p className={styles.contactCardDesc}>{item.desc}</p>
                       <div className={styles.contactCardDetails}>
                         <p>{item.details}</p>
-                      </div>
+                      </div> 
                     </div>
                   )
                 })}
