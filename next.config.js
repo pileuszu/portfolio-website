@@ -2,8 +2,8 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  // GitHub Pages 실제 배포 경로에 맞게 설정 (루트 배포)
-  basePath: '',
+  // 환경별로 다른 basePath 설정
+  basePath: process.env.NODE_ENV === 'production' ? '/portfolio-website' : '',
   sassOptions: {
     includePaths: ['./src/styles'],
   },
