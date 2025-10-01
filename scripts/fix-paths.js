@@ -1,36 +1,61 @@
 const fs = require('fs');
 const path = require('path');
 
-// 빌드된 HTML 파일에서 경로를 수정하는 스크립트
+// 빌드된 파일들을 portfolio-website 폴더로 재구성하는 스크립트
 function fixPaths() {
   const outDir = path.join(__dirname, '..', 'out');
-  const indexPath = path.join(outDir, 'index.html');
+  const portfolioDir = path.join(outDir, 'portfolio-website');
 
-  if (!fs.existsSync(indexPath)) {
-    console.log('❌ index.html 파일을 찾을 수 없습니다.');
-    return;
+  console.log('🔧 GitHub Pages 배포 구조 재구성 시작...');
+
+  // portfolio-website 폴더 생성
+  if (!fs.existsSync(portfolioDir)) {
+    fs.mkdirSync(portfolioDir, { recursive: true });
   }
 
-  console.log('🔧 HTML 파일 경로 수정 시작...');
+  // out 폴더의 모든 파일과 폴더를 portfolio-website 폴더로 이동
+  const items = fs.readdirSync(outDir);
 
-  let htmlContent = fs.readFileSync(indexPath, 'utf8');
+  for (const item of items) {
+    const srcPath = path.join(outDir, item);
+    const destPath = path.join(portfolioDir, item);
 
-  // Next.js가 생성한 /portfolio-website/ 경로를 제거하고,
-  // 실제 필요한 경로로 수정
-  htmlContent = htmlContent
-    // 이미지 경로 수정: /portfolio-website/images/ -> /images/
-    .replace(/\/portfolio-website\/images\//g, '/images/')
-    // CSS 경로 수정: /portfolio-website/_next/ -> /_next/
-    .replace(/\/portfolio-website\/_next\//g, '/_next/')
-    // 폰트 경로 유지 (외부 CDN은 그대로)
-    // 다른 asset 경로는 필요에 따라 수정
+    // portfolio-website 폴더 자체는 이동하지 않음
+    if (item === 'portfolio-website') continue;
 
-  fs.writeFileSync(indexPath, htmlContent, 'utf8');
+    // 파일/폴더 이동
+    if (fs.statSync(srcPath).isDirectory()) {
+      // 디렉토리인 경우 재귀적으로 복사
+      copyDirRecursive(srcPath, destPath);
+      // 원본 디렉토리 삭제
+      fs.rmSync(srcPath, { recursive: true, force: true });
+    } else {
+      // 파일인 경우 이동
+      fs.renameSync(srcPath, destPath);
+    }
+  }
 
-  console.log('✅ HTML 파일 경로 수정 완료!');
-  console.log('📝 수정된 경로들:');
-  console.log('   - 이미지: /portfolio-website/images/ → /images/');
-  console.log('   - CSS/JS: /portfolio-website/_next/ → /_next/');
+  console.log('✅ GitHub Pages 배포 구조 재구성 완료!');
+  console.log('📁 새로운 구조: out/portfolio-website/');
+}
+
+function copyDirRecursive(src, dest) {
+  if (!fs.existsSync(dest)) {
+    fs.mkdirSync(dest, { recursive: true });
+  }
+
+  const items = fs.readdirSync(src);
+
+  for (const item of items) {
+    const srcPath = path.join(src, item);
+    const destPath = path.join(dest, item);
+
+    if (fs.statSync(srcPath).isDirectory()) {
+      copyDirRecursive(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
 }
 
 fixPaths();
