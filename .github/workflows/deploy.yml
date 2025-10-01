@@ -66,7 +66,7 @@ jobs:
         run: npm run build:prod
 
       - name: Test image loading
-        run: npm run build:test
+        run: npm run test:images
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
