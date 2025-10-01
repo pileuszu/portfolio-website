@@ -25,5 +25,41 @@
     "tech": ["샘플 기술1", "샘플 기술2", "샘플 기술3"],
     "year": "2024",
     "type": "blog"
+  },
+  {
+    "title": "샘플 타이틀4",
+    "desc": "샘플 설명4",
+    "images": ["/images/sample.png"],
+    "details": "샘플 상세 내용4",
+    "tech": ["샘플 기술1", "샘플 기술2", "샘플 기술3"],
+    "year": "2024",
+    "type": "blog"
+  },
+  {
+    "title": "샘플 타이틀5",
+    "desc": "샘플 설명5", 
+    "images": ["/images/sample.png"],
+    "details": "샘플 상세 내용5",
+    "tech": ["샘플 기술1", "샘플 기술2", "샘플 기술3"],
+    "year": "2024",
+    "type": "blog"
+  },
+  {
+    "title": "샘플 타이틀6",
+    "desc": "샘플 설명6",
+    "images": ["/images/sample.png"],
+    "details": "샘플 상세 내용6",
+    "tech": ["샘플 기술1", "샘플 기술2", "샘플 기술3"],
+    "year": "2024",
+    "type": "blog"
+  },
+  {
+    "title": "샘플 타이틀7",
+    "desc": "샘플 설명7",
+    "images": ["/images/sample.png"],
+    "details": "샘플 상세 내용7",
+    "tech": ["샘플 기술1", "샘플 기술2", "샘플 기술3"],
+    "year": "2024",
+    "type": "blog"
   }
 ]
