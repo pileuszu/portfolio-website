@@ -1108,7 +1108,8 @@
 .timelineMarker {
   position: absolute;
   left: -22px;
-  top: 8px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 14px;
   height: 14px;
   border-radius: 50%;
