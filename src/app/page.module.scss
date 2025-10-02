@@ -89,20 +89,76 @@
   align-items: flex-start;
   padding-left: 60px;
   z-index: 1500;
+  overflow: hidden;
+}
+
+// 기하학적 패턴 배경
+.geometricPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.patternDots {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+
+.patternLines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(45deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 100px 100px;
+  animation: patternMove 25s linear infinite reverse;
+}
+
+// 인터랙티브 배경 요소
+.interactiveElement {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(223, 208, 184, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.1s ease-out;
+  filter: blur(1px);
+}
+
+
+// 패턴 애니메이션
+@keyframes patternMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
 }
 
 // 텍스트 컨테이너
 .textContainer {
   text-align: left;
-  z-index: 1600;
+  z-index: 10;
+  position: relative;
   margin-bottom: 0;
   transform: translateY(-30px);
 }
 
 // 이름 텍스트
 .nameText {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2.8rem;
+  font-weight: 300;
   color: #fff;
   margin: 0 0 20px 0;
   letter-spacing: 2px;
@@ -110,21 +166,19 @@
   font-family: 'Montserrat', sans-serif;
   animation: slideInFromLeft 1s cubic-bezier(0.4, 0, 0.2, 1) both;
   animation-delay: 0.5s;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 // 직업 텍스트
 .jobText {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #ccc;
   margin: 0;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
   animation: slideInFromRight 1s cubic-bezier(0.4, 0, 0.2, 1) both;
   animation-delay: 1s;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 // 섹션 이동 버튼
@@ -143,20 +197,26 @@
   border: none;
   color: #fff;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
 
   svg {
     width: 60px;
     height: 60px;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
 
     svg {
-      transform: scale(1.1);
+      transform: scale(1.15);
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
     }
+  }
+  
+  &:active {
+    transform: translateY(-4px) scale(0.95);
   }
 }
 
@@ -175,38 +235,72 @@
   border: none;
   color: #fff;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
 
   svg {
     width: 60px;
     height: 60px;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
 
     svg {
-      transform: scale(1.1);
+      transform: scale(1.15);
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
     }
+  }
+  
+  &:active {
+    transform: translateY(-4px) scale(0.95);
   }
 }
 
 // 포트폴리오 섹션들 - 좌우 분할 레이아웃
-.projectsSection,
+.projectsSection {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: #F8F8F8; // 거의 흰색 배경
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 0.2s;
+}
+
 .contactSection {
   min-height: 100vh;
   display: flex;
   align-items: center;
   background: #F8F8F8; // 거의 흰색 배경
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 0.4s;
 }
 
-.experienceSection,
+.experienceSection {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: #DFD0B8; // 밝은 베이지 배경
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 0.1s;
+}
+
 .studySection {
   min-height: 100vh;
   display: flex;
   align-items: center;
   background: #DFD0B8; // 밝은 베이지 배경
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 0.3s;
 }
 
 .portfolioLayout {
@@ -329,21 +423,24 @@
 
 .portfolioTitle {
   font-family: 'Montserrat', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 400;
   color: #ffffff; // 흰색 (어두운 배경용)
   margin: 0 0 30px 0;
-  line-height: 1.2;
-  letter-spacing: -0.5px;
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .portfolioSubtitle {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.2rem;
-  color: #f0f0f0; // 밝은 회색 (어두운 배경용)
+  font-size: 1rem;
+  color: #b0b0b0; // 더 어두운 회색 (어두운 배경용)
   margin: 0 0 50px 0;
   line-height: 1.6;
   font-weight: 300;
+  letter-spacing: 0.2px;
+  max-width: 85%;
 }
 
 .portfolioMenu {
@@ -455,6 +552,7 @@
 }
 
 .company {
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
   color: #95a5a6;
   font-weight: 400;
@@ -463,6 +561,7 @@
 }
 
 .date {
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.85rem;
   color: #95a5a6;
   font-weight: 400;
@@ -726,19 +825,41 @@
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(148, 137, 121, 0.1); // 중간 톤 베이지 테두리
+  transform: translateY(0);
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-color: rgba(223, 208, 184, 0.3);
 
     .gridContent {
-    opacity: 1;
+      opacity: 1;
       transform: translateY(0);
     }
+    
+    .gridImage img {
+      transform: scale(1.08);
+    }
+  }
+}
+
+// Dot glow animation
+@keyframes dotGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -755,9 +876,7 @@
   }
 }
 
-.gridItem:hover .gridImage img {
-  transform: scale(1.05);
-}
+// 그리드 이미지 애니메이션은 위의 hover에서 처리됨
 
 .gridContent {
   position: absolute;
@@ -768,7 +887,7 @@
   padding: 20px 15px 15px;
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -776,10 +895,11 @@
   h4 {
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 400;
     color: #ffffff; // 흰색
     margin: 0 0 8px 0;
-    line-height: 1.3;
+    line-height: 1.4;
+    letter-spacing: 0.1px;
   }
 
   p {
@@ -788,6 +908,7 @@
     color: #f0f0f0; // 밝은 회색
     margin: 0 0 10px 0;
     line-height: 1.4;
+    font-weight: 300;
   }
 }
 
@@ -829,29 +950,33 @@
 .gridNavRight {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%) rotate(90deg);
-  width: 60px;
-  height: 60px;
+  transform: translateY(-50%);
+  background: none;
   border: none;
-  background: rgba(255, 255, 255, 0.1); // 흰색 반투명 배경
-  color: #222831; // 흰색
+  color: #222831;
   cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
-  border-radius: 50%;
+
+  svg {
+    width: 60px;
+    height: 60px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
   &:hover:not(:disabled) {
-    background: rgba(255, 255, 255, 0.2);
-    color: #DFD0B8; // 밝은 베이지
-    transform: translateY(-50%) rotate(90deg) scale(1.1);
+    transform: translateY(-50%) translateY(-8px);
+
+    svg {
+      transform: scale(1.15);
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    }
   }
 
   &:disabled {
     opacity: 0.3;
     cursor: not-allowed;
+    transform: translateY(-50%);
   }
 }
 
@@ -861,11 +986,6 @@
 
 .gridNavRight {
   right: 20px;
-  transform: translateY(-50%) rotate(-90deg);
-  
-  &:hover:not(:disabled) {
-    transform: translateY(-50%) rotate(-90deg) scale(1.1);
-  }
 }
 
 
@@ -901,12 +1021,25 @@
   position: relative;
   animation: slideUp 0.3s ease;
 
-  // 스크롤바 숨기기 (스크롤 기능은 유지)
+  // 스크롤바 스타일링
   &::-webkit-scrollbar {
-    display: none;
+    width: 8px;
   }
-  -ms-overflow-style: none; // IE and Edge
-  scrollbar-width: none; // Firefox
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
 }
 
 @keyframes slideUp {
@@ -1160,15 +1293,32 @@
 .timelineItem {
   position: relative;
   margin-bottom: 40px;
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideInFromLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  
+  &:nth-child(1) { animation-delay: 0.1s; }
+  &:nth-child(2) { animation-delay: 0.2s; }
+  &:nth-child(3) { animation-delay: 0.3s; }
+  &:nth-child(4) { animation-delay: 0.4s; }
   
   &:last-child {
     margin-bottom: 0;
+  }
+  
+  &:hover {
+    transform: translateX(5px);
+    
+    .timelineMarker {
+      transform: scale(1.2);
+      background: #DFD0B8;
+    }
   }
 }
 
 .timelineMarker {
   position: absolute;
-  left: -22px;
+  left: -21px;
   top: 50%;
   transform: translateY(-50%);
   width: 14px;
@@ -1177,6 +1327,7 @@
   background: #948979; // 중간 톤 베이지
   border: 3px solid #222831; // 가장 어두운 색상
   z-index: 2;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   &::before {
     content: '';
@@ -1206,26 +1357,28 @@
 
   h4 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 400;
     color: #222831; // 가장 어두운 색상
     margin: 0 0 8px 0;
+    letter-spacing: 0.1px;
   }
 
   .company {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    color: #948979; // 중간 톤 베이지
+    font-size: 0.85rem;
+    color: #666; // 중간 회색
     margin: 0 0 10px 0;
-    font-weight: 500;
+    font-weight: 300;
   }
 
   p {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.95rem;
-    color: #393E46; // 어두운 회색
+    font-size: 0.9rem;
+    color: #555; // 어두운 회색
     margin: 0;
     line-height: 1.5;
+    font-weight: 300;
   }
 }
 
@@ -1694,6 +1847,13 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
+  transform: translateY(0);
+  opacity: 0;
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+  
+  &:nth-child(1) { animation-delay: 0.1s; }
+  &:nth-child(2) { animation-delay: 0.2s; }
 
   &::before {
     content: '';
@@ -1708,12 +1868,16 @@
   }
 
   &:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    border-color: rgba(148, 137, 121, 0.3);
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    border-color: rgba(148, 137, 121, 0.4);
 
     &::before {
       opacity: 1;
+    }
+    
+    .contactCardTitle::after {
+      width: 60px;
     }
   }
 }
@@ -1753,11 +1917,12 @@
 
 .contactCardTitle {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 400;
   color: #222831;
   margin-bottom: 12px;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .contactCardDesc {
@@ -1765,8 +1930,8 @@
   font-size: 0.95rem;
   color: #666666;
   margin-bottom: 20px;
-  line-height: 1.6;
-  font-weight: 400;
+  line-height: 1.5;
+  font-weight: 300;
 }
 
 .contactCardDetails {
@@ -1877,6 +2042,33 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+  }
+}
+
+.errorMessage {
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff6b6b;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.successMessage {
+  text-align: center;
+  padding: 40px 30px;
+
+  h2 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    line-height: 1.6;
   }
 }
 
@@ -2032,6 +2224,7 @@
 }
 
 .notFoundNumber {
+  font-family: 'Montserrat', sans-serif;
   font-size: 8rem;
   font-weight: 900;
   color: #3498db;
@@ -2041,6 +2234,7 @@
 }
 
 .notFoundTitle {
+  font-family: 'Montserrat', sans-serif;
   font-size: 2.5rem;
   font-weight: 600;
   color: #ffffff;
@@ -2049,6 +2243,7 @@
 }
 
 .notFoundDescription {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.2rem;
   color: #bdc3c7;
   margin-bottom: 2rem;
@@ -2175,5 +2370,82 @@
   
   .homeButton, .backButton {
     width: 200px;
+  }
+}
+
+// 캐러셀 애니메이션을 위한 그리드 컨테이너
+.projectsGrid {
+  position: relative;
+  overflow: hidden;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1.5rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  opacity: 1;
+}
+
+// 캐러셀 애니메이션 효과
+.gridContainer.slideInRight {
+  animation: slideInFromRight 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gridContainer.slideInLeft {
+  animation: slideInFromLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gridContainer.slideOutRight {
+  animation: slideOutToRight 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gridContainer.slideOutLeft {
+  animation: slideOutToLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideOutToLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
   }
 }

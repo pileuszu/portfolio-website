@@ -1,11 +1,12 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styles from './page.module.scss'
 import projectsData from '../data/projects.json'
 import experienceData from '../data/experience.json'
 import studyData from '../data/study.json'
 import contactData from '../data/contact.json'
+import EmailForm from '../components/EmailForm'
 
 // 타입 단언
 const typedProjectsData = projectsData as ProjectItem[]
@@ -24,6 +25,7 @@ const getImagePath = (path: string) => {
 const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
   e.currentTarget.src = getImagePath('/images/sample.png')
 }
+
 
 interface ProjectItem {
   title: string
@@ -54,8 +56,16 @@ export default function Home() {
   const [selectedProject, setSelectedProject] = useState<(ProjectItem | BlogItem) | null>(null)
   const [currentProjectPage, setCurrentProjectPage] = useState(0)
   const [currentStudyPage, setCurrentStudyPage] = useState(0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [projectAnimationClass, setProjectAnimationClass] = useState('')
+  const [studyAnimationClass, setStudyAnimationClass] = useState('')
+  const [projectDirection, setProjectDirection] = useState<'left' | 'right'>('right')
+  const [studyDirection, setStudyDirection] = useState<'left' | 'right'>('right')
+  
   const [isDarkBackground, setIsDarkBackground] = useState(true)
   const [showEmailOverlay, setShowEmailOverlay] = useState(false)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
 
   // 초기 애니메이션 및 환경별 클래스 설정
   useEffect(() => {
@@ -79,7 +89,7 @@ export default function Home() {
   }, [])
 
   // 섹션 감지 (화면 중앙 기준)
-  const detectActiveSection = useCallback(() => {
+  const detectActiveSection = () => {
     const sections = ['overview', 'experience', 'projects', 'study', 'contact']
     const scrollPosition = window.scrollY + window.innerHeight / 2
 
@@ -119,7 +129,7 @@ export default function Home() {
     if (newActiveSection !== activeSection) {
       setActiveSection(newActiveSection)
     }
-  }, [activeSection])
+  }
 
   // 스크롤 이벤트 리스너 (requestAnimationFrame 사용)
   useEffect(() => {
@@ -239,6 +249,82 @@ export default function Home() {
     setSelectedProject(project)
   }
 
+  // 캐러셀 애니메이션 함수들
+  const handlePageChange = (newPage: number, type: 'projects' | 'study', direction: 'left' | 'right') => {
+    if (isTransitioning) return
+    
+    setIsTransitioning(true)
+    
+    // 슬라이드 아웃 애니메이션 시작
+    if (type === 'projects') {
+      setProjectDirection(direction)
+      setProjectAnimationClass(direction === 'left' ? 'slideOutRight' : 'slideOutLeft')
+    } else {
+      setStudyDirection(direction)
+      setStudyAnimationClass(direction === 'left' ? 'slideOutRight' : 'slideOutLeft')
+    }
+    
+    // 슬라이드 아웃 완료 후 페이지 변경 및 슬라이드 인 시작
+    setTimeout(() => {
+      if (type === 'projects') {
+        setCurrentProjectPage(newPage)
+        setProjectAnimationClass(direction === 'left' ? 'slideInLeft' : 'slideInRight')
+      } else {
+        setCurrentStudyPage(newPage)
+        setStudyAnimationClass(direction === 'left' ? 'slideInLeft' : 'slideInRight')
+      }
+      
+      // 애니메이션 완료 후 상태 리셋
+      setTimeout(() => {
+        setProjectAnimationClass('')
+        setStudyAnimationClass('')
+        setIsTransitioning(false)
+      }, 500)
+    }, 250)
+  }
+
+  const nextPage = (type: 'projects' | 'study') => {
+    const totalPages = type === 'projects' 
+      ? Math.ceil(typedProjectsData.length / 6)
+      : Math.ceil(typedStudyData.length / 6)
+    const currentPage = type === 'projects' ? currentProjectPage : currentStudyPage
+    
+    if (currentPage < totalPages - 1) {
+      handlePageChange(currentPage + 1, type, 'right')
+    }
+  }
+
+  const prevPage = (type: 'projects' | 'study') => {
+    const currentPage = type === 'projects' ? currentProjectPage : currentStudyPage
+    
+    if (currentPage > 0) {
+      handlePageChange(currentPage - 1, type, 'left')
+    }
+  }
+
+  // 오버레이가 열릴 때 배경 스크롤 방지
+  useEffect(() => {
+    if (selectedProject || showEmailOverlay) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    // 컴포넌트 언마운트 시 스크롤 복원
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [selectedProject, showEmailOverlay])
+
+  // 마우스 움직임 감지 (인터랙티브 배경 요소용)
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
 
   const portfolioSections = [
     { id: 'overview', title: 'OVERVIEW' },
@@ -309,6 +395,21 @@ export default function Home() {
 
         {/* Overview 섹션 */}
         <section id="overview" className={styles.overviewSection}>
+          {/* 기하학적 패턴 배경 */}
+          <div className={styles.geometricPattern}>
+            <div className={styles.patternDots}></div>
+            <div className={styles.patternLines}></div>
+          </div>
+
+          {/* 인터랙티브 배경 요소 */}
+          <div 
+            className={styles.interactiveElement}
+            style={{
+              transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`
+            }}
+          ></div>
+
+
           {/* 이름과 직업 텍스트 */}
           {(showNameText || showJobText) && (
             <div className={styles.textContainer}>
@@ -331,9 +432,9 @@ export default function Home() {
               className={styles.scrollDownButton}
               onClick={() => handleNavClick('experience')}
             >
-              <svg width="100" height="100" viewBox="0 0 100 100">
-                <path d="M15,33 L50,67 L85,33" fill="none" stroke="currentColor" strokeWidth="2" />
-              </svg>
+                     <svg width="100" height="100" viewBox="0 0 100 100">
+                       <path d="M15,33 L50,67 L85,33" fill="none" stroke="currentColor" strokeWidth="2" />
+                     </svg>
             </button>
           </div>
         </section>
@@ -375,55 +476,54 @@ export default function Home() {
                 {currentProjectPage > 0 && (
                   <button 
                     className={styles.gridNavLeft}
-                    onClick={() => setCurrentProjectPage(Math.max(0, currentProjectPage - 1))}
+                    onClick={() => prevPage('projects')}
+                    disabled={isTransitioning}
                   >
-                    <svg width="100" height="100" viewBox="0 0 100 100">
-                      <path d="M15,33 L50,67 L85,33" fill="none" stroke="currentColor" strokeWidth="2" />
-                    </svg>
+                     <svg width="100" height="100" viewBox="0 0 100 100">
+                       <path d="M67,85 L33,50 L67,15" fill="none" stroke="currentColor" strokeWidth="2" />
+                     </svg>
                   </button>
                 )}
                 
-                <div className={styles.gridContainer}>
-                  {getSectionContent('projects').items.slice(currentProjectPage * 6, (currentProjectPage + 1) * 6).map((item: ProjectItem, index: number) => {
-                    if (typeof item === 'string') return null
-                    return (
-            <div
-              key={index}
-                        className={styles.gridItem}
-                        onClick={() => handleProjectSelect(item as ProjectItem)}
-                      >
-                        <div className={styles.gridImage}>
-                          <img
-                            src={getImagePath(item.images?.[0] || '/images/sample.png')}
-                            alt={item.title}
-                            onError={handleImageError}
-                          />
-                        </div>
-                        <div className={styles.gridContent}>
-                          <h4>{item.title}</h4>
-                          <p>{item.desc}</p>
-                          <div className={styles.gridTags}>
-                            <span className={styles.gridYear}>{item.year}</span>
-                            <span className={`${styles.projectType} ${item.type === 'team' ? styles.team : styles.individual}`}>
-                              {item.type === 'team' ? 'Team Project' : 'Individual'}
-                            </span>
-                          </div>
+                <div className={`${styles.gridContainer} ${projectAnimationClass ? styles[projectAnimationClass] : ''}`}>
+                  {typedProjectsData.slice(currentProjectPage * 6, (currentProjectPage + 1) * 6).map((item: ProjectItem, index: number) => (
+                    <div
+                      key={`${currentProjectPage}-${index}`}
+                      className={styles.gridItem}
+                      onClick={() => handleProjectSelect(item)}
+                    >
+                      <div className={styles.gridImage}>
+                        <img
+                          src={getImagePath(item.images?.[0] || '/images/sample.png')}
+                          alt={item.title}
+                          onError={handleImageError}
+                        />
+                      </div>
+                      <div className={styles.gridContent}>
+                        <h4>{item.title}</h4>
+                        <p>{item.desc}</p>
+                        <div className={styles.gridTags}>
+                          <span className={styles.gridYear}>{item.year}</span>
+                          <span className={`${styles.projectType} ${item.type === 'team' ? styles.team : styles.individual}`}>
+                            {item.type === 'team' ? 'Team Project' : 'Individual'}
+                          </span>
                         </div>
                       </div>
-                    )
-                  })}
+                    </div>
+                  ))}
                 </div>
                 
-                {currentProjectPage < Math.ceil(getSectionContent('projects').items.length / 6) - 1 && (
-                  <button 
-                    className={styles.gridNavRight}
-                    onClick={() => setCurrentProjectPage(Math.min(Math.ceil(getSectionContent('projects').items.length / 6) - 1, currentProjectPage + 1))}
-                  >
-                    <svg width="100" height="100" viewBox="0 0 100 100">
-                      <path d="M15,33 L50,67 L85,33" fill="none" stroke="currentColor" strokeWidth="2" />
-                    </svg>
-                  </button>
-                )}
+                 {currentProjectPage < Math.ceil(typedProjectsData.length / 6) - 1 && (
+                   <button 
+                     className={styles.gridNavRight}
+                     onClick={() => nextPage('projects')}
+                     disabled={isTransitioning}
+                   >
+                     <svg width="100" height="100" viewBox="0 0 100 100">
+                       <path d="M33,15 L67,50 L33,85" fill="none" stroke="currentColor" strokeWidth="2" />
+                     </svg>
+                   </button>
+                 )}
               </div>
             </div>
             <div className={styles.portfolioRight}>
@@ -445,55 +545,54 @@ export default function Home() {
                 {currentStudyPage > 0 && (
                   <button
                     className={styles.gridNavLeft}
-                    onClick={() => setCurrentStudyPage(Math.max(0, currentStudyPage - 1))}
+                    onClick={() => prevPage('study')}
+                    disabled={isTransitioning}
                   >
-                    <svg width="100" height="100" viewBox="0 0 100 100">
-                      <path d="M15,33 L50,67 L85,33" fill="none" stroke="currentColor" strokeWidth="2" />
-                    </svg>
+                     <svg width="100" height="100" viewBox="0 0 100 100">
+                       <path d="M67,85 L33,50 L67,15" fill="none" stroke="currentColor" strokeWidth="2"/>
+                     </svg>
                   </button>
                 )}
 
-                <div className={styles.gridContainer}>
-                  {getSectionContent('study').items.slice(currentStudyPage * 6, (currentStudyPage + 1) * 6).map((item: BlogItem, index: number) => {
-                    if (typeof item === 'string') return null
-                    return (
-            <div
-              key={index}
-                        className={styles.gridItem}
-                        onClick={() => handleProjectSelect(item as BlogItem)}
-                      >
-                        <div className={styles.gridImage}>
-                          <img
-                            src={getImagePath(item.images?.[0] || '/images/sample.png')}
-                            alt={item.title}
-                            onError={handleImageError}
-                          />
-                </div>
-                        <div className={styles.gridContent}>
-                          <h4>{item.title}</h4>
-                          <p>{item.desc}</p>
-                          <div className={styles.gridTags}>
-                            <span className={styles.gridYear}>{item.year}</span>
-                            <span className={`${styles.projectType} ${item.type === 'blog' ? styles.blog : ''}`}>
-                              {item.type === 'blog' ? 'Blog Post' : item.type}
-                            </span>
-                </div>
-                </div>
-                </div>
-                    )
-                  })}
+                <div className={`${styles.gridContainer} ${studyAnimationClass ? styles[studyAnimationClass] : ''}`}>
+                  {typedStudyData.slice(currentStudyPage * 6, (currentStudyPage + 1) * 6).map((item: BlogItem, index: number) => (
+                    <div
+                      key={`${currentStudyPage}-${index}`}
+                      className={styles.gridItem}
+                      onClick={() => handleProjectSelect(item)}
+                    >
+                      <div className={styles.gridImage}>
+                        <img
+                          src={getImagePath(item.images?.[0] || '/images/sample.png')}
+                          alt={item.title}
+                          onError={handleImageError}
+                        />
+                      </div>
+                      <div className={styles.gridContent}>
+                        <h4>{item.title}</h4>
+                        <p>{item.desc}</p>
+                        <div className={styles.gridTags}>
+                          <span className={styles.gridYear}>{item.year}</span>
+                          <span className={`${styles.projectType} ${item.type === 'blog' ? styles.blog : ''}`}>
+                            {item.type === 'blog' ? 'Blog Post' : item.type}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
 
-                {currentStudyPage < Math.ceil(getSectionContent('study').items.length / 6) - 1 && (
-                  <button
-                    className={styles.gridNavRight}
-                    onClick={() => setCurrentStudyPage(Math.min(Math.ceil(getSectionContent('study').items.length / 6) - 1, currentStudyPage + 1))}
-                  >
-                    <svg width="100" height="100" viewBox="0 0 100 100">
-                      <path d="M15,33 L50,67 L85,33" fill="none" stroke="currentColor" strokeWidth="2" />
-                    </svg>
-                  </button>
-                )}
+                 {currentStudyPage < Math.ceil(typedStudyData.length / 6) - 1 && (
+                   <button
+                     className={styles.gridNavRight}
+                     onClick={() => nextPage('study')}
+                     disabled={isTransitioning}
+                   >
+                     <svg width="100" height="100" viewBox="0 0 100 100">
+                       <path d="M33,15 L67,50 L33,85" fill="none" stroke="currentColor" strokeWidth="2" />
+                     </svg>
+                   </button>
+                 )}
               </div>
             </div>
           </div>
@@ -523,11 +622,11 @@ export default function Home() {
                     if (item.title === 'Email') {
                       setShowEmailOverlay(true);
                     } else if (item.title === 'LinkedIn') {
-                      window.open(item.desc, '_blank');
+                      window.open(item.action, '_blank');
                     } else if (item.title === 'GitHub') {
-                      window.open(item.desc, '_blank');
+                      window.open(item.action, '_blank');
                     } else if (item.title === 'Twitter') {
-                      window.open(item.desc, '_blank');
+                      window.open(item.action, '_blank');
                     }
                   };
 
@@ -560,7 +659,7 @@ export default function Home() {
             </div>
             <div className={styles.portfolioRight}>
               <h2 className={styles.portfolioTitle}>Get In Touch</h2>
-              <p className={styles.portfolioSubtitle}>Select a contact method from the menu to view details.</p>
+              <p className={styles.portfolioSubtitle}>Let's collaborate and create something amazing together. I'm always interested in new opportunities and exciting projects.</p>
             </div>
           </div>
         </section>
@@ -569,12 +668,6 @@ export default function Home() {
         {selectedProject && (
           <div className={styles.projectOverlay} onClick={() => setSelectedProject(null)}>
             <div className={styles.overlayContent} onClick={(e) => e.stopPropagation()}>
-              <button 
-                className={styles.closeButton}
-                onClick={() => setSelectedProject(null)}
-              >
-                ×
-              </button>
               <div className={styles.overlayImage}>
                 <img
                   src={getImagePath(selectedProject.images?.[0] || '/images/sample.png')}
@@ -615,54 +708,7 @@ export default function Home() {
         {/* 이메일 오버레이 */}
         {showEmailOverlay && (
           <div className={styles.emailOverlay} onClick={() => setShowEmailOverlay(false)}>
-            <div className={styles.emailOverlayContent} onClick={(e) => e.stopPropagation()}>
-              <button
-                className={styles.closeButton}
-                onClick={() => setShowEmailOverlay(false)}
-              >
-                ×
-              </button>
-              <h2>Send Email</h2>
-              <form className={styles.emailForm} onSubmit={(e) => {
-                e.preventDefault();
-                const formData = new FormData(e.target as HTMLFormElement);
-                const subject = formData.get('subject') as string;
-                const body = formData.get('body') as string;
-                const email = 'jihwan.kim@email.com'; // 실제 이메일 주소
-                const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                window.open(mailtoLink, '_blank');
-                setShowEmailOverlay(false);
-              }}>
-                <div className={styles.formGroup}>
-                  <label htmlFor="subject">Subject</label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    required
-                    placeholder="Email subject"
-                  />
-                </div>
-                <div className={styles.formGroup}>
-                  <label htmlFor="body">Message</label>
-                  <textarea
-                    id="body"
-                    name="body"
-                    required
-                    placeholder="Your message here..."
-                    rows={6}
-                  ></textarea>
-                </div>
-                <div className={styles.formActions}>
-                  <button type="button" onClick={() => setShowEmailOverlay(false)} className={styles.cancelButton}>
-                    Cancel
-                  </button>
-                  <button type="submit" className={styles.sendButton}>
-                    Send Email
-                  </button>
-                </div>
-              </form>
-            </div>
+            <EmailForm onClose={() => setShowEmailOverlay(false)} />
           </div>
         )}
 
