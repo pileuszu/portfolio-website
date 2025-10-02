@@ -20,6 +20,11 @@ const getImagePath = (path: string) => {
   return `${basePath}${path}`
 }
 
+// 이미지 로딩 실패 시 sample.png로 대체하는 핸들러
+const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  e.currentTarget.src = getImagePath('/images/sample.png')
+}
+
 interface ProjectItem {
   title: string
   desc: string
@@ -75,7 +80,7 @@ export default function Home() {
 
   // 섹션 감지 (화면 중앙 기준)
   const detectActiveSection = useCallback(() => {
-    const sections = ['overview', 'projects', 'experience', 'study', 'contact']
+    const sections = ['overview', 'experience', 'projects', 'study', 'contact']
     const scrollPosition = window.scrollY + window.innerHeight / 2
 
     let newActiveSection = 'overview' // 기본값
@@ -160,13 +165,13 @@ export default function Home() {
       let shouldBeDark = true // 기본값: 어두운 배경
 
       if (scrollRatio > 0.24 && scrollRatio <= 0.49) {
-        // Projects 섹션 비율 (15%~45%)
+        // Experience 섹션 비율 (15%~45%)
         shouldBeDark = false // 밝은 배경
       } else if (scrollRatio > 0.49 && scrollRatio <= 0.74) {
-        // Study 섹션 비율 (45%~65%)
+        // Projects 섹션 비율 (45%~65%)
         shouldBeDark = true // 어두운 배경
       } else if (scrollRatio > 0.74 && scrollRatio <= 0.99) {
-        // Experience 섹션 비율 (65%~85%)
+        // Study 섹션 비율 (65%~85%)
         shouldBeDark = false // 밝은 배경
       } else if (scrollRatio > 0.99) {
         // Contact 섹션 비율 (85% 이상)
@@ -177,7 +182,7 @@ export default function Home() {
       }
 
       // 현재 활성 섹션 찾기 (화면 중앙 기준)
-      const sections = ['overview', 'projects', 'experience', 'study', 'contact']
+      const sections = ['overview', 'experience', 'projects', 'study', 'contact']
       const centerPosition = window.scrollY + window.innerHeight / 2
 
       for (let i = 0; i < sections.length; i++) {
@@ -221,7 +226,7 @@ export default function Home() {
       element.scrollIntoView({ behavior: 'smooth' })
 
       // 클릭한 섹션에 따라 네비게이션 배경 상태 결정
-      const shouldBeDark = sectionId === 'overview' || sectionId === 'experience' || sectionId === 'contact'
+      const shouldBeDark = sectionId === 'overview' || sectionId === 'projects' || sectionId === 'contact'
 
       // 즉시 배경 상태 및 활성 섹션 업데이트
       setIsDarkBackground(shouldBeDark)
@@ -237,8 +242,8 @@ export default function Home() {
 
   const portfolioSections = [
     { id: 'overview', title: 'OVERVIEW' },
-    { id: 'projects', title: 'PROJECTS' },
     { id: 'experience', title: 'EXPERIENCE' },
+    { id: 'projects', title: 'PROJECTS' },
     { id: 'study', title: 'STUDY' },
     { id: 'contact', title: 'CONTACT' }
   ]
@@ -324,7 +329,7 @@ export default function Home() {
           <div className={styles.scrollDownContainer}>
             <button
               className={styles.scrollDownButton}
-              onClick={() => handleNavClick('projects')}
+              onClick={() => handleNavClick('experience')}
             >
               <svg width="100" height="100" viewBox="0 0 100 100">
                 <path d="M15,33 L50,67 L85,33" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -333,14 +338,39 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Projects 섹션 - 홀수번째: 왼쪽 좁음, 제목/설명 왼쪽, 그리드 오른쪽 */}
+        {/* Experience 섹션 - 타임라인 형태 */}
+        <section id="experience" className={styles.experienceSection}>
+          <div className={styles.portfolioLayout}>
+            <div className={styles.portfolioLeft}>
+              <h2 className={styles.portfolioTitle}>Professional Experience</h2>
+              <p className={styles.portfolioSubtitle}>Years of experience building scalable applications and leading development teams. Proven track record in delivering high-quality software solutions.</p>
+            </div>
+            <div className={styles.portfolioRight}>
+              <div className={styles.timelineContainer}>
+                <div className={styles.timeline}>
+                  {getSectionContent('experience').items.map((item: { title: string; company: string; desc: string }, index: number) => {
+                  if (typeof item === 'string') return null
+                  return (
+                      <div key={index} className={styles.timelineItem}>
+                        <div className={styles.timelineMarker}></div>
+                        <div className={styles.timelineContent}>
+                      <h4>{item.title}</h4>
+                      {'company' in item && <p className={styles.company}>{item.company}</p>}
+                      <p>{item.desc}</p>
+                        </div>
+                    </div>
+                  )
+                })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Projects 섹션 - 홀수번째: 왼쪽 좁음, 제목/설명 오른쪽, 그리드 왼쪽 */}
         <section id="projects" className={styles.projectsSection}>
           <div className={styles.portfolioLayout}>
             <div className={styles.portfolioLeft}>
-              <h2 className={styles.portfolioTitle}>Featured Projects</h2>
-              <p className={styles.portfolioSubtitle}>Building innovative solutions that make a difference. Each project represents a unique challenge solved with creativity and technical excellence.</p>
-            </div>
-            <div className={styles.portfolioRight}>
               <div className={styles.projectsGrid}>
                 {currentProjectPage > 0 && (
                   <button 
@@ -366,9 +396,7 @@ export default function Home() {
                           <img
                             src={getImagePath(item.images?.[0] || '/images/sample.png')}
                             alt={item.title}
-                            onError={(e) => {
-                              e.currentTarget.style.display = 'none'
-                            }}
+                            onError={handleImageError}
                           />
                         </div>
                         <div className={styles.gridContent}>
@@ -398,59 +426,10 @@ export default function Home() {
                 )}
               </div>
             </div>
-          </div>
-
-          {/* 섹션 이동 버튼 */}
-          <div className={styles.scrollDownContainer}>
-            <button
-              className={styles.scrollDownButton}
-              onClick={() => handleNavClick('experience')}
-            >
-              <svg width="100" height="100" viewBox="0 0 100 100">
-                <path d="M15,33 L50,67 L85,33" fill="none" stroke="currentColor" strokeWidth="2" />
-              </svg>
-            </button>
-          </div>
-        </section>
-
-        {/* Experience 섹션 - 타임라인 형태 */}
-        <section id="experience" className={styles.experienceSection}>
-          <div className={styles.portfolioLayout}>
-            <div className={styles.portfolioLeft}>
-              <div className={styles.timelineContainer}>
-                <div className={styles.timeline}>
-                  {getSectionContent('experience').items.map((item: { title: string; company: string; desc: string }, index: number) => {
-                  if (typeof item === 'string') return null
-                  return (
-                      <div key={index} className={styles.timelineItem}>
-                        <div className={styles.timelineMarker}></div>
-                        <div className={styles.timelineContent}>
-                      <h4>{item.title}</h4>
-                      {'company' in item && <p className={styles.company}>{item.company}</p>}
-                      <p>{item.desc}</p>
-                        </div>
-                    </div>
-                  )
-                })}
-                </div>
-              </div>
-            </div>
             <div className={styles.portfolioRight}>
-              <h2 className={styles.portfolioTitle}>Professional Experience</h2>
-              <p className={styles.portfolioSubtitle}>Years of experience building scalable applications and leading development teams. Proven track record in delivering high-quality software solutions.</p>
+              <h2 className={styles.portfolioTitle}>Featured Projects</h2>
+              <p className={styles.portfolioSubtitle}>Building innovative solutions that make a difference. Each project represents a unique challenge solved with creativity and technical excellence.</p>
             </div>
-          </div>
-
-          {/* 섹션 이동 버튼 */}
-          <div className={styles.scrollDownContainer}>
-            <button
-              className={styles.scrollDownButton}
-              onClick={() => handleNavClick('study')}
-            >
-              <svg width="100" height="100" viewBox="0 0 100 100">
-                <path d="M15,33 L50,67 L85,33" fill="none" stroke="currentColor" strokeWidth="2" />
-              </svg>
-            </button>
           </div>
         </section>
 
@@ -487,9 +466,7 @@ export default function Home() {
                           <img
                             src={getImagePath(item.images?.[0] || '/images/sample.png')}
                             alt={item.title}
-                            onError={(e) => {
-                              e.currentTarget.style.display = 'none'
-                            }}
+                            onError={handleImageError}
                           />
                 </div>
                         <div className={styles.gridContent}>
@@ -602,9 +579,7 @@ export default function Home() {
                 <img
                   src={getImagePath(selectedProject.images?.[0] || '/images/sample.png')}
                   alt={selectedProject.title}
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none'
-                  }}
+                  onError={handleImageError}
                 />
               </div>
               <div className={styles.overlayDetails}>

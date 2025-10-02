@@ -194,19 +194,19 @@
 
 // 포트폴리오 섹션들 - 좌우 분할 레이아웃
 .projectsSection,
-.studySection {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  background: #DFD0B8; // 밝은 베이지 배경
-}
-
-.experienceSection,
 .contactSection {
   min-height: 100vh;
   display: flex;
   align-items: center;
   background: #F8F8F8; // 거의 흰색 배경
+}
+
+.experienceSection,
+.studySection {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: #DFD0B8; // 밝은 베이지 배경
 }
 
 .portfolioLayout {
@@ -274,29 +274,55 @@
   }
 }
 
-// Experience와 Contact 섹션의 왼쪽 패널(상세내용) 흰색 배경
+// Experience와 Study 섹션의 왼쪽 패널(제목/설명) 가장 어두운 남색 배경
 .experienceSection .portfolioLeft,
+.studySection .portfolioLeft {
+  background: #222831 !important;
+  color: #DFD0B8 !important;
+}
+
+// Projects와 Contact 섹션의 왼쪽 패널(콘텐츠) 흰색 배경
+.projectsSection .portfolioLeft,
 .contactSection .portfolioLeft {
   background: #ffffff !important;
   color: #222831 !important;
 }
 
-// Experience와 Contact 섹션의 오른쪽 패널(제목/설명) 가장 어두운 남색 배경
+// Experience와 Study 섹션의 오른쪽 패널(콘텐츠) 흰색 배경
 .experienceSection .portfolioRight,
+.studySection .portfolioRight {
+  background: #ffffff !important;
+  color: #222831 !important;
+}
+
+// Projects와 Contact 섹션의 오른쪽 패널(제목/설명) 가장 어두운 남색 배경
+.projectsSection .portfolioRight,
 .contactSection .portfolioRight {
   background: #222831 !important;
   color: #DFD0B8 !important;
 }
 
-// Experience와 Contact 섹션 - 짝수번째: 왼쪽이 넓게
+// Experience와 Study 섹션 - 제목/내용이 왼쪽, 콘텐츠가 오른쪽
 .experienceSection .portfolioLayout,
-.contactSection .portfolioLayout {
+.studySection .portfolioLayout {
   .portfolioLeft {
-    flex: 1.75; // 2.2:1.8 비율 (왼쪽이 더 넓어짐)
+    flex: 1; // 제목/내용 영역
   }
   
   .portfolioRight {
-    flex: 1; // 2.2:1.8 비율 (오른쪽이 조금 더 넓어짐)
+    flex: 1.75; // 콘텐츠 영역이 더 넓음
+  }
+}
+
+// Projects와 Contact 섹션 - 콘텐츠가 왼쪽, 제목/내용이 오른쪽
+.projectsSection .portfolioLayout,
+.contactSection .portfolioLayout {
+  .portfolioLeft {
+    flex: 1.75; // 콘텐츠 영역이 더 넓음
+  }
+  
+  .portfolioRight {
+    flex: 1; // 제목/내용 영역
   }
 }
 
@@ -808,7 +834,7 @@
   height: 60px;
   border: none;
   background: rgba(255, 255, 255, 0.1); // 흰색 반투명 배경
-  color: #ffffff; // 흰색
+  color: #222831; // 흰색
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;

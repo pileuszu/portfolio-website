@@ -2,7 +2,7 @@
   {
     "title": "Portfolio Website",
     "desc": "A sleek and modern portfolio website built with TypeScript, React, Next.js, and SCSS. Features a clean design with smooth animations and responsive layout.",
-    "images": ["/images/blog_title.png"],
+    "images": ["/images/project_title_4.png"],
     "details": "This portfolio website was developed using cutting-edge web technologies. Built on React 18 and Next.js 15 with TypeScript for type safety, and SCSS for sophisticated styling.\n\nKey Features:\n- Efficient routing using Next.js App Router\n- Modern design with CSS Modules and SCSS\n- Smooth animations and responsive layout\n- JSON-based content management system\n- Code quality management through ESLint\n\nThe project features a systematic directory structure and was designed with component reusability and maintainability in mind. In particular, JSON files were separated for data management to facilitate easy content updates.",
     "tech": [
       "TypeScript",
@@ -19,7 +19,7 @@
   {
     "title": "ChzzkStreamDeck",
     "desc": "A comprehensive streaming widget system for OBS Studio with real-time chat overlay, Spotify integration, and music bot functionality.",
-    "images": ["/images/streamdeck_title.png"],
+    "images": ["/images/project_title_3.png"],
     "details": "ChzzkStreamDeck is a feature-rich streaming widget system designed for OBS Studio integration. The system provides real-time CHZZK chat overlay, Spotify music control, and an interactive music bot.\n\nKey Features:\n- Real-time chat overlay with SSE and CHZZK emoticon support\n- Spotify integration with OAuth 2.0 authentication\n- Music bot with chat commands for queue management\n- Server-based token management system\n- Multiple theme options (Simple Purple, Neon Green)\n- Comprehensive API endpoints for chat and music control\n\nThe project demonstrates advanced web development concepts including WebSocket communication, OAuth implementation, and real-time data streaming. The codebase features a modular architecture with clear separation between chat, music, and bot functionalities.",
     "tech": [
       "Node.js",
@@ -37,7 +37,7 @@
   {
     "title": "3D Train Simulator",
     "desc": "A real-time 3D train simulator built with WebGL and JavaScript, featuring customizable camera controls and track configurations",
-    "images": ["/images/3dtrain_title.png"],
+    "images": ["/images/project_title_2.png"],
     "details": "This project implements a real-time 3D train simulator using WebGL and JavaScript. The simulator features highly customizable camera controls and easy-to-edit track configurations, allowing users to control their train and its routes in third-person view.\n\nKey features include:\n- 3D modeling with hierarchical structure using tree-based traversal\n- Realistic textures and animations for train components like doors and pantographs\n- Dynamic track generation with intuitive CSV-like syntax\n- Comprehensive camera controls with keyboard support\n- Customizable lighting parameters\n- Performance optimization with FPS limiting and conditional re-rendering\n\nThe project demonstrates advanced graphics programming concepts including WebGL rendering, shader programming, texture mapping, and 3D transformations. The codebase is well-structured with clear separation of concerns between rendering, physics, controls, and asset management.",
     "tech": [
       "JavaScript",
@@ -54,7 +54,7 @@
   {
     "title": "SSALON: Digital Badge Card-Based One-Time Gathering Management Service",
     "desc": "A web service providing one-time gathering communities based on 'Interactive 3D Badge Cards'",
-    "images": ["/images/ssalon_title.png"],
+    "images": ["/images/project_title_1.png"],
     "details": "Recently, people tend to be more individualistic rather than collectivistic, often hesitating to join new groups or form new relationships. Against this backdrop, the demand for one-time gatherings continues to grow. However, existing services in the market fail to fully satisfy consumer needs due to various issues such as inconvenient participant verification, difficulties in promoting gatherings, demand for additional memory preservation means, and unsatisfactory user experiences.\n\nTo address these problems, SSALON is a web service that provides one-time gathering communities based on 'Interactive 3D Badge Cards'. Users can conveniently engage in all activities related to one-time gatherings, including hosting, participating, managing, preserving memories, and verification, using digital badge cards. In particular, memory recording using badge cards serves as a unique selling point (USP) compared to other services, offering an easier and more enjoyable one-time gathering experience through SSALON's unique '3D badge cards'.\n\nThis project was developed from March to June 2024 by Team SKYTeam (Team 11) as part of the Ajou University SW Capstone Design course in the first semester of 2024.",
     "tech": [
       "Javascript", "Angular", "React", "Three.js", "HTML5", "SCSS",
@@ -65,5 +65,105 @@
     "year": "2024",
     "type": "team",
     "link": "https://github.com/lee1684/SKYTeam"
+  },
+  {
+    "title": "테스트 프로젝트 1",
+    "desc": "테스트용 프로젝트 설명입니다",
+    "images": ["/images/sample.png"],
+    "details": "테스트 프로젝트 1의 상세 설명입니다.",
+    "tech": ["React", "Node.js"],
+    "year": "2024",
+    "type": "personal",
+    "link": "https://github.com/test/project1"
+  },
+  {
+    "title": "테스트 프로젝트 2", 
+    "desc": "두 번째 테스트 프로젝트입니다",
+    "images": ["/images/sample.png"],
+    "details": "테스트 프로젝트 2의 상세 설명입니다.",
+    "tech": ["Angular", "Express"],
+    "year": "2024",
+    "type": "team",
+    "link": "https://github.com/test/project2"
+  },
+  {
+    "title": "테스트 프로젝트 3",
+    "desc": "세 번째 테스트 프로젝트입니다",
+    "images": ["/images/sample.png"], 
+    "details": "테스트 프로젝트 3의 상세 설명입니다.",
+    "tech": ["Vue", "MongoDB"],
+    "year": "2023",
+    "type": "personal",
+    "link": "https://github.com/test/project3"
+  },
+  {
+    "title": "테스트 프로젝트 4",
+    "desc": "네 번째 테스트 프로젝트입니다",
+    "images": ["/images/sample.png"],
+    "details": "테스트 프로젝트 4의 상세 설명입니다.",
+    "tech": ["React Native", "Firebase"],
+    "year": "2023",
+    "type": "team",
+    "link": "https://github.com/test/project4"
+  },
+  {
+    "title": "테스트 프로젝트 5",
+    "desc": "다섯 번째 테스트 프로젝트입니다",
+    "images": ["/images/sample.png"],
+    "details": "테스트 프로젝트 5의 상세 설명입니다.",
+    "tech": ["Flutter", "MySQL"],
+    "year": "2023",
+    "type": "personal",
+    "link": "https://github.com/test/project5"
+  },
+  {
+    "title": "테스트 프로젝트 6",
+    "desc": "여섯 번째 테스트 프로젝트입니다",
+    "images": ["/images/sample.png"],
+    "details": "테스트 프로젝트 6의 상세 설명입니다.",
+    "tech": ["Django", "PostgreSQL"],
+    "year": "2022",
+    "type": "team",
+    "link": "https://github.com/test/project6"
+  },
+  {
+    "title": "테스트 프로젝트 7",
+    "desc": "일곱 번째 테스트 프로젝트입니다",
+    "images": ["/images/sample.png"],
+    "details": "테스트 프로젝트 7의 상세 설명입니다.",
+    "tech": ["Spring Boot", "Oracle"],
+    "year": "2022",
+    "type": "personal",
+    "link": "https://github.com/test/project7"
+  },
+  {
+    "title": "테스트 프로젝트 8",
+    "desc": "여덟 번째 테스트 프로젝트입니다",
+    "images": ["/images/sample.png"],
+    "details": "테스트 프로젝트 8의 상세 설명입니다.",
+    "tech": ["ASP.NET", "SQL Server"],
+    "year": "2022",
+    "type": "team",
+    "link": "https://github.com/test/project8"
+  },
+  {
+    "title": "테스트 프로젝트 9",
+    "desc": "아홉 번째 테스트 프로젝트입니다",
+    "images": ["/images/sample.png"],
+    "details": "테스트 프로젝트 9의 상세 설명입니다.",
+    "tech": ["Laravel", "Redis"],
+    "year": "2021",
+    "type": "personal",
+    "link": "https://github.com/test/project9"
+  },
+  {
+    "title": "테스트 프로젝트 10",
+    "desc": "열 번째 테스트 프로젝트입니다",
+    "images": ["/images/sample.png"],
+    "details": "테스트 프로젝트 10의 상세 설명입니다.",
+    "tech": ["Ruby on Rails", "MongoDB"],
+    "year": "2021",
+    "type": "team",
+    "link": "https://github.com/test/project10"
   }
 ]
