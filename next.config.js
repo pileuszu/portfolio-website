@@ -2,8 +2,9 @@
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  basePath: '/portfolio-website',
-  assetPrefix: '/portfolio-website',
+  // 개발 환경에서는 basePath를 비활성화하고, 프로덕션에서만 활성화
+  basePath: process.env.NODE_ENV === 'production' ? '/portfolio-website' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/portfolio-website' : '',
   sassOptions: {
     includePaths: ['./src/styles'],
   },

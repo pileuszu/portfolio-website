@@ -15,8 +15,8 @@ const typedContactData = contactData as { title: string; desc: string; details: 
 
 // Next.js basePath를 고려한 이미지 경로 헬퍼 함수
 const getImagePath = (path: string) => {
-  // 프로덕션 환경에서는 basePath가 '/portfolio-website'로 설정됨
-  const basePath = process.env.NEXT_PUBLIC_IS_PRODUCTION ? '/portfolio-website' : ''
+  // 개발 환경에서는 basePath 없이, 프로덕션에서는 basePath 사용
+  const basePath = process.env.NODE_ENV === 'production' ? '/portfolio-website' : ''
   return `${basePath}${path}`
 }
 

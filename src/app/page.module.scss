@@ -1983,3 +1983,171 @@
   color: #7f8c8d;
   z-index: 1000;
 }
+
+// 404 페이지 스타일
+.notFoundContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.notFoundContent {
+  text-align: center;
+  z-index: 10;
+  position: relative;
+  max-width: 600px;
+  padding: 0 20px;
+}
+
+.notFoundNumber {
+  font-size: 8rem;
+  font-weight: 900;
+  color: #3498db;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 30px rgba(52, 152, 219, 0.5);
+  animation: pulse 2s infinite;
+}
+
+.notFoundTitle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.notFoundDescription {
+  font-size: 1.2rem;
+  color: #bdc3c7;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.notFoundActions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.homeButton, .backButton {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.homeButton {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+  }
+}
+
+.backButton {
+  background: transparent;
+  color: #3498db;
+  border: 2px solid #3498db;
+  
+  &:hover {
+    background: #3498db;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+}
+
+.backgroundAnimation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.floatingElement {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(45deg, rgba(52, 152, 219, 0.1), rgba(155, 89, 182, 0.1));
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+  
+  &:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+  
+  &:nth-child(2) {
+    top: 60%;
+    right: 10%;
+    animation-delay: 2s;
+  }
+  
+  &:nth-child(3) {
+    bottom: 20%;
+    left: 50%;
+    animation-delay: 4s;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+  .notFoundNumber {
+    font-size: 6rem;
+  }
+  
+  .notFoundTitle {
+    font-size: 2rem;
+  }
+  
+  .notFoundDescription {
+    font-size: 1rem;
+  }
+  
+  .notFoundActions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .homeButton, .backButton {
+    width: 200px;
+  }
+}
