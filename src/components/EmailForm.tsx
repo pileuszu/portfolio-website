@@ -69,7 +69,7 @@ export default function EmailForm({ onClose }: EmailFormProps) {
       <div className={styles.emailOverlayContent}>
         <div className={styles.successMessage}>
           <h2>✅ Email sent successfully!</h2>
-          <p>I'll get back to you as soon as possible.</p>
+          <p>I&apos;ll get back to you as soon as possible.</p>
         </div>
       </div>
     )

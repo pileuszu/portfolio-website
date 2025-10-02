@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import styles from './page.module.scss'
 import projectsData from '../data/projects.json'
 import experienceData from '../data/experience.json'
@@ -59,8 +59,6 @@ export default function Home() {
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [projectAnimationClass, setProjectAnimationClass] = useState('')
   const [studyAnimationClass, setStudyAnimationClass] = useState('')
-  const [projectDirection, setProjectDirection] = useState<'left' | 'right'>('right')
-  const [studyDirection, setStudyDirection] = useState<'left' | 'right'>('right')
   
   const [isDarkBackground, setIsDarkBackground] = useState(true)
   const [showEmailOverlay, setShowEmailOverlay] = useState(false)
@@ -89,7 +87,7 @@ export default function Home() {
   }, [])
 
   // 섹션 감지 (화면 중앙 기준)
-  const detectActiveSection = () => {
+  const detectActiveSection = useCallback(() => {
     const sections = ['overview', 'experience', 'projects', 'study', 'contact']
     const scrollPosition = window.scrollY + window.innerHeight / 2
 
@@ -129,7 +127,7 @@ export default function Home() {
     if (newActiveSection !== activeSection) {
       setActiveSection(newActiveSection)
     }
-  }
+  }, [activeSection])
 
   // 스크롤 이벤트 리스너 (requestAnimationFrame 사용)
   useEffect(() => {
@@ -257,10 +255,8 @@ export default function Home() {
     
     // 슬라이드 아웃 애니메이션 시작
     if (type === 'projects') {
-      setProjectDirection(direction)
       setProjectAnimationClass(direction === 'left' ? 'slideOutRight' : 'slideOutLeft')
     } else {
-      setStudyDirection(direction)
       setStudyAnimationClass(direction === 'left' ? 'slideOutRight' : 'slideOutLeft')
     }
     
@@ -659,7 +655,7 @@ export default function Home() {
             </div>
             <div className={styles.portfolioRight}>
               <h2 className={styles.portfolioTitle}>Get In Touch</h2>
-              <p className={styles.portfolioSubtitle}>Let's collaborate and create something amazing together. I'm always interested in new opportunities and exciting projects.</p>
+              <p className={styles.portfolioSubtitle}>Let&apos;s collaborate and create something amazing together. I&apos;m always interested in new opportunities and exciting projects.</p>
             </div>
           </div>
         </section>
