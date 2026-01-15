@@ -3,25 +3,25 @@
 import styles from './page.module.scss'
 
 // Data Imports
-import projectsData from '../data/projects.json'
-import experienceData from '../data/experience.json'
-import aboutData from '../data/aboutme.json'
-import contactData from '../data/contact.json'
-import competenciesData from '../data/competencies.json'
+import projectsData from '@/data/projects.json'
+import experienceData from '@/data/experience.json'
+import aboutData from '@/data/aboutme.json'
+import contactData from '@/data/contact.json'
+import competenciesData from '@/data/competencies.json'
 
 // Type Imports
-import { ProjectItem, ExperienceItem, AboutItem, ContactItem, CompetencyItem } from '../types'
+import { ProjectItem, ExperienceItem, AboutItem, ContactItem, CompetencyItem } from '@/types'
 
 // Component Imports
-import Navigation from '../components/Navigation'
-import Overview from '../components/sections/Overview'
-import AboutMe from '../components/sections/AboutMe'
-import Experience from '../components/sections/Experience'
-import Projects from '../components/sections/Projects'
-import Contact from '../components/sections/Contact'
+import Navigation from '@/components/Navigation'
+import Overview from '@/components/sections/Overview'
+import AboutMe from '@/components/sections/AboutMe'
+import Experience from '@/components/sections/Experience'
+import Projects from '@/components/sections/Projects'
+import Contact from '@/components/sections/Contact'
 
 // Hook Imports
-import { useScrollSpy } from '../hooks/useScrollSpy'
+import { useScrollSpy } from '@/hooks/useScrollSpy'
 
 // Data Casting
 const typedProjectsData = projectsData as ProjectItem[]

@@ -1,6 +1,6 @@
 'use client'
 
-import styles from '../../app/page.module.scss'
+import styles from '@/app/page.module.scss'
 
 interface NavigationProps {
     activeSection: string

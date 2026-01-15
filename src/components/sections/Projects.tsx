@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
-import styles from '../../app/page.module.scss'
-import { ProjectItem } from '../../types'
+import React, { useState } from 'react'
+import styles from '@/app/page.module.scss'
+import { ProjectItem } from '@/types'
+import { BASE_PATH } from '@/data/config'
 
 interface ProjectsProps {
     data: ProjectItem[]
@@ -16,8 +17,7 @@ export default function Projects({ data }: ProjectsProps) {
 
     // Helper for image paths
     const getImagePath = (path: string) => {
-        const basePath = process.env.NODE_ENV === 'production' ? '/portfolio-website' : ''
-        return `${basePath}${path}`
+        return `${BASE_PATH}${path}`
     }
 
     const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {

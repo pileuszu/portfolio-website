@@ -1,7 +1,7 @@
 'use client'
 
-import styles from '../../app/page.module.scss'
-import { AboutItem, CompetencyItem } from '../../types'
+import styles from '@/app/page.module.scss'
+import { AboutItem, CompetencyItem } from '@/types'
 
 interface AboutMeProps {
     aboutData: AboutItem[]

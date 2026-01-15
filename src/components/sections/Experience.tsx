@@ -1,7 +1,7 @@
 'use client'
 
-import styles from '../../app/page.module.scss'
-import { ExperienceItem } from '../../types'
+import styles from '@/app/page.module.scss'
+import { ExperienceItem } from '@/types'
 
 interface ExperienceProps {
     data: ExperienceItem[]

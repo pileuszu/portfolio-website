@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import styles from '../../app/page.module.scss'
+import styles from '@/app/page.module.scss'
 import { BASE_PATH } from '../../data/config'
 
 interface OverviewProps {

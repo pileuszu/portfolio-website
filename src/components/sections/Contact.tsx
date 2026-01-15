@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import styles from '../../app/page.module.scss'
-import { ContactItem } from '../../types'
+import styles from '@/app/page.module.scss'
+import { ContactItem } from '@/types'
 import EmailForm from '../EmailForm'
 
 interface ContactProps {
