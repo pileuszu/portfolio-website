@@ -393,12 +393,14 @@
 
 .aboutNarrativeCentered {
   font-family: var(--font-inter);
+  max-width: 800px;
+  margin: 0 auto;
 
   h3 {
     font-family: var(--font-outfit);
     font-size: 2rem;
     color: $text-primary;
-    margin-bottom: 30px;
+    margin: 40px 0 24px;
     font-weight: 700;
   }
 
@@ -412,41 +414,6 @@
   color: $text-secondary;
   line-height: 1.8;
   margin-bottom: 24px;
-}
-
-.skillMap {
-  width: 100%;
-}
-
-.competenciesGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
-}
-
-.competencyCard {
-  background: $bg-secondary;
-  padding: 30px;
-  border-radius: 20px;
-  border: 1px solid $border-light;
-  transition: $transition-smooth;
-
-  &:hover {
-    background: $bg-primary;
-    box-shadow: $shadow-soft;
-    transform: translateY(-5px);
-    border-color: $accent-secondary;
-  }
-}
-
-.competencyTitle {
-  color: $accent-primary;
-  margin-bottom: 15px;
-}
-
-.competencyDesc {
-  color: $text-secondary;
-  margin-bottom: 20px;
 }
 
 .skillTags {
@@ -774,6 +741,7 @@
     border-left: 1px solid $border-light;
     border-bottom: 1px solid $border-light;
     transform: rotate(45deg);
+    transition: $transition-smooth;
 
     @media (max-width: 768px) {
       display: none;
@@ -1216,19 +1184,25 @@
   margin-top: 60px;
 }
 
-.projectsGallery {
+.carouselViewport {
   flex: 1;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, auto);
-  gap: 30px;
+  overflow: hidden;
+  margin: 0 10px;
+}
+
+.carouselTrack {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.carouselItem {
+  padding: 0 15px;
+  flex-shrink: 0;
 
   @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    // We'll adjust the translateX multiplier in JS if needed, 
+    // but for now, let's keep it simple.
   }
 }
 
@@ -1589,23 +1563,30 @@
 // -----------------------------------------------------------------------------
 .contactGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  justify-content: center;
-  margin-bottom: 80px;
+  max-width: 1300px;
+  margin: 0 auto 80px;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr;
+    max-width: 800px;
+  }
 }
 
 .contactCard {
   background: #ffffff;
-  padding: 40px;
+  padding: 30px;
   border-radius: 24px;
   border: 1px solid $border-light;
   transition: $transition-smooth;
   cursor: pointer;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: left;
+  gap: 20px;
+  height: 100%;
 
   &:hover {
     transform: translateY(-10px);
@@ -1621,16 +1602,20 @@
 }
 
 .contactIconWrapper {
-  width: 64px;
-  height: 64px;
+  width: 54px;
+  height: 54px;
   background: $bg-secondary;
   color: $accent-primary;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 16px;
-  margin-bottom: 24px;
+  border-radius: 14px;
+  flex-shrink: 0;
   transition: $transition-smooth;
+}
+
+.contactTextContent {
+  flex: 1;
 }
 
 .contactTitle {

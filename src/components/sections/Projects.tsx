@@ -10,9 +10,30 @@ interface ProjectsProps {
 
 export default function Projects({ data }: ProjectsProps) {
     const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null)
-    const [currentPage, setCurrentPage] = useState(0)
-    const itemsPerPage = 6
-    const totalPages = Math.ceil(data.length / itemsPerPage)
+    const totalItems = data.length
+    const [itemsPerView, setItemsPerView] = useState(3)
+
+    // Update itemsPerView based on window size
+    React.useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth <= 768) setItemsPerView(1)
+            else if (window.innerWidth <= 1024) setItemsPerView(2)
+            else setItemsPerView(3)
+        }
+        handleResize()
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
+    const maxIndex = Math.max(0, totalItems - itemsPerView)
+    const [currentIndex, setCurrentIndex] = useState(0)
+
+    // Ensure currentIndex doesn't exceed new maxIndex on resize
+    React.useEffect(() => {
+        if (currentIndex > maxIndex) {
+            setCurrentIndex(maxIndex)
+        }
+    }, [maxIndex, currentIndex])
 
     const getImagePath = (path: string) => {
         return `${BASE_PATH}${path}`
@@ -22,10 +43,28 @@ export default function Projects({ data }: ProjectsProps) {
         document.body.style.overflow = selectedProject ? 'hidden' : 'unset'
     }
 
-    const currentProjects = data.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+    const nextSlide = () => {
+        setCurrentIndex((prev) => {
+            if (prev >= maxIndex) return 0
+            return Math.min(prev + itemsPerView, maxIndex)
+        })
+    }
 
-    const nextPage = () => setCurrentPage((prev) => (prev + 1) % totalPages)
-    const prevPage = () => setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages)
+    const prevSlide = () => {
+        setCurrentIndex((prev) => {
+            if (prev <= 0) return maxIndex
+            return Math.max(prev - itemsPerView, 0)
+        })
+    }
+
+    // Paged dots logic: 0, 3, 6, ... and finally maxIndex
+    const pagedIndices: number[] = []
+    for (let i = 0; i < maxIndex; i += itemsPerView) {
+        pagedIndices.push(i)
+    }
+    if (pagedIndices[pagedIndices.length - 1] !== maxIndex) {
+        pagedIndices.push(maxIndex)
+    }
 
     return (
         <section id="projects" className={`${styles.projectsSection} section-padding`}>
@@ -41,63 +80,70 @@ export default function Projects({ data }: ProjectsProps) {
                 </div>
 
                 <div className={styles.projectsContainer}>
-                    {totalPages > 1 && (
-                        <button className={`${styles.pageNav} ${styles.prev}`} onClick={prevPage} aria-label="Previous projects">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6" /></svg>
-                        </button>
-                    )}
+                    <button className={`${styles.pageNav} ${styles.prev}`} onClick={prevSlide} aria-label="Previous projects">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6" /></svg>
+                    </button>
 
-                    <div className={styles.projectsGallery}>
-                        {currentProjects.map((project, index) => (
-                            <div
-                                key={index}
-                                className={styles.projectCard}
-                                onClick={() => setSelectedProject(project)}
-                            >
-                                <div className={styles.projectImageWrapper}>
-                                    <Image
-                                        src={getImagePath(project.images?.[0] || '/images/sample.png')}
-                                        alt={project.title}
-                                        fill
-                                        className={styles.projectImage}
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                    />
-                                </div>
+                    <div className={styles.carouselViewport}>
+                        <div
+                            className={styles.carouselTrack}
+                            style={{
+                                transform: `translateX(-${currentIndex * (100 / totalItems)}%)`,
+                                width: `${(totalItems / itemsPerView) * 100}%`
+                            }}
+                        >
+                            {data.map((project, index) => (
+                                <div
+                                    key={index}
+                                    className={styles.carouselItem}
+                                    style={{ width: `${100 / totalItems}%` }}
+                                >
+                                    <div
+                                        className={styles.projectCard}
+                                        onClick={() => setSelectedProject(project)}
+                                    >
+                                        <div className={styles.projectImageWrapper}>
+                                            <Image
+                                                src={getImagePath(project.images?.[0] || '/images/sample.png')}
+                                                alt={project.title}
+                                                fill
+                                                className={styles.projectImage}
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            />
+                                        </div>
 
-                                <div className={styles.projectInfo}>
-                                    <div className={styles.projectMeta}>
-                                        <span className={styles.projectYear}>{project.year}</span>
-                                        <span className={styles.projectType}>{project.type}</span>
-                                    </div>
-                                    <h3 className={styles.projectTitle}>{project.title}</h3>
-                                    <div className={styles.projectSkills}>
-                                        {project.tech.slice(0, 3).map((tech, i) => (
-                                            <span key={i} className={styles.skillBadge}>{tech}</span>
-                                        ))}
+                                        <div className={styles.projectInfo}>
+                                            <div className={styles.projectMeta}>
+                                                <span className={styles.projectYear}>{project.year}</span>
+                                                <span className={styles.projectType}>{project.type}</span>
+                                            </div>
+                                            <h3 className={styles.projectTitle}>{project.title}</h3>
+                                            <div className={styles.projectSkills}>
+                                                {project.tech.slice(0, 3).map((tech, i) => (
+                                                    <span key={i} className={styles.skillBadge}>{tech}</span>
+                                                ))}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
 
-                    {totalPages > 1 && (
-                        <button className={`${styles.pageNav} ${styles.next}`} onClick={nextPage} aria-label="Next projects">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
-                        </button>
-                    )}
+                    <button className={`${styles.pageNav} ${styles.next}`} onClick={nextSlide} aria-label="Next projects">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
+                    </button>
                 </div>
 
-                {totalPages > 1 && (
-                    <div className={styles.paginationDots}>
-                        {[...Array(totalPages)].map((_, i) => (
-                            <span
-                                key={i}
-                                className={`${styles.dot} ${currentPage === i ? styles.active : ''}`}
-                                onClick={() => setCurrentPage(i)}
-                            />
-                        ))}
-                    </div>
-                )}
+                <div className={styles.paginationDots}>
+                    {pagedIndices.map((idx) => (
+                        <span
+                            key={idx}
+                            className={`${styles.dot} ${currentIndex === idx ? styles.active : ''}`}
+                            onClick={() => setCurrentIndex(idx)}
+                        />
+                    ))}
+                </div>
             </div>
 
             {/* Project Details Modal */}

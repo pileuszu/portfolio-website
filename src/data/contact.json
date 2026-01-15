@@ -1,9 +1,15 @@
 [
   {
     "title": "Email",
-    "desc": "korltzeno@gmail.com",
+    "desc": "pileuszu@gmail.com",
     "details": "Feel free to reach out for collaborations, project inquiries, or just to say hello! I typically respond within 24 hours.",
     "action": "Send Email"
+  },
+  {
+    "title": "LinkedIn",
+    "desc": "LinkedIn/pileuszu",
+    "details": "Connect with me on LinkedIn to see my professional background, skills, and endorsements. I'm always open to networking!",
+    "action": "https://www.linkedin.com/in/jihwan-kim-24b3973a6/"
   },
   {
     "title": "GitHub",
@@ -11,5 +17,4 @@
     "details": "Check out my code repositories and contributions to open source projects. See my coding style and project architecture.",
     "action": "https://github.com/pileuszu"
   }
-   
 ]

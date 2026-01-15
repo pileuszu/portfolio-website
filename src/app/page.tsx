@@ -55,7 +55,6 @@ export default function Home() {
 
         <AboutMe
           aboutData={typedAboutData}
-          competencies={typedCompetenciesData}
         />
 
         <Experience data={typedExperienceData} />

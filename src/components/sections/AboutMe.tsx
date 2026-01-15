@@ -5,10 +5,10 @@ import { AboutItem, CompetencyItem } from '@/types'
 
 interface AboutMeProps {
     aboutData: AboutItem[]
-    competencies: CompetencyItem[]
+    competencies?: CompetencyItem[]
 }
 
-export default function AboutMe({ aboutData, competencies }: AboutMeProps) {
+export default function AboutMe({ aboutData }: AboutMeProps) {
     return (
         <section id="about" className={`${styles.aboutSection} section-padding`}>
             <div className="container">
@@ -18,9 +18,8 @@ export default function AboutMe({ aboutData, competencies }: AboutMeProps) {
                     </h2>
                 </div>
 
-                <div className={styles.aboutGrid}>
-                    {/* Intro Narrative */}
-                    <div className={styles.aboutNarrative}>
+                <div className={styles.aboutCenteredContent}>
+                    <div className={styles.aboutNarrativeCentered}>
                         {aboutData.map((item, index) => (
                             <div
                                 key={index}
@@ -34,23 +33,6 @@ export default function AboutMe({ aboutData, competencies }: AboutMeProps) {
                                 }}
                             />
                         ))}
-                    </div>
-
-                    {/* Skill Map / Competencies */}
-                    <div className={styles.skillMap}>
-                        <div className={styles.competenciesGrid}>
-                            {competencies.map((comp, index) => (
-                                <div key={index} className={styles.competencyCard}>
-                                    <h4 className={`card-title ${styles.competencyTitle}`}>{comp.category}</h4>
-                                    <p className={`text-small ${styles.competencyDesc}`}>{comp.description}</p>
-                                    <div className={styles.skillTags}>
-                                        {comp.examples.map((ex, i) => (
-                                            <span key={i} className={styles.skillTag}>{ex}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
                     </div>
                 </div>
             </div>
