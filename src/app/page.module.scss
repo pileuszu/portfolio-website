@@ -1133,21 +1133,23 @@
   }
 }
 
-.contactDetails {
-  width: 100%;
-  height: 100%;
+.mainFooter {
+  border-top: 1px solid $border-light;
+  padding: 60px 0;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
 
-.contactDefault {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+.footerBranding {
+  p {
+    color: $text-tertiary;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0;
+  }
 }
 
 .contactDetailContent {
@@ -1687,15 +1689,35 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(17, 24, 39, 0.4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
+  z-index: 3000;
   padding: 20px;
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.emailFormCard {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  width: 100%;
+  max-width: 600px;
+  padding: 40px;
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  position: relative;
+  animation: modalEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
 }
 
 // -----------------------------------------------------------------------------
