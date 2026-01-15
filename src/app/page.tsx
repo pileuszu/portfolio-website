@@ -7,10 +7,9 @@ import projectsData from '@/data/projects.json'
 import experienceData from '@/data/experience.json'
 import aboutData from '@/data/aboutme.json'
 import contactData from '@/data/contact.json'
-import competenciesData from '@/data/competencies.json'
 
 // Type Imports
-import { ProjectItem, ExperienceItem, AboutItem, ContactItem, CompetencyItem } from '@/types'
+import { ProjectItem, ExperienceItem, AboutItem, ContactItem } from '@/types'
 
 // Component Imports
 import Navigation from '@/components/Navigation'
@@ -28,7 +27,6 @@ const typedProjectsData = projectsData as ProjectItem[]
 const typedExperienceData = experienceData as ExperienceItem[]
 const typedAboutData = aboutData as AboutItem[]
 const typedContactData = contactData as ContactItem[]
-const typedCompetenciesData = competenciesData as CompetencyItem[]
 
 export default function Home() {
   const sectionIds = ['overview', 'about', 'experience', 'projects', 'contact']

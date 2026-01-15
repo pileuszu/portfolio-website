@@ -3,16 +3,18 @@
     "title": "Generation For NLP Project",
     "desc": "A specialized SLM construction project for the Korean CSAT domain, focusing on overcoming data distribution shifts and ensuring generalization performance.",
     "images": [
-      "/images/project_title_8.png"
+      "/images/project_title_9.png"
     ],
-    "details": "### Project Overview\nThis project focused on building a Small Language Model (SLM) specialized for the Korean CSAT domain. The goal was to ensure domain-specific performance and resource efficiency, creating a model capable of solving high-difficulty exams comparable to large LLMs.\n\n### Problem Definition\nExisting Large Language Models (LLMs) often suffer from performance degradation when applied to specific, highly specialized domains like the Korean CSAT due to distribution shifts. Key challenges included severe training-evaluation data mismatch, selection bias from unbalanced question types, and the need for high resource efficiency in inference.\n\n### Role & Contribution\nAs a core team member, I focused on data engineering, bias mitigation strategies, and model pipeline optimization. I led the analysis of data distribution issues and designed the quantization strategy for efficient deployment.\n\n### Solution\n**Distribution Mismatch:** Resolved performance issues by adding external CSAT-like data and optimizing the training curriculum order.\n**Bias Mitigation:** Addressed selection bias by oversampling under-represented question types and implementing choice shuffling.\n**Prediction Stability:** Secured stability using Zero-shot Chain-of-Thought (CoT) and a Logits-based ensemble approach.\n**Optimization:** Overcame resource constraints by applying GPTQ/AWQ quantization to Qwen3-VL and designing a Distributed Sharding pipeline.\n\n### Learnings\nI realized that in specialized domains, model performance relies more heavily on structural data design and pipeline quality than just model size. I also recognized the critical importance of designing optimizations with the final operational environment in mind.",
+    "overview": "This project focused on building a Small Language Model (SLM) specialized for the Korean CSAT domain. The goal was to ensure domain-specific performance and resource efficiency, creating a model capable of solving high-difficulty exams comparable to large LLMs.",
+    "problem": "Existing Large Language Models (LLMs) often suffer from performance degradation when applied to specific, highly specialized domains like the Korean CSAT due to distribution shifts. Key challenges included severe training-evaluation data mismatch, selection bias from unbalanced question types, and the need for high resource efficiency in inference.",
+    "role": "As a core team member, I focused on data engineering, bias mitigation strategies, and model pipeline optimization. I led the analysis of data distribution issues and designed the quantization strategy for efficient deployment.",
+    "solution": "- **Distribution Mismatch:** Resolved performance issues by adding external CSAT-like data and optimizing the training curriculum order.\n- **Bias Mitigation:** Addressed selection bias by oversampling under-represented question types and implementing choice shuffling.\n- **Prediction Stability:** Secured stability using Zero-shot Chain-of-Thought (CoT) and a Logits-based ensemble approach.\n- **Optimization:** Overcame resource constraints by applying GPTQ/AWQ quantization to Qwen3-VL and designing a Distributed Sharding pipeline.",
+    "learnings": "I learned that in specialized domains, model performance relies more heavily on structural data design and pipeline quality than just model size. I gained the ability to design model optimizations with the final operational environment's constraints in mind.",
     "tech": [
       "Python",
-      "PyTorch",
+      "Pytorch",
       "Hugging Face",
-      "Qwen3-VL",
-      "GPTQ",
-      "AWQ"
+      "WandB"
     ],
     "year": "2026",
     "type": "team",
@@ -22,15 +24,18 @@
     "title": "MRC Project",
     "desc": "A 2-stage Open-Domain Question Answering (ODQA) system utilizing a Retriever-Reader architecture to solve information retrieval tasks.",
     "images": [
-      "/images/project_title_7.png"
+      "/images/project_title_8.png"
     ],
-    "details": "### Project Overview\nWe constructed a 2-stage Open-Domain Question Answering (ODQA) system utilizing a Retriever-Reader architecture. The project aimed to accurately retrieve information and answer questions from a vast open-domain dataset.\n\n### Problem Definition\nThe system initially faced significant challenges with Reader hallucination, primarily caused by a lack of Negative Passages in training and the Retriever's poor discrimination performance, which led to irrelevant context being fed to the Reader.\n\n### Role & Contribution\nI led the data engineering efforts, starting with comprehensive EDA to identify data quality issues. I was responsible for designing the negative sampling strategy to improve the Retriever's discrimination capability.\n\n### Solution\n**Unknown Strategy:** Addressed hallucination issues by designing a Hard Negative Sampling strategy and building a high-difficulty wrong answer dataset.\n**Retrieval Improvement:** Improved Dense Retriever discrimination via Hard Negative Mining and contributed to the design of a BM25 + Dense Hybrid Retrieval system.\n**Ensemble:** Participated in implementing a Soft Voting ensemble to boost final leaderboard performance.\n\n### Learnings\nThis project taught me that data quality and robust structural design are often more determining factors for performance than simply increasing model complexity. I learned the value of rigorous EDA in identifying the root causes of model failure.",
+    "overview": "We constructed a 2-stage Open-Domain Question Answering (ODQA) system utilizing a Retriever-Reader architecture. The project aimed to accurately retrieve information and answer questions from a vast open-domain dataset.",
+    "problem": "The system initially faced significant challenges with Reader hallucination, primarily caused by a lack of Negative Passages in training and the Retriever's poor discrimination performance, which led to irrelevant context being fed to the Reader.",
+    "role": "I led the data engineering efforts, starting with comprehensive EDA to identify data quality issues. I was responsible for designing the negative sampling strategy to improve the Retriever's discrimination capability.",
+    "solution": "- **Unknown Strategy:** Addressed hallucination issues by designing a Hard Negative Sampling strategy and building a high-difficulty wrong answer dataset.\n- **Retrieval Improvement:** Improved Dense Retriever discrimination via Hard Negative Mining and contributed to the design of a BM25 + Dense Hybrid Retrieval system.\n- **Ensemble:** Participated in implementing a Soft Voting ensemble to boost final leaderboard performance.",
+    "learnings": "This project taught me that data quality and robust structural design are often more determining factors for performance than simply increasing model complexity. I internalized the value of rigorous EDA in identifying the root causes of model failure.",
     "tech": [
       "Python",
-      "PyTorch",
+      "Pytorch",
       "Hugging Face",
-      "BERT",
-      "BM25"
+      "WandB"
     ],
     "year": "2025",
     "type": "team",
@@ -40,14 +45,18 @@
     "title": "Laftel Watch Together",
     "desc": "A Chrome extension enabling real-time synchronized video watching on Laftel with friends, featuring host control and WebSocket communication.",
     "images": [
-      "/images/project_title_6.png"
+      "/images/project_title_7.png"
     ],
-    "details": "### Project Overview\n'Laftel Watch Together' is a Chrome extension designed to allow users to watch videos on the Laftel streaming platform simultaneously with friends in real-time. It mimics the experience of a 'watch party' remotely.\n\n### Problem Definition\nUsers wanted to watch content together, but simply pressing play at the same time is unreliable. There was a need for a solution that strictly synchronizes playback state (play/pause/seek) across multiple clients with low latency.\n\n### Role & Contribution\nI was the sole developer for this project, handling both the Chrome Extension client-side logic and the Node.js WebSocket signaling server.\n\n### Solution\n**Synchronization:** Implemented a robust sync system where a designated 'Host' controls the playback flow. Any action by the host is immediately broadcast to all participants.\n**Real-time Communication:** Utilized WebSockets for low-latency state exchange.\n**Resilience:** added auto-reconnect functionality to handle network interruptions smoothly.\n\n### Learnings\nI gained a deep understanding of the Chrome Extension architecture (Manifest V3) and the challenges of real-time state synchronization. I learned how to handle edge cases in network communication to ensure a smooth user experience.",
+    "overview": "'Laftel Watch Together' is a Chrome extension designed to allow users to watch videos on the Laftel streaming platform simultaneously with friends in real-time. It mimics the experience of a 'watch party' remotely.",
+    "problem": "Users wanted to watch content together, but simply pressing play at the same time is unreliable. There was a need for a solution that strictly synchronizes playback state (play/pause/seek) across multiple clients with low latency.",
+    "role": "I was the sole developer for this project, handling both the Chrome Extension client-side logic and the Node.js WebSocket signaling server.",
+    "solution": "- **Synchronization:** Implemented a robust sync system where a designated 'Host' controls the playback flow. Any action by the host is immediately broadcast to all participants.\n- **Real-time Communication:** Utilized WebSockets for low-latency state exchange.\n- **Resilience:** added auto-reconnect functionality to handle network interruptions smoothly.",
+    "learnings": "I gained a deep understanding of the Chrome Extension architecture (Manifest V3) and the challenges of real-time state synchronization. I learned how to handle edge cases in network communication to ensure a smooth user experience.",
     "tech": [
-      "Chrome Extension",
-      "WebSocket",
+      "JavaScript",
       "Node.js",
-      "JavaScript"
+      "WebSocket",
+      "Chrome Extension"
     ],
     "year": "2025",
     "type": "personal",
@@ -57,34 +66,40 @@
     "title": "Movie Review Sentiment Analysis",
     "desc": "An NLP classification project categorizing Korean movie reviews into 4 sentiment classes using various BERT-based models and TAPT.",
     "images": [
-      "/images/project_title_5.png"
+      "/images/project_title_6.png"
     ],
-    "details": "### Project Overview\nThis NLP project aimed to classify Korean movie reviews into four distinct sentiment classes (Negative, Neutral, Positive, Strong Positive) to analyze public opinion effectively.\n\n### Problem Definition\nThe main challenge was accurately capturing subtle sentiment nuances in Korean text, especially given potential class imbalances and noise in user-generated reviews.\n\n### Role & Contribution\nI was responsible for designing the experimental pipeline, conducting fair model comparisons, and verifying validation strategies. I also led the analysis of loss functions.\n\n### Solution\n**Fair Comparison:** Conducted controlled experiments on 5 Korean BERT-series models under identical hyperparameters to identify the best base model.\n**TAPT:** Verified the effectiveness of Task-Adaptive Pre-Training (TAPT) on the specific movie review dataset.\n**Pipeline:** Designed a preprocessing pipeline focused on preserving sentiment-heavy expressions.\n\n### Learnings\nI learned that domain-appropriate pre-training and careful data design are core to NLP performance. I also gained an appreciation for analyzing failed experiments (like my Focal Loss attempts) as they provide valuable insights into model behavior.",
+    "overview": "This NLP project aimed to classify Korean movie reviews into four distinct sentiment classes (Negative, Neutral, Positive, Strong Positive) to analyze public opinion effectively.",
+    "problem": "The main challenge was accurately capturing subtle sentiment nuances in Korean text, especially given potential class imbalances and noise in user-generated reviews.",
+    "role": "I was responsible for designing the experimental pipeline, conducting fair model comparisons, and verifying validation strategies. I also led the analysis of loss functions.",
+    "solution": "- **Fair Comparison:** Conducted controlled experiments on 5 Korean BERT-series models under identical hyperparameters to identify the best base model.\n- **TAPT:** Verified the effectiveness of Task-Adaptive Pre-Training (TAPT) on the specific movie review dataset.\n- **Pipeline:** Designed a preprocessing pipeline focused on preserving sentiment-heavy expressions.",
+    "learnings": "I learned that domain-appropriate pre-training and careful data design are core to NLP performance. I also gained an appreciation for analyzing failed experiments (like my Focal Loss attempts) as they provide valuable insights into model behavior.",
     "tech": [
       "Python",
-      "PyTorch",
+      "Pytorch",
       "Hugging Face",
-      "BERT",
+      "WandB",
       "TAPT"
     ],
     "year": "2025",
-    "type": "team",
+    "type": "personal",
     "link": "https://github.com/pileuszu/boostcamp-movie-review-sentiment-analysis"
   },
   {
     "title": "Portfolio Website",
-    "desc": "A sleek and modern portfolio website built with TypeScript, React, Next.js, and SCSS. Features a clean design with smooth animations and responsive layout.",
+    "desc": "A sleek and modern portfolio website built with TypeScript, React, Next.js, and SCSS.",
     "images": [
-      "/images/project_title_4.png"
+      "/images/project_title_5.png"
     ],
-    "details": "### Project Overview\nThis project is a personal portfolio website designed to showcase my projects, skills, and experience in a modern, interactive format.\n\n### Problem Definition\nI needed a professional platform that was not only visually appealing but also performant, SEO-friendly, and easy to maintain as my portfolio grows.\n\n### Role & Contribution\nI designed and developed the entire application from scratch, focusing on component reusability and responsive design.\n\n### Solution\n**Tech Stack:** Built using React 18, Next.js 15, and TypeScript to ensure high performance and type safety.\n**Styling:** Utilized SCSS and CSS Modules to create a clean, conflict-free styling architecture with smooth animations.\n**Architecture:** Implemented a JSON-based content management system, allowing for easy updates to project data without code changes.\n\n### Learnings\nI mastered the Next.js App Router architecture and honed my skills in creating responsive, interactive web designs. I also learned the importance of setting up a scalable project structure from the start.",
+    "overview": "This project is a personal portfolio website designed to showcase my projects, skills, and experience in a modern, interactive format.",
+    "problem": "I needed a clean, professional online presence to effectively present my work and resume to potential employers.",
+    "role": "I designed and developed the entire application from scratch.",
+    "solution": "- **Tech Stack:** Built using React 18, Next.js 15, and TypeScript to ensure maintainability.\n- **Styling:** Utilized SCSS modules for a clean and conflict-free styling architecture.",
+    "learnings": "I strengthened my proficiency in Next.js App Router and responsive web design practices through this implementation.",
     "tech": [
       "TypeScript",
       "React",
       "Next.js",
-      "SCSS",
-      "CSS Modules",
-      "ESLint"
+      "SCSS"
     ],
     "year": "2025",
     "type": "personal",
@@ -94,80 +109,55 @@
     "title": "ChzzkStreamDeck",
     "desc": "A comprehensive streaming widget system for OBS Studio with real-time chat overlay, Spotify integration, and music bot functionality.",
     "images": [
-      "/images/project_title_3.png"
+      "/images/project_title_4.png"
     ],
-    "details": "### Project Overview\nChzzkStreamDeck is a comprehensive streaming widget system integrating OBS Studio with the CHZZK streaming platform, providing chat overlays and music controls.\n\n### Problem Definition\nStreamers often struggle to manage multiple disparate tools for chat, music, and alerts. There was a need for a unified dashboard that integrates these services seamlessly into OBS.\n\n### Role & Contribution\nI developed the full stack solution, including the Node.js backend for API integration and the frontend dashboard for user control.\n\n### Solution\n**Real-time Overlay:** Implemented a chat overlay using Server-Sent Events (SSE) that supports CHZZK emoticons.\n**Integrations:** Integrated Spotify API via OAuth 2.0 for music control and built a server-based chat bot for music queue management.\n**Architecture:** Designed a modular architecture that cleanly separates chat, music, and bot functionalities.\n\n### Learnings\nI gained significant expertise in WebSocket/SSE for real-time data streaming, OAuth 2.0 authentication flows, and integrating third-party APIs into a unified service ecosystem.",
+    "overview": "ChzzkStreamDeck is a comprehensive streaming widget system integrating OBS Studio with the CHZZK streaming platform, providing chat overlays and music controls.",
+    "problem": "Streamers often struggle to manage multiple disparate tools for chat, music, and alerts. There was a need for a unified dashboard that integrates these services seamlessly into OBS.",
+    "role": "I developed the full stack solution, including the Node.js backend for API integration and the frontend dashboard for user control.",
+    "solution": "- **Real-time Overlay:** Implemented a chat overlay using Server-Sent Events (SSE) that supports CHZZK emoticons.\n- **Integrations:** Integrated Spotify API via OAuth 2.0 for music control and built a server-based chat bot for music queue management.\n- **Architecture:** Designed a modular architecture that cleanly separates chat, music, and bot functionalities.",
+    "learnings": "I gained significant expertise in WebSocket/SSE for real-time data streaming, OAuth 2.0 authentication flows, and integrating third-party APIs into a unified service ecosystem.",
     "tech": [
       "Node.js",
-      "WebSocket",
-      "OAuth 2.0",
-      "SSE",
-      "HTML5",
-      "CSS3",
-      "JavaScript"
+      "JavaScript",
+      "CSS",
+      "Chzzk API",
+      "Spotify API"
     ],
     "year": "2025",
     "type": "personal",
-    "link": "https://github.com/pileuszu/chzzk-stream-deck"
+    "link": "https://github.com/pileuszu/ChzzkStreamDeck"
   },
   {
     "title": "3D Train Simulator",
     "desc": "A real-time 3D train simulator built with WebGL and JavaScript, featuring customizable camera controls and track configurations",
     "images": [
-      "/images/project_title_2.png"
+      "/images/project_title_3.png"
     ],
-    "details": "### Project Overview\nThis project is a real-time 3D train simulator running directly in the web browser, allowing users to drive a train and customize tracks.\n\n### Problem Definition\nThe challenge was to create a performant, interactive 3D simulation using raw WebGL and JavaScript, without relying on heavy game engines, to understand the fundamentals of 3D graphics.\n\n### Role & Contribution\nI focused on the graphics programming aspects, including 3D rendering, hierarchy management, and performance optimization.\n\n### Solution\n**Rendering:** Implemented 3D modeling with hierarchical structures and tree-based traversal for the train components.\n**Customization:** Developed a dynamic track generation system using an intuitive CSV-like syntax.\n**Optimization:** Implemented conditional re-rendering and FPS limiting to ensure smooth performance in the browser.\n\n### Learnings\nI deepened my understanding of the 3D graphics pipeline, including matrix transformations, shader programming (GLSL), and texture mapping. I learned how to optimize rendering loops for web applications.",
+    "overview": "This project is a real-time 3D train simulator running directly in the web browser, allowing users to drive a train and customize tracks.",
+    "problem": "The challenge was to create a performant, interactive 3D simulation using raw WebGL and JavaScript, without relying on heavy game engines, to understand the fundamentals of 3D graphics.",
+    "role": "I focused on the graphics programming aspects, including 3D rendering, hierarchy management, and performance optimization.",
+    "solution": "- **Rendering:** Implemented 3D modeling with hierarchical structures and tree-based traversal for the train components.\n- **Customization:** Developed a dynamic track generation system using an intuitive CSV-like syntax.\n- **Optimization:** Implemented conditional re-rendering and FPS limiting to ensure smooth performance in the browser.",
+    "learnings": "I deepened my understanding of the 3D graphics pipeline, including matrix transformations, shader programming (GLSL), and texture mapping. I learned how to optimize rendering loops for web applications.",
     "tech": [
-      "JavaScript",
       "WebGL",
-      "GLSL",
-      "HTML5",
-      "CSS3",
-      "Node.js"
+      "glMatrix",
+      "JavaScript"
     ],
     "year": "2025",
-    "type": "team",
+    "type": "personal",
     "link": "https://pileuszu.github.io/study-webgl-train-simulation/"
-  },
-  {
-    "title": "SSALON",
-    "desc": "A web service providing one-time gathering communities based on 'Interactive 3D Badge Cards'",
-    "images": [
-      "/images/project_title_1.png"
-    ],
-    "details": "### Project Overview\nSSALON is a web service platform that facilitates one-time gatherings by using 'Interactive 3D Badge Cards' for identity verification and memory preservation.\n\n### Problem Definition\nModern social dynamics often make it difficult for people to join new groups. Existing services lacked convenient verification methods and failed to provide a meaningful way to preserve the memory of these one-time events.\n\n### Role & Contribution\nAs a member of Team SKYTeam, I contributed to the backend development and full-stack integration of the service.\n\n### Solution\n**Digital Identity:** Developed a system where users manage gatherings using digital badge cards.\n**Memory Preservation:** Implemented 'Interactive 3D Badge Cards' as a unique feature to record and display event memories.\n**Robust Stack:** Built a comprehensive solution using Spring Boot for the backend and React/Angular for the frontend, integrating AWS and OpenAI services.\n\n### Learnings\nI learned how to collaborate effectively in a large team setting (Capstone Design). I gained experience integrating a complex, multi-language tech stack and managing the full product lifecycle from concept to deployment.",
-    "tech": [
-      "Javascript",
-      "Angular",
-      "React",
-      "Three.js",
-      "HTML5",
-      "SCSS",
-      "Java",
-      "Python",
-      "Spring Boot",
-      "Spring Security",
-      "MySQL",
-      "Redis",
-      "MongoDB",
-      "AWS",
-      "OpenAI",
-      "Github",
-      "Github Actions",
-      "Swagger",
-      "Slack"
-    ],
-    "year": "2024",
-    "type": "team",
-    "link": "https://github.com/lee1684/SKYTeam"
   },
   {
     "title": "Prediction of Pregnancy Success",
     "desc": "A machine learning model achieving 0.7347 accuracy in predicting pregnancy success rates for infertility patients using IVF and DI treatment data",
     "images": [
-      "/images/sample.png"
+      "/images/project_title_2.png"
     ],
-    "details": "### Project Overview\nThis research project involved developing a machine learning model to predict pregnancy success rates for infertility patients, aiming to assist in clinical decision-making.\n\n### Problem Definition\nPredicting success rates for IVF and DI treatments is highly complex due to the multitude of biological factors involved (e.g., patient age, medical history, ovulation data). High prediction accuracy is crucial for optimizing treatment plans.\n\n### Role & Contribution\nI acted as the sole researcher and developer, responsible for all stages from data preprocessing to model evaluation.\n\n### Solution\n**Targeted Modeling:** Built separate, optimized models for IVF and DI treatments to handle their distinct characteristics.\n**Feature Engineering:** Performed extensive analysis on patient data to identify key predictors.\n**Ensemble:** Utilized ensemble techniques to combine model strengths, achieving a final accuracy of 0.7347.\n\n### Learnings\nThis project provided practical experience in applying machine learning to sensitive healthcare data. I learned how to deal with real-world data noise and the importance of domain-specific feature engineering in medical AI.",
+    "overview": "This research project involved developing a machine learning model to predict pregnancy success rates for infertility patients, aiming to assist in clinical decision-making.",
+    "problem": "Predicting success rates for IVF and DI treatments is highly complex due to the multitude of biological factors involved (e.g., patient age, medical history, ovulation data). High prediction accuracy is crucial for optimizing treatment plans.",
+    "role": "I acted as the sole researcher and developer, responsible for all stages from data preprocessing to model evaluation.",
+    "solution": "- **Targeted Modeling:** Built separate, optimized models for IVF and DI treatments to handle their distinct characteristics.\n- **Feature Engineering:** Performed extensive analysis on patient data to identify key predictors.\n- **Ensemble:** Utilized ensemble techniques to combine model strengths, achieving a final accuracy of 0.7347.",
+    "learnings": "This project provided practical experience in applying machine learning to sensitive healthcare data. I learned how to deal with real-world data noise and the importance of domain-specific feature engineering in medical AI.",
     "tech": [
       "Python",
       "Scikit-learn",
@@ -175,8 +165,29 @@
       "NumPy",
       "Machine Learning"
     ],
-    "year": "2024",
-    "type": "blog",
+    "year": "2025",
+    "type": "personal",
     "link": "https://github.com/pileuszu/dacon-infertility-treatment-prediction"
+  },
+  {
+    "title": "SSALON",
+    "desc": "A web service providing one-time gathering communities based on 'Interactive 3D Badge Cards'",
+    "images": [
+      "/images/project_title_1.png"
+    ],
+    "overview": "SSALON is a web platform for one-time social gatherings where user interaction centers around interactive 3D Badge Cards.",
+    "problem": "Traditional event platforms often lack engaging, interactive elements for profile representation. We wanted to create a unique way for users to showcase their identity and achievements.",
+    "role": "I was responsible for the backend architecture using Express.js and the implementation of 3D interactive elements using Three.js.",
+    "solution": "- **3D Interaction:** Developed interactive 3D badge cards with mouse-tracking effects using Three.js.\n- **Backend:** Built a robust REST API with Express.js to handle user data, badge collection, and event management.\n- **Database:** utilized MySQL/MariaDB for structured data storage.",
+    "learnings": "I learned the intricacies of integrating 3D graphics into a standard web interface and managing the performance implications. I also gained experience in designing scalable database schemas for social platforms.",
+    "tech": [
+      "React",
+      "Three.js",
+      "Express.js",
+      "MariaDB"
+    ],
+    "year": "2024",
+    "type": "team",
+    "link": "https://github.com/lee1684/SKYTeam"
   }
 ]

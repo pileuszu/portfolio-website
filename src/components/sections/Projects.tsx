@@ -177,13 +177,32 @@ export default function Projects({ data }: ProjectsProps) {
 
                                 <div className={styles.modalBody}>
                                     <div className={styles.modalMainText}>
-                                        <div dangerouslySetInnerHTML={{
-                                            __html: selectedProject.details
-                                                .replace(/^### (.*$)/gm, '<h3>$1</h3>')
-                                                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                                .replace(/\n\n/g, '<br/><br/>')
-                                                .replace(/^- (.*$)/gm, '<li>$1</li>')
-                                        }} />
+                                        <div className={styles.projectSection}>
+                                            <h3>Overview</h3>
+                                            <p>{selectedProject.overview}</p>
+                                        </div>
+
+                                        <div className={styles.projectSection}>
+                                            <h3>Problem & Challenge</h3>
+                                            <p>{selectedProject.problem}</p>
+                                        </div>
+
+                                        <div className={styles.projectSection}>
+                                            <h3>Role & Contribution</h3>
+                                            <p>{selectedProject.role}</p>
+                                        </div>
+
+                                        <div className={styles.projectSection}>
+                                            <h3>Solution</h3>
+                                            <div dangerouslySetInnerHTML={{
+                                                __html: selectedProject.solution.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>')
+                                            }} />
+                                        </div>
+
+                                        <div className={styles.projectSection}>
+                                            <h3>Learnings</h3>
+                                            <p>{selectedProject.learnings}</p>
+                                        </div>
                                     </div>
 
                                     <div className={styles.modalSidebar}>
@@ -191,10 +210,7 @@ export default function Projects({ data }: ProjectsProps) {
                                             <h4>Year</h4>
                                             <p>{selectedProject.year}</p>
                                         </div>
-                                        <div className={styles.sidebarItem}>
-                                            <h4>Role</h4>
-                                            <p>{selectedProject.type === 'team' ? 'Lead Developer' : 'Solo Architect'}</p>
-                                        </div>
+                                        {/* Role item removed as requested */}
                                         {selectedProject.link && (
                                             <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className={styles.visitButton}>
                                                 Visit Site <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" strokeWidth="2" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>

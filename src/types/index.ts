@@ -2,7 +2,11 @@ export interface ProjectItem {
     title: string
     desc: string
     images: string[]
-    details: string
+    overview: string
+    problem: string
+    role: string
+    solution: string
+    learnings: string
     tech: string[]
     year: string
     type: 'team' | 'individual' | 'blog' | 'dacon' | 'personal'
@@ -20,11 +24,6 @@ export interface AboutItem {
     desc: string
 }
 
-export interface CompetencyItem {
-    category: string
-    description: string
-    examples: string[]
-}
 
 export interface ContactItem {
     title: string
