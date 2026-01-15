@@ -442,10 +442,6 @@ export default function Home() {
         <section id="experience" className={styles.experienceSection}>
           <div className={styles.portfolioLayout}>
             <div className={styles.portfolioLeft}>
-              <h2 className={styles.portfolioTitle}>Professional Experience</h2>
-              <p className={styles.portfolioSubtitle}>Years of experience building scalable applications and leading development teams. Proven track record in delivering high-quality software solutions.</p>
-            </div>
-            <div className={styles.portfolioRight}>
               <div className={styles.timelineContainer}>
                 <div className={styles.timeline}>
                   {getSectionContent('experience').items.map((item: { title: string; company: string; desc: string }, index: number) => {
@@ -464,6 +460,10 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            <div className={styles.portfolioRight}>
+              <h2 className={styles.portfolioTitle}>Professional Experience</h2>
+              <p className={styles.portfolioSubtitle}>Years of experience building scalable applications and leading development teams. Proven track record in delivering high-quality software solutions.</p>
+            </div>
           </div>
         </section>
 
@@ -471,6 +471,10 @@ export default function Home() {
         <section id="projects" className={styles.projectsSection}>
           <div className={styles.portfolioLayout}>
             <div className={styles.portfolioLeft}>
+              <h2 className={styles.portfolioTitle}>Featured Projects</h2>
+              <p className={styles.portfolioSubtitle}>Building innovative solutions that make a difference. Each project represents a unique challenge solved with creativity and technical excellence.</p>
+            </div>
+            <div className={styles.portfolioRight}>
               <div className={styles.projectsGrid}>
                 {currentProjectPage > 0 && (
                   <button
@@ -532,10 +536,6 @@ export default function Home() {
                   </button>
                 )}
               </div>
-            </div>
-            <div className={styles.portfolioRight}>
-              <h2 className={styles.portfolioTitle}>Featured Projects</h2>
-              <p className={styles.portfolioSubtitle}>Building innovative solutions that make a difference. Each project represents a unique challenge solved with creativity and technical excellence.</p>
             </div>
           </div>
         </section>

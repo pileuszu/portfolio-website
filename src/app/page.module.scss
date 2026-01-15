@@ -375,62 +375,60 @@
   }
 }
 
-// Experience와 Study 섹션의 왼쪽 패널(제목/설명) 가장 어두운 남색 배경
+// Experience 섹션의 왼쪽 패널(Content) 어두운 회색 배경
 .experienceSection .portfolioLeft {
+  background: #393E46 !important; // Dark Grey for content
+  color: #DFD0B8 !important;
+}
+
+// Projects 섹션의 왼쪽 패널(Title/Desc) 어두운 남색 배경
+.projectsSection .portfolioLeft {
   background: #222831 !important;
   color: #DFD0B8 !important;
 }
 
-// Projects와 Contact 섹션의 왼쪽 패널(콘텐츠) 흰색 배경
-.projectsSection .portfolioLeft {
-  background: #ffffff !important;
-  color: #222831 !important;
-}
-
-// Contact 섹션의 왼쪽 패널(콘텐츠) 어두운 회색 배경
+// Contact 섹션의 왼쪽 패널(Content) 어두운 회색 배경
 .contactSection .portfolioLeft {
   background: #393E46 !important; // Dark Grey for content
   color: #DFD0B8 !important;
 }
 
-// Experience와 Study 섹션의 오른쪽 패널(콘텐츠) 흰색 배경
+// Experience 섹션의 오른쪽 패널(Title/Desc) 가장 어두운 남색 배경
 .experienceSection .portfolioRight {
-  background: #393E46 !important; // Dark Grey for content
-  color: #DFD0B8 !important;
-}
-
-// Projects와 Contact 섹션의 오른쪽 패널(제목/설명) 가장 어두운 남색 배경
-.projectsSection .portfolioRight {
   background: #222831 !important;
   color: #DFD0B8 !important;
 }
 
-// Contact 섹션의 오른쪽 패널(제목/설명) 가장 어두운 남색 배경
+// Projects 섹션의 오른쪽 패널(Content) 흰색 배경 (Duplicate rule but kept for clarity/grouping if needed, though previously defined)
+// .projectsSection .portfolioRight { ... } already defined above as white.
+
+// Contact 섹션의 오른쪽 패널(Title/Desc) 가장 어두운 남색 배경
 .contactSection .portfolioRight {
   background: #222831 !important;
   color: #DFD0B8 !important;
 }
 
-// Experience와 Study 섹션 - 제목/내용이 왼쪽, 콘텐츠가 오른쪽
+// Experience 섹션 - Content(Left) gets 1.75, Title(Right) gets 1
 .experienceSection .portfolioLayout {
   .portfolioLeft {
-    flex: 1; // 제목/내용 영역
+    flex: 1.75; // 콘텐츠 영역
   }
 
   .portfolioRight {
-    flex: 1.75; // 콘텐츠 영역이 더 넓음
+    flex: 1; // 제목/내용 영역
   }
 }
 
-// Projects와 Contact 섹션 - 콘텐츠가 왼쪽, 제목/내용이 오른쪽
+// Projects와 Contact 섹션 - Title(Left) gets 1, Content(Right) gets 1.75
+// Wait, projects content is Right now.
 .projectsSection .portfolioLayout,
 .contactSection .portfolioLayout {
   .portfolioLeft {
-    flex: 1.75; // 콘텐츠 영역이 더 넓음
+    flex: 1; // 제목/내용 영역
   }
 
   .portfolioRight {
-    flex: 1; // 제목/내용 영역
+    flex: 1.75; // 콘텐츠 영역
   }
 }
 
@@ -848,6 +846,7 @@
   flex-direction: column;
   border: 1px solid rgba(148, 137, 121, 0.1); // 중간 톤 베이지 테두리
   transform: translateY(0);
+  aspect-ratio: 16 / 9; // 16:9 비율 강제
 
   &:hover {
     transform: translateY(-8px) scale(1.02);
@@ -887,6 +886,9 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  position: absolute; // 절대 위치로 가득 채우기
+  top: 0;
+  left: 0;
 
   img {
     width: 100%;
