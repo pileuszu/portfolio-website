@@ -17,7 +17,7 @@ export default function Projects({ data }: ProjectsProps) {
     React.useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth <= 768) setItemsPerView(1)
-            else if (window.innerWidth <= 1024) setItemsPerView(2)
+            else if (window.innerWidth <= 1200) setItemsPerView(2)
             else setItemsPerView(3)
         }
         handleResize()
