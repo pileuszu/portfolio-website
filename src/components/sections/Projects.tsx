@@ -39,31 +39,20 @@ export default function Projects({ data }: ProjectsProps) {
                             className={styles.projectCard}
                             onClick={() => setSelectedProject(project)}
                         >
-                            {/* Browser Mockup Style */}
-                            <div className={styles.browserMockup}>
-                                <div className={styles.browserHeader}>
-                                    <div className={styles.browserDots}>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                    <div className={styles.browserUrl}>{project.title.toLowerCase().replace(/\s+/g, '-')}.ai</div>
-                                </div>
-                                <div className={styles.browserBody}>
-                                    <Image
-                                        src={getImagePath(project.images?.[0] || '/images/sample.png')}
-                                        alt={project.title}
-                                        width={800}
-                                        height={500}
-                                        className={styles.projectImage}
-                                    />
-                                </div>
+                            <div className={styles.browserBody}>
+                                <Image
+                                    src={getImagePath(project.images?.[0] || '/images/sample.png')}
+                                    alt={project.title}
+                                    width={400}
+                                    height={250}
+                                    className={styles.projectImage}
+                                />
                             </div>
 
                             <div className={styles.projectInfo}>
                                 <div className={styles.projectMeta}>
                                     <span className={styles.projectYear}>{project.year}</span>
-                                    <span className={styles.projectType}>{project.type === 'team' ? 'Team' : 'Individual'}</span>
+                                    <span className={styles.projectType}>{project.type}</span>
                                 </div>
                                 <h3 className={styles.projectTitle}>{project.title}</h3>
                                 <p className={styles.projectShortDesc}>{project.desc}</p>

@@ -384,23 +384,21 @@
 }
 
 // About Me Content
-.aboutGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: flex-start;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
+// About Me Centered Content
+.aboutCenteredContent {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.aboutNarrative {
+.aboutNarrativeCentered {
+  font-family: var(--font-inter);
+
   h3 {
-    font-size: 1.8rem;
+    font-family: var(--font-outfit);
+    font-size: 2rem;
     color: $text-primary;
-    margin-bottom: 24px;
+    margin-bottom: 30px;
     font-weight: 700;
   }
 
@@ -412,6 +410,8 @@
 
 .aboutDesc {
   color: $text-secondary;
+  line-height: 1.8;
+  margin-bottom: 24px;
 }
 
 .skillMap {
@@ -500,89 +500,16 @@
   }
 }
 
-// Experience 섹션의 왼쪽 패널(Content) 흰색 배경
-.experienceSection .portfolioLeft {
-  background: #ffffff !important; // White for content
-  color: #222831 !important; // Dark text
-
-  // Experience 내부 텍스트 색상 강제 지정
-  h4 {
-    color: #222831 !important;
-  }
-
-  .company,
-  .date,
-  p {
-    color: #393E46 !important;
-  }
+// Section Header Standardization
+.sectionHeader {
+  margin-bottom: 60px;
+  text-align: center;
 }
 
-// Projects 섹션의 왼쪽 패널(Title/Desc) 어두운 남색 배경
-.projectsSection .portfolioLeft {
-  background: #222831 !important;
-  color: #DFD0B8 !important;
-}
-
-// Contact 섹션의 왼쪽 패널(Content) 흰색 배경
-.contactSection .portfolioLeft {
-  background: #ffffff !important; // White for content
-  color: #222831 !important; // Dark text
-
-  // Contact 카드 내부 텍스트 색상 강제 지정 (Global Rule)
-  .contactCardTitle,
-  .contactCardDesc,
-  h3,
-  p {
-    color: #222831 !important;
-  }
-}
-
-// Experience 섹션의 오른쪽 패널(Title/Desc) 가장 어두운 남색 배경
-.experienceSection .portfolioRight {
-  background: #222831 !important;
-  color: #DFD0B8 !important;
-}
-
-// Projects 섹션의 오른쪽 패널(Content) 흰색 배경 (Duplicate rule but kept for clarity/grouping if needed, though previously defined)
-// .projectsSection .portfolioRight { ... } already defined above as white.
-
-// Contact 섹션의 오른쪽 패널(Title/Desc) 가장 어두운 남색 배경
-.contactSection .portfolioRight {
-  background: #222831 !important;
-  color: #DFD0B8 !important;
-}
-
-// Experience 섹션 - Content(Left) gets 1.75, Title(Right) gets 1
-.experienceSection .portfolioLayout {
-  .portfolioLeft {
-    flex: 1.75; // 콘텐츠 영역
-  }
-
-  .portfolioRight {
-    flex: 1; // 제목/내용 영역
-  }
-}
-
-// Contact 섹션 - Content(Left) gets 1.75, Title(Right) gets 1
-.contactSection .portfolioLayout {
-  .portfolioLeft {
-    flex: 1.75; // 콘텐츠 영역
-  }
-
-  .portfolioRight {
-    flex: 1; // 제목/내용 영역
-  }
-}
-
-// Projects 섹션 - Title(Left) gets 1, Content(Right) gets 1.75
-.projectsSection .portfolioLayout {
-  .portfolioLeft {
-    flex: 1; // 제목/내용 영역
-  }
-
-  .portfolioRight {
-    flex: 1.75; // 콘텐츠 영역
-  }
+.sectionSubtitle {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  color: $text-secondary;
 }
 
 
@@ -827,8 +754,13 @@
 
   &:hover {
     box-shadow: $shadow-medium;
-    border-color: $accent-secondary;
+    border-color: $accent-primary;
     transform: translateX(10px);
+
+    &::before {
+      border-left-color: $accent-primary;
+      border-bottom-color: $accent-primary;
+    }
   }
 
   &::before {
@@ -1270,131 +1202,169 @@
   }
 }
 
-// Contact 카드 그리드
-.contactCardGrid {
+// -----------------------------------------------------------------------------
+// Projects Gallery Grid
+// -----------------------------------------------------------------------------
+.projectsGallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 40px;
+  margin-top: 60px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+.projectCard {
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid $border-light;
+  transition: $transition-smooth;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: $shadow-medium;
+    border-color: $accent-primary;
+
+    .projectImage {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.projectInfo {
+  padding: 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.projectMeta {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  max-width: 400px;
-  margin: 0 auto;
+  margin-bottom: 12px;
+}
+
+.projectYear {
+  font-family: var(--font-outfit);
+  font-weight: 700;
+  color: $accent-primary;
+  font-size: 0.9rem;
+}
+
+.projectType {
+  font-size: 0.8rem;
+  color: $text-tertiary;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.projectTitle {
+  font-family: var(--font-outfit);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: 12px;
+}
+
+.projectShortDesc {
+  font-size: 0.95rem;
+  color: $text-secondary;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.projectSkills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skillBadge {
+  background: $bg-secondary;
+  color: $text-secondary;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid $border-light;
+}
+
+// -----------------------------------------------------------------------------
+// Contact Grid (Compact)
+// -----------------------------------------------------------------------------
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 80px;
 }
 
 .contactCard {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  padding: 40px;
   border-radius: 24px;
-  padding: 40px 30px;
+  border: 1px solid $border-light;
+  transition: $transition-smooth;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  position: relative;
-  overflow: hidden;
-  transform: translateY(0);
-  opacity: 0;
-  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-
-
-  &:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-
-  &:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #948979, #DFD0B8);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
 
   &:hover {
-    transform: translateY(-12px) scale(1.03);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-    border-color: rgba(148, 137, 121, 0.4);
+    transform: translateY(-10px);
+    box-shadow: $shadow-medium;
+    border-color: $accent-primary;
 
-    &::before {
-      opacity: 1;
-    }
-
-    .contactCardTitle::after {
-      width: 60px;
+    .contactIconWrapper {
+      background: $accent-primary;
+      color: #ffffff;
+      transform: rotate(10deg);
     }
   }
 }
 
-.contactCardIcon {
-  margin-bottom: 25px;
-  position: relative;
-  display: inline-flex;
+.contactIconWrapper {
+  width: 64px;
+  height: 64px;
+  background: $bg-secondary;
+  color: $accent-primary;
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, rgba(148, 137, 121, 0.1), rgba(223, 208, 184, 0.1));
-  border-radius: 50%;
-  border: 2px solid rgba(148, 137, 121, 0.2);
-  transition: all 0.4s ease;
-
-  svg {
-    width: 40px;
-    height: 40px;
-    color: #222831;
-    transition: all 0.4s ease;
-    z-index: 1;
-  }
+  border-radius: 16px;
+  margin-bottom: 24px;
+  transition: $transition-smooth;
 }
 
-.contactCard:hover .contactCardIcon {
-  background: linear-gradient(135deg, rgba(148, 137, 121, 0.2), rgba(223, 208, 184, 0.2));
-  border-color: rgba(148, 137, 121, 0.4);
-  transform: scale(1.1);
-
-  svg {
-    transform: scale(1.15);
-    color: #393E46;
-  }
+.contactTitle {
+  font-family: var(--font-outfit);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: 8px;
 }
 
-.contactCardTitle {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 400;
-  color: #222831;
-  margin-bottom: 12px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.contactCardDesc {
-  font-family: 'Montserrat', sans-serif;
+.contactDesc {
   font-size: 0.95rem;
-  color: #666666;
-  margin-bottom: 20px;
-  line-height: 1.5;
-  font-weight: 300;
+  color: $text-secondary;
+  margin-bottom: 15px;
 }
 
-.contactCardDetails {
-  p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
-    color: #888888;
-    line-height: 1.5;
-    margin: 0;
-    font-weight: 400;
-    opacity: 0.8;
-  }
+.contactAction {
+  font-weight: 600;
+  color: $accent-primary;
+  font-size: 0.9rem;
 }
 
 // 이메일 오버레이
