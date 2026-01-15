@@ -13,6 +13,7 @@ export interface ExperienceItem {
     title: string
     company: string
     desc: string
+    year: string
 }
 
 export interface AboutItem {

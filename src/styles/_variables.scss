@@ -1,0 +1,27 @@
+// -----------------------------------------------------------------------------
+// Light Theme Color Palette - "Midnight Indigo & Lavender"
+// -----------------------------------------------------------------------------
+
+$bg-primary: #FFFFFF;
+$bg-secondary: #F8F9FA;
+$bg-tertiary: #F1F3F5;
+
+$text-primary: #111827; // Deep Charcoal
+$text-secondary: #4B5563; // Muted Gray
+$text-tertiary: #9CA3AF; // Light Gray
+
+$accent-primary: #6366F1; // Midnight Indigo
+$accent-secondary: #A78BFA; // Lavender
+$accent-tertiary: #F472B6; // accent peak
+
+$border-light: #E5E7EB;
+$border-medium: #D1D5DB;
+
+$shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+$shadow-medium: 0 15px 40px rgba(0, 0, 0, 0.08);
+
+$glass-bg: rgba(255, 255, 255, 0.7);
+$glass-blur: 10px;
+
+$transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-fast: all 0.2s ease;

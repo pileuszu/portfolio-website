@@ -1,5 +1,5 @@
 [
     {
-        "desc": "I am an AI Engineer passionate about bridging the gap between cutting-edge AI research and practical application. \n\nWith a strong foundation in Natural Language Processing (NLP) and full-stack development, I focus on building systems that are not only performant but also user-centric and scalable. \n\nI believe that the best solutions come from a deep understanding of both the data and the user's needs. I thrive in fast-paced, collaborative environments where I can tackle complex challenges, whether it's optimizing a language model for a specific domain or architecting a real-time web service. \n\nAlways eager to learn, I view every project as an opportunity to expand my technical horizons and deliver meaningful impact."
+        "desc": "### Bridging the Gap Between Data and Intelligence\n\n저는 단순히 모델을 학습시키는 것을 넘어, 실질적인 비즈니스 가치를 창출하기 위한 **데이터 중심의 AI 파이프라인**을 설계합니다. \n\n**Data-Centric Approach**: CSAT SLM 구축과 MRC 프로젝트를 통해 데이터의 불균형과 품질이 모델 성능의 본질임을 깨닫고, 이를 해결하기 위한 정교한 전처리 및 샘플링 전략을 수립해 왔습니다.\n\n**Performance & Scaling**: 모델의 지연 시간(Latency)과 자원 효율성을 고려하여 GPTQ/AWQ 양자화 및 분산 처리 시스템을 설계하며, 실 서비스 도입 가능한 최적의 솔루션을 고민합니다.\n\n**Full-stack Perspective**: 단순한 머신러닝 코드를 넘어, Node.js와 WebSockets를 활용한 실시간 서비스 경험을 바탕으로 시스템 전체의 확장성을 고려한 개발을 지향합니다."
     }
 ]

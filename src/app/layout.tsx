@@ -1,17 +1,17 @@
 import type { Metadata } from 'next'
-import { Inter, Roboto, Open_Sans } from 'next/font/google'
+import { Inter, Outfit } from 'next/font/google'
 import '@/styles/globals.scss'
 
-const inter = Inter({ subsets: ['latin'] })
-const roboto = Roboto({ 
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '700', '900'],
-  variable: '--font-roboto'
+  variable: '--font-inter',
+  display: 'swap',
 })
-const openSans = Open_Sans({ 
+
+const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-open-sans'
+  variable: '--font-outfit',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -35,7 +35,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className={`${inter.className} ${roboto.variable} ${openSans.variable}`}>
+      <body className={`${inter.variable} ${outfit.variable} font-sans`}>
         {children}
       </body>
     </html>
