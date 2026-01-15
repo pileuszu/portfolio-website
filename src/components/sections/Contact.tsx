@@ -5,10 +5,9 @@ import EmailForm from '../EmailForm'
 
 interface ContactProps {
     data: ContactItem[]
-    onScrollUp: () => void
 }
 
-export default function Contact({ data, onScrollUp }: ContactProps) {
+export default function Contact({ data }: ContactProps) {
     const [showEmailOverlay, setShowEmailOverlay] = useState(false)
 
     const handleAction = (item: ContactItem) => {

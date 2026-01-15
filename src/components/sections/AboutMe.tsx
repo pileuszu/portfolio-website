@@ -1,11 +1,10 @@
 'use client'
 
 import styles from '@/app/page.module.scss'
-import { AboutItem, CompetencyItem } from '@/types'
+import { AboutItem } from '@/types'
 
 interface AboutMeProps {
     aboutData: AboutItem[]
-    competencies?: CompetencyItem[]
 }
 
 export default function AboutMe({ aboutData }: AboutMeProps) {

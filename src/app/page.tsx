@@ -61,7 +61,6 @@ export default function Home() {
 
         <Contact
           data={typedContactData}
-          onScrollUp={() => handleNavClick('overview')}
         />
 
         {/* Copyright */}
