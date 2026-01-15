@@ -10,6 +10,9 @@ interface ProjectsProps {
 
 export default function Projects({ data }: ProjectsProps) {
     const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null)
+    const [currentPage, setCurrentPage] = useState(0)
+    const itemsPerPage = 6
+    const totalPages = Math.ceil(data.length / itemsPerPage)
 
     const getImagePath = (path: string) => {
         return `${BASE_PATH}${path}`
@@ -18,6 +21,11 @@ export default function Projects({ data }: ProjectsProps) {
     if (typeof document !== 'undefined') {
         document.body.style.overflow = selectedProject ? 'hidden' : 'unset'
     }
+
+    const currentProjects = data.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+
+    const nextPage = () => setCurrentPage((prev) => (prev + 1) % totalPages)
+    const prevPage = () => setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages)
 
     return (
         <section id="projects" className={`${styles.projectsSection} section-padding`}>
@@ -32,40 +40,64 @@ export default function Projects({ data }: ProjectsProps) {
                     </p>
                 </div>
 
-                <div className={styles.projectsGallery}>
-                    {data.map((project, index) => (
-                        <div
-                            key={index}
-                            className={styles.projectCard}
-                            onClick={() => setSelectedProject(project)}
-                        >
-                            <div className={styles.browserBody}>
-                                <Image
-                                    src={getImagePath(project.images?.[0] || '/images/sample.png')}
-                                    alt={project.title}
-                                    width={400}
-                                    height={250}
-                                    className={styles.projectImage}
-                                />
-                            </div>
+                <div className={styles.projectsContainer}>
+                    {totalPages > 1 && (
+                        <button className={`${styles.pageNav} ${styles.prev}`} onClick={prevPage} aria-label="Previous projects">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6" /></svg>
+                        </button>
+                    )}
 
-                            <div className={styles.projectInfo}>
-                                <div className={styles.projectMeta}>
-                                    <span className={styles.projectYear}>{project.year}</span>
-                                    <span className={styles.projectType}>{project.type}</span>
+                    <div className={styles.projectsGallery}>
+                        {currentProjects.map((project, index) => (
+                            <div
+                                key={index}
+                                className={styles.projectCard}
+                                onClick={() => setSelectedProject(project)}
+                            >
+                                <div className={styles.projectImageWrapper}>
+                                    <Image
+                                        src={getImagePath(project.images?.[0] || '/images/sample.png')}
+                                        alt={project.title}
+                                        fill
+                                        className={styles.projectImage}
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    />
                                 </div>
-                                <h3 className={styles.projectTitle}>{project.title}</h3>
-                                <p className={styles.projectShortDesc}>{project.desc}</p>
-                                <div className={styles.projectSkills}>
-                                    {project.tech.slice(0, 3).map((tech, i) => (
-                                        <span key={i} className={styles.skillBadge}>{tech}</span>
-                                    ))}
-                                    {project.tech.length > 3 && <span className={styles.skillBadge}>+{project.tech.length - 3}</span>}
+
+                                <div className={styles.projectInfo}>
+                                    <div className={styles.projectMeta}>
+                                        <span className={styles.projectYear}>{project.year}</span>
+                                        <span className={styles.projectType}>{project.type}</span>
+                                    </div>
+                                    <h3 className={styles.projectTitle}>{project.title}</h3>
+                                    <div className={styles.projectSkills}>
+                                        {project.tech.slice(0, 3).map((tech, i) => (
+                                            <span key={i} className={styles.skillBadge}>{tech}</span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+
+                    {totalPages > 1 && (
+                        <button className={`${styles.pageNav} ${styles.next}`} onClick={nextPage} aria-label="Next projects">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
+                        </button>
+                    )}
                 </div>
+
+                {totalPages > 1 && (
+                    <div className={styles.paginationDots}>
+                        {[...Array(totalPages)].map((_, i) => (
+                            <span
+                                key={i}
+                                className={`${styles.dot} ${currentPage === i ? styles.active : ''}`}
+                                onClick={() => setCurrentPage(i)}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
 
             {/* Project Details Modal */}
@@ -76,13 +108,15 @@ export default function Projects({ data }: ProjectsProps) {
 
                         <div className={styles.modalScrollArea}>
                             <div className={styles.modalHero}>
-                                <Image
-                                    src={getImagePath(selectedProject.images?.[0] || '/images/sample.png')}
-                                    alt={selectedProject.title}
-                                    width={1000}
-                                    height={600}
-                                    className={styles.modalImage}
-                                />
+                                <div className={styles.modalImageWrapper} style={{ position: 'relative', width: '100%', aspectRatio: '16/9' }}>
+                                    <Image
+                                        src={getImagePath(selectedProject.images?.[0] || '/images/sample.png')}
+                                        alt={selectedProject.title}
+                                        fill
+                                        className={styles.modalImage}
+                                        style={{ objectFit: 'cover' }}
+                                    />
+                                </div>
                             </div>
 
                             <div className={styles.modalInfo}>
