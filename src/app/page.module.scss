@@ -115,7 +115,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: 
+  background-image:
     linear-gradient(45deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 100px 100px;
@@ -141,6 +141,7 @@
   0% {
     transform: translate(0, 0);
   }
+
   100% {
     transform: translate(50px, 50px);
   }
@@ -214,7 +215,7 @@
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
     }
   }
-  
+
   &:active {
     transform: translateY(-4px) scale(0.95);
   }
@@ -252,7 +253,7 @@
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
     }
   }
-  
+
   &:active {
     transform: translateY(-4px) scale(0.95);
   }
@@ -285,22 +286,22 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: #DFD0B8; // 밝은 베이지 배경
+  background: #222831; // Dark background
   opacity: 0;
   transform: translateY(50px);
   animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   animation-delay: 0.1s;
 }
 
-.studySection {
+.aboutSection {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: #DFD0B8; // 밝은 베이지 배경
+  background: #F8F8F8; // Light background
   opacity: 0;
   transform: translateY(50px);
   animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  animation-delay: 0.3s;
+  animation-delay: 0.1s;
 }
 
 .portfolioLayout {
@@ -335,21 +336,27 @@
   color: #222831 !important;
 }
 
-// Study 섹션의 오른쪽 패널도 흰색 배경
-.studySection .portfolioRight {
+// About 섹션의 오른쪽 패널도 흰색 배경
+.aboutSection .portfolioRight {
   background: #ffffff !important;
   color: #222831 !important;
 }
 
-// Study 섹션 그리드 아이템의 텍스트 색상 (흰색 배경이므로 어두운 텍스트)
-.studySection .gridContent {
-  h4 {
-    color: #222831 !important; // 가장 어두운 색상
-  }
+// About Content Styling
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+}
 
-  p {
-    color: #393E46 !important; // 어두운 회색
-  }
+.aboutDesc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #393E46;
+  font-weight: 300;
+  text-align: justify;
 }
 
 .studySection .gridTags {
@@ -369,40 +376,47 @@
 }
 
 // Experience와 Study 섹션의 왼쪽 패널(제목/설명) 가장 어두운 남색 배경
-.experienceSection .portfolioLeft,
-.studySection .portfolioLeft {
+.experienceSection .portfolioLeft {
   background: #222831 !important;
   color: #DFD0B8 !important;
 }
 
 // Projects와 Contact 섹션의 왼쪽 패널(콘텐츠) 흰색 배경
-.projectsSection .portfolioLeft,
-.contactSection .portfolioLeft {
+.projectsSection .portfolioLeft {
   background: #ffffff !important;
   color: #222831 !important;
+}
+
+// Contact 섹션의 왼쪽 패널(콘텐츠) 어두운 회색 배경
+.contactSection .portfolioLeft {
+  background: #393E46 !important; // Dark Grey for content
+  color: #DFD0B8 !important;
 }
 
 // Experience와 Study 섹션의 오른쪽 패널(콘텐츠) 흰색 배경
-.experienceSection .portfolioRight,
-.studySection .portfolioRight {
-  background: #ffffff !important;
-  color: #222831 !important;
+.experienceSection .portfolioRight {
+  background: #393E46 !important; // Dark Grey for content
+  color: #DFD0B8 !important;
 }
 
 // Projects와 Contact 섹션의 오른쪽 패널(제목/설명) 가장 어두운 남색 배경
-.projectsSection .portfolioRight,
+.projectsSection .portfolioRight {
+  background: #222831 !important;
+  color: #DFD0B8 !important;
+}
+
+// Contact 섹션의 오른쪽 패널(제목/설명) 가장 어두운 남색 배경
 .contactSection .portfolioRight {
   background: #222831 !important;
   color: #DFD0B8 !important;
 }
 
 // Experience와 Study 섹션 - 제목/내용이 왼쪽, 콘텐츠가 오른쪽
-.experienceSection .portfolioLayout,
-.studySection .portfolioLayout {
+.experienceSection .portfolioLayout {
   .portfolioLeft {
     flex: 1; // 제목/내용 영역
   }
-  
+
   .portfolioRight {
     flex: 1.75; // 콘텐츠 영역이 더 넓음
   }
@@ -414,7 +428,7 @@
   .portfolioLeft {
     flex: 1.75; // 콘텐츠 영역이 더 넓음
   }
-  
+
   .portfolioRight {
     flex: 1; // 제목/내용 영역
   }
@@ -470,7 +484,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  
+
   span {
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
@@ -478,12 +492,12 @@
     font-weight: 400;
     text-transform: lowercase;
   }
-  
+
   &:hover,
   &.active {
     background: rgba(255, 255, 255, 0.1);
     padding-left: 10px;
-    
+
     span {
       color: #3498db;
     }
@@ -513,7 +527,7 @@
   border-radius: 8px;
   transition: all 0.3s ease;
   opacity: 0.3;
-  
+
   h4 {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.2rem;
@@ -522,7 +536,7 @@
     margin: 0 0 10px 0;
     letter-spacing: -0.1px;
   }
-  
+
   p {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.95rem;
@@ -531,14 +545,14 @@
     line-height: 1.5;
     font-weight: 300;
   }
-  
+
   span {
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     color: #ecf0f1;
     font-weight: 400;
   }
-  
+
   &.active {
     opacity: 1;
     background: rgba(255, 255, 255, 0.15);
@@ -592,6 +606,7 @@
     transform: translateX(-100px);
     opacity: 0;
   }
+
   100% {
     transform: translateX(0);
     opacity: 1;
@@ -603,6 +618,7 @@
     transform: translateX(100px);
     opacity: 0;
   }
+
   100% {
     transform: translateX(0);
     opacity: 1;
@@ -614,6 +630,7 @@
     opacity: 0;
     transform: translate3d(0, 30px, 0);
   }
+
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
@@ -625,6 +642,7 @@
     opacity: 0;
     transform: scale(0.8);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -636,48 +654,48 @@
   .topNavigation {
     padding: 20px 30px;
   }
-  
+
   .navItems {
     gap: 30px;
   }
-  
+
   .navItem {
     font-size: 0.9rem;
   }
-  
+
   .overviewSection {
     padding-left: 30px;
   }
-  
+
   .textContainer {
     transform: translateY(-20px);
   }
-  
+
   .nameText {
     font-size: 2rem;
     letter-spacing: 1px;
   }
-  
+
   .jobText {
     font-size: 1.4rem;
     letter-spacing: 0.5px;
   }
-  
+
   .portfolioLayout {
     flex-direction: column;
     height: auto;
   }
-  
+
   .portfolioLeft,
   .portfolioRight {
     padding: 60px 30px;
     flex: 1; // 모바일에서는 동일한 비율
   }
-  
+
   .portfolioTitle {
     font-size: 2rem;
   }
-  
+
   .portfolioSubtitle {
     font-size: 1rem;
   }
@@ -687,19 +705,19 @@
   .topNavigation {
     padding: 15px 20px;
   }
-  
+
   .navItems {
     gap: 20px;
   }
-  
+
   .navItem {
     font-size: 0.8rem;
   }
-  
+
   .overviewSection {
     padding-left: 20px;
   }
-  
+
   .textContainer {
     transform: translateY(-15px);
   }
@@ -713,86 +731,86 @@
     font-size: 1.2rem;
     letter-spacing: 0.3px;
   }
-  
+
   .portfolioLeft,
   .portfolioRight {
     padding: 40px 20px;
   }
-  
+
   .portfolioTitle {
     font-size: 1.8rem;
   }
-  
+
   .portfolioSubtitle {
     font-size: 0.9rem;
   }
-  
+
   .menuItem {
     padding: 10px 0;
   }
-  
+
   .detailItem {
     padding: 15px;
   }
-  
+
   .gridContainer {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 10px;
     max-width: 90%;
   }
-  
+
   .gridContent {
     padding: 12px;
-    
+
     h4 {
-    font-size: 0.9rem;
+      font-size: 0.9rem;
     }
-    
+
     p {
       font-size: 0.8rem;
     }
   }
-  
+
   .gridYear {
     font-size: 0.7rem;
     padding: 3px 6px;
   }
-  
+
   .gridNavLeft,
   .gridNavRight {
     width: 50px;
     height: 50px;
   }
-  
+
   .gridNavLeft {
     left: 10px;
   }
-  
+
   .gridNavRight {
     right: 10px;
   }
-  
+
   .overlayContent {
     margin: 10px;
     max-height: 90vh;
   }
-  
+
   .overlayImage {
     height: 200px;
   }
-  
+
   .overlayDetails {
     padding: 20px;
-    
+
     h2 {
       font-size: 1.5rem;
     }
-    
+
     .overlayDesc {
       font-size: 1rem;
     }
-    
+
     .overlayDetailsText {
       font-size: 0.9rem;
     }
@@ -840,7 +858,7 @@
       opacity: 1;
       transform: translateY(0);
     }
-    
+
     .gridImage img {
       transform: scale(1.08);
     }
@@ -853,10 +871,12 @@
     opacity: 0;
     transform: scale(0.8);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.1);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -867,7 +887,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  
+
   img {
     width: 100%;
     height: 100%;
@@ -1007,8 +1027,13 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .overlayContent {
@@ -1043,11 +1068,12 @@
 }
 
 @keyframes slideUp {
-  from { 
+  from {
     opacity: 0;
     transform: translateY(50px);
   }
-  to { 
+
+  to {
     opacity: 1;
     transform: translateY(0);
   }
@@ -1156,7 +1182,7 @@
 
 .overlayDetails {
   padding: 30px;
-  
+
   h2 {
     font-family: 'Montserrat', sans-serif;
     font-size: 2rem;
@@ -1186,7 +1212,7 @@
 
 .techStack {
   margin: 25px 0;
-  
+
   h4 {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.1rem;
@@ -1278,7 +1304,7 @@
 .timeline {
   position: relative;
   padding-left: 30px;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -1296,19 +1322,30 @@
   opacity: 0;
   transform: translateX(-30px);
   animation: slideInFromLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  
-  &:nth-child(1) { animation-delay: 0.1s; }
-  &:nth-child(2) { animation-delay: 0.2s; }
-  &:nth-child(3) { animation-delay: 0.3s; }
-  &:nth-child(4) { animation-delay: 0.4s; }
-  
+
+  &:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  &:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
   &:last-child {
     margin-bottom: 0;
   }
-  
+
   &:hover {
     transform: translateX(5px);
-    
+
     .timelineMarker {
       transform: scale(1.2);
       background: #DFD0B8;
@@ -1452,9 +1489,12 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
   }
+
   50% {
     opacity: 0.6;
   }
@@ -1464,6 +1504,7 @@
   0% {
     opacity: 0.6;
   }
+
   100% {
     opacity: 1;
   }
@@ -1486,13 +1527,13 @@
   font-weight: 600;
   box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
   z-index: 2;
-  
+
   &:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(52, 152, 219, 0.5);
     z-index: 10;
   }
-  
+
   &.centerNode {
     top: 50% !important;
     left: 50% !important;
@@ -1503,7 +1544,7 @@
     z-index: 15;
     box-shadow: 0 8px 25px rgba(52, 152, 219, 0.6);
   }
-  
+
   // 중앙 노드
   &[data-topic="React"] {
     top: 50%;
@@ -1514,7 +1555,7 @@
     height: 100px;
     font-size: 1.1rem;
   }
-  
+
   // 주변 노드들
   &[data-topic="TypeScript"] {
     top: 20%;
@@ -1584,7 +1625,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  
+
   h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.5rem;
@@ -1592,7 +1633,7 @@
     color: #fff;
     margin: 0 0 20px 0;
   }
-  
+
   p {
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
@@ -1623,7 +1664,7 @@
     color: #2c3e50;
     margin: 0 0 20px 0;
   }
-  
+
   .contactDescription {
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
@@ -1631,13 +1672,13 @@
     margin: 0 0 30px 0;
     line-height: 1.6;
   }
-  
+
   .contactDetailList {
     list-style: none;
     padding: 0;
     margin: 0;
     text-align: left;
-    
+
     li {
       font-family: 'Montserrat', sans-serif;
       font-size: 0.95rem;
@@ -1645,12 +1686,12 @@
       margin: 0 0 12px 0;
       padding: 8px 0;
       border-bottom: 1px solid #ecf0f1;
-      
+
       &:last-child {
         border-bottom: none;
         margin-bottom: 0;
       }
-      
+
       &::before {
         content: '•';
         color: #3498db;
@@ -1681,7 +1722,7 @@
     transform: translateX(5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
-  
+
   h4 {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.3rem;
@@ -1851,9 +1892,14 @@
   opacity: 0;
   animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 
-  
-  &:nth-child(1) { animation-delay: 0.1s; }
-  &:nth-child(2) { animation-delay: 0.2s; }
+
+  &:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.2s;
+  }
 
   &::before {
     content: '';
@@ -1875,7 +1921,7 @@
     &::before {
       opacity: 1;
     }
-    
+
     .contactCardTitle::after {
       width: 60px;
     }
@@ -1998,7 +2044,8 @@
     margin-bottom: 8px;
   }
 
-  input, textarea {
+  input,
+  textarea {
     width: 100%;
     padding: 12px 16px;
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -2113,18 +2160,18 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  
+
   &:hover .iconTooltip {
     opacity: 1;
     transform: translateY(-10px);
     pointer-events: auto;
   }
-  
+
   &:hover .iconWrapper {
     transform: scale(1.1);
     color: #3498db;
   }
-  
+
   &.selected .iconWrapper {
     background: rgba(52, 152, 219, 0.3);
     border-color: #3498db;
@@ -2144,7 +2191,7 @@
   color: #fff;
   transition: all 0.3s ease;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  
+
   &:hover {
     background: rgba(52, 152, 219, 0.2);
     border-color: #3498db;
@@ -2165,7 +2212,7 @@
   pointer-events: none;
   transition: all 0.3s ease;
   z-index: 10;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -2175,7 +2222,7 @@
     border: 5px solid transparent;
     border-top-color: rgba(0, 0, 0, 0.9);
   }
-  
+
   h4 {
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
@@ -2183,7 +2230,7 @@
     margin: 0 0 5px 0;
     color: #3498db;
   }
-  
+
   p {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
@@ -2257,7 +2304,8 @@
   flex-wrap: wrap;
 }
 
-.homeButton, .backButton {
+.homeButton,
+.backButton {
   padding: 15px 30px;
   border: none;
   border-radius: 8px;
@@ -2275,7 +2323,7 @@
   background: linear-gradient(135deg, #3498db, #2980b9);
   color: #ffffff;
   box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-  
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
@@ -2286,7 +2334,7 @@
   background: transparent;
   color: #3498db;
   border: 2px solid #3498db;
-  
+
   &:hover {
     background: #3498db;
     color: #ffffff;
@@ -2311,19 +2359,19 @@
   background: linear-gradient(45deg, rgba(52, 152, 219, 0.1), rgba(155, 89, 182, 0.1));
   border-radius: 50%;
   animation: float 6s ease-in-out infinite;
-  
+
   &:nth-child(1) {
     top: 20%;
     left: 10%;
     animation-delay: 0s;
   }
-  
+
   &:nth-child(2) {
     top: 60%;
     right: 10%;
     animation-delay: 2s;
   }
-  
+
   &:nth-child(3) {
     bottom: 20%;
     left: 50%;
@@ -2332,18 +2380,24 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.05);
   }
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-20px) rotate(180deg);
   }
@@ -2354,21 +2408,22 @@
   .notFoundNumber {
     font-size: 6rem;
   }
-  
+
   .notFoundTitle {
     font-size: 2rem;
   }
-  
+
   .notFoundDescription {
     font-size: 1rem;
   }
-  
+
   .notFoundActions {
     flex-direction: column;
     align-items: center;
   }
-  
-  .homeButton, .backButton {
+
+  .homeButton,
+  .backButton {
     width: 200px;
   }
 }
@@ -2411,6 +2466,7 @@
     transform: translateX(100%);
     opacity: 0;
   }
+
   100% {
     transform: translateX(0);
     opacity: 1;
@@ -2422,6 +2478,7 @@
     transform: translateX(-100%);
     opacity: 0;
   }
+
   100% {
     transform: translateX(0);
     opacity: 1;
@@ -2433,6 +2490,7 @@
     transform: translateX(0);
     opacity: 1;
   }
+
   100% {
     transform: translateX(100%);
     opacity: 0;
@@ -2444,6 +2502,7 @@
     transform: translateX(0);
     opacity: 1;
   }
+
   100% {
     transform: translateX(-100%);
     opacity: 0;

@@ -4,14 +4,14 @@ import { useState, useEffect, useCallback } from 'react'
 import styles from './page.module.scss'
 import projectsData from '../data/projects.json'
 import experienceData from '../data/experience.json'
-import studyData from '../data/study.json'
+import aboutData from '../data/aboutme.json'
 import contactData from '../data/contact.json'
 import EmailForm from '../components/EmailForm'
 
 // 타입 단언
 const typedProjectsData = projectsData as ProjectItem[]
-const typedStudyData = studyData as BlogItem[]
 const typedExperienceData = experienceData as { title: string; company: string; desc: string }[]
+const typedAboutData = aboutData as { desc: string }[]
 const typedContactData = contactData as { title: string; desc: string; details: string; action: string }[]
 
 // Next.js basePath를 고려한 이미지 경로 헬퍼 함수
@@ -34,7 +34,7 @@ interface ProjectItem {
   details: string
   tech: string[]
   year: string
-  type: 'team' | 'individual' | 'blog'
+  type: 'team' | 'individual' | 'blog' | 'dacon' | 'personal'
   link?: string // 프로젝트 링크 (선택사항)
 }
 
@@ -55,11 +55,9 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('overview')
   const [selectedProject, setSelectedProject] = useState<(ProjectItem | BlogItem) | null>(null)
   const [currentProjectPage, setCurrentProjectPage] = useState(0)
-  const [currentStudyPage, setCurrentStudyPage] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [projectAnimationClass, setProjectAnimationClass] = useState('')
-  const [studyAnimationClass, setStudyAnimationClass] = useState('')
-  
+
   const [isDarkBackground, setIsDarkBackground] = useState(true)
   const [showEmailOverlay, setShowEmailOverlay] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -88,7 +86,7 @@ export default function Home() {
 
   // 섹션 감지 (화면 중앙 기준)
   const detectActiveSection = useCallback(() => {
-    const sections = ['overview', 'experience', 'projects', 'study', 'contact']
+    const sections = ['overview', 'about', 'experience', 'projects', 'contact']
     const scrollPosition = window.scrollY + window.innerHeight / 2
 
     let newActiveSection = 'overview' // 기본값
@@ -151,7 +149,7 @@ export default function Home() {
     setTimeout(() => {
       detectActiveSection()
     }, 100)
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll)
       if (animationId) {
@@ -172,25 +170,25 @@ export default function Home() {
       // 스크롤 비율에 따라 네비게이션 배경 상태 결정
       let shouldBeDark = true // 기본값: 어두운 배경
 
-      if (scrollRatio > 0.24 && scrollRatio <= 0.49) {
-        // Experience 섹션 비율 (15%~45%)
-        shouldBeDark = false // 밝은 배경
-      } else if (scrollRatio > 0.49 && scrollRatio <= 0.74) {
-        // Projects 섹션 비율 (45%~65%)
-        shouldBeDark = true // 어두운 배경
-      } else if (scrollRatio > 0.74 && scrollRatio <= 0.99) {
-        // Study 섹션 비율 (65%~85%)
-        shouldBeDark = false // 밝은 배경
-      } else if (scrollRatio > 0.99) {
-        // Contact 섹션 비율 (85% 이상)
-        shouldBeDark = true // 어두운 배경
+      if (scrollRatio > 0.15 && scrollRatio <= 0.35) {
+        // About (Light)
+        shouldBeDark = false
+      } else if (scrollRatio > 0.35 && scrollRatio <= 0.60) {
+        // Experience (Dark)
+        shouldBeDark = true
+      } else if (scrollRatio > 0.60 && scrollRatio <= 0.85) {
+        // Projects (Light)
+        shouldBeDark = false
+      } else if (scrollRatio > 0.85) {
+        // Contact (Dark)
+        shouldBeDark = true
       } else {
-        // Overview 섹션 비율 (0%~15%)
-        shouldBeDark = true // 어두운 배경
+        // Overview (Dark)
+        shouldBeDark = true
       }
 
       // 현재 활성 섹션 찾기 (화면 중앙 기준)
-      const sections = ['overview', 'experience', 'projects', 'study', 'contact']
+      const sections = ['overview', 'about', 'experience', 'projects', 'contact']
       const centerPosition = window.scrollY + window.innerHeight / 2
 
       for (let i = 0; i < sections.length; i++) {
@@ -234,7 +232,8 @@ export default function Home() {
       element.scrollIntoView({ behavior: 'smooth' })
 
       // 클릭한 섹션에 따라 네비게이션 배경 상태 결정
-      const shouldBeDark = sectionId === 'overview' || sectionId === 'projects' || sectionId === 'contact'
+      // Overview(Dark), About(Light), Experience(Dark), Projects(Light), Contact(Dark)
+      const shouldBeDark = sectionId === 'overview' || sectionId === 'experience' || sectionId === 'contact'
 
       // 즉시 배경 상태 및 활성 섹션 업데이트
       setIsDarkBackground(shouldBeDark)
@@ -248,53 +247,41 @@ export default function Home() {
   }
 
   // 캐러셀 애니메이션 함수들
-  const handlePageChange = (newPage: number, type: 'projects' | 'study', direction: 'left' | 'right') => {
+  const handlePageChange = (newPage: number, direction: 'left' | 'right') => {
     if (isTransitioning) return
-    
+
     setIsTransitioning(true)
-    
+
     // 슬라이드 아웃 애니메이션 시작
-    if (type === 'projects') {
-      setProjectAnimationClass(direction === 'left' ? 'slideOutRight' : 'slideOutLeft')
-    } else {
-      setStudyAnimationClass(direction === 'left' ? 'slideOutRight' : 'slideOutLeft')
-    }
-    
+    setProjectAnimationClass(direction === 'left' ? 'slideOutRight' : 'slideOutLeft')
+
     // 슬라이드 아웃 완료 후 페이지 변경 및 슬라이드 인 시작
     setTimeout(() => {
-      if (type === 'projects') {
-        setCurrentProjectPage(newPage)
-        setProjectAnimationClass(direction === 'left' ? 'slideInLeft' : 'slideInRight')
-      } else {
-        setCurrentStudyPage(newPage)
-        setStudyAnimationClass(direction === 'left' ? 'slideInLeft' : 'slideInRight')
-      }
-      
+      setCurrentProjectPage(newPage)
+      setProjectAnimationClass(direction === 'left' ? 'slideInLeft' : 'slideInRight')
+
       // 애니메이션 완료 후 상태 리셋
       setTimeout(() => {
         setProjectAnimationClass('')
-        setStudyAnimationClass('')
         setIsTransitioning(false)
       }, 500)
     }, 250)
   }
 
-  const nextPage = (type: 'projects' | 'study') => {
-    const totalPages = type === 'projects' 
-      ? Math.ceil(typedProjectsData.length / 6)
-      : Math.ceil(typedStudyData.length / 6)
-    const currentPage = type === 'projects' ? currentProjectPage : currentStudyPage
-    
+  const nextPage = () => {
+    const totalPages = Math.ceil(typedProjectsData.length / 6)
+    const currentPage = currentProjectPage
+
     if (currentPage < totalPages - 1) {
-      handlePageChange(currentPage + 1, type, 'right')
+      handlePageChange(currentPage + 1, 'right')
     }
   }
 
-  const prevPage = (type: 'projects' | 'study') => {
-    const currentPage = type === 'projects' ? currentProjectPage : currentStudyPage
-    
+  const prevPage = () => {
+    const currentPage = currentProjectPage
+
     if (currentPage > 0) {
-      handlePageChange(currentPage - 1, type, 'left')
+      handlePageChange(currentPage - 1, 'left')
     }
   }
 
@@ -324,9 +311,9 @@ export default function Home() {
 
   const portfolioSections = [
     { id: 'overview', title: 'OVERVIEW' },
+    { id: 'about', title: 'ABOUT ME' },
     { id: 'experience', title: 'EXPERIENCE' },
     { id: 'projects', title: 'PROJECTS' },
-    { id: 'study', title: 'STUDY' },
     { id: 'contact', title: 'CONTACT' }
   ]
 
@@ -340,6 +327,12 @@ export default function Home() {
           subtitle: 'With cutting-edge cloud-based infrastructure, you can be sure your clients are getting lightning fast performance, no matter where they are.',
           items: ['photographers', 'cinematographers', 'directors', 'artists', 'architects', 'agencies']
         }
+      case 'about':
+        return {
+          title: 'About Me',
+          subtitle: 'Who I am and what I do.',
+          items: typedAboutData
+        }
       case 'projects':
         return {
           title: 'Featured Projects',
@@ -351,12 +344,6 @@ export default function Home() {
           title: 'Professional Experience',
           subtitle: 'Years of experience building scalable applications and leading development teams. Proven track record in delivering high-quality software solutions.',
           items: typedExperienceData
-        }
-      case 'study':
-        return {
-          title: 'Learning & Blog',
-          subtitle: 'Sharing knowledge and insights from my journey as a software engineer. Continuous learning drives innovation.',
-          items: typedStudyData
         }
       case 'contact':
         return {
@@ -372,7 +359,7 @@ export default function Home() {
 
   return (
     <>
-    <main className={styles.main}>
+      <main className={styles.main}>
         {/* 상단 네비게이션 - 투명한 레이어 */}
         <nav className={`${styles.topNavigation} ${!isDarkBackground ? styles.lightNav : ''}`}>
           <div className={styles.navItems}>
@@ -387,7 +374,7 @@ export default function Home() {
             ))}
           </div>
         </nav>
-        
+
 
         {/* Overview 섹션 */}
         <section id="overview" className={styles.overviewSection}>
@@ -398,7 +385,7 @@ export default function Home() {
           </div>
 
           {/* 인터랙티브 배경 요소 */}
-          <div 
+          <div
             className={styles.interactiveElement}
             style={{
               transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`
@@ -409,29 +396,45 @@ export default function Home() {
           {/* 이름과 직업 텍스트 */}
           {(showNameText || showJobText) && (
             <div className={styles.textContainer}>
-      {showNameText && (
-        <div className={styles.nameText}>
+              {showNameText && (
+                <div className={styles.nameText}>
                   JIHWAN KIM
-        </div>
-      )}
-      {showJobText && (
-        <div className={styles.jobText}>
+                </div>
+              )}
+              {showJobText && (
+                <div className={styles.jobText}>
                   SOFTWARE ENGINEER
-        </div>
-      )}
-        </div>
-      )}
+                </div>
+              )}
+            </div>
+          )}
 
           {/* 섹션 이동 버튼 */}
           <div className={styles.scrollDownContainer}>
             <button
               className={styles.scrollDownButton}
-              onClick={() => handleNavClick('experience')}
+              onClick={() => handleNavClick('about')}
             >
-                     <svg width="100" height="100" viewBox="0 0 100 100">
-                       <path d="M15,33 L50,67 L85,33" fill="none" stroke="currentColor" strokeWidth="2" />
-                     </svg>
+              <svg width="100" height="100" viewBox="0 0 100 100">
+                <path d="M15,33 L50,67 L85,33" fill="none" stroke="currentColor" strokeWidth="2" />
+              </svg>
             </button>
+          </div>
+        </section>
+
+        {/* About Me 섹션 */}
+        <section id="about" className={styles.aboutSection}>
+          <div className={styles.portfolioLayout}>
+            <div className={styles.portfolioLeft}>
+              <h2 className={styles.portfolioTitle}>About Me</h2>
+            </div>
+            <div className={styles.portfolioRight}>
+              <div className={styles.aboutContent}>
+                {getSectionContent('about').items.map((item, index) => (
+                  <p key={index} className={styles.aboutDesc} style={{ whiteSpace: 'pre-wrap' }}>{item.desc}</p>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -446,18 +449,18 @@ export default function Home() {
               <div className={styles.timelineContainer}>
                 <div className={styles.timeline}>
                   {getSectionContent('experience').items.map((item: { title: string; company: string; desc: string }, index: number) => {
-                  if (typeof item === 'string') return null
-                  return (
+                    if (typeof item === 'string') return null
+                    return (
                       <div key={index} className={styles.timelineItem}>
                         <div className={styles.timelineMarker}></div>
                         <div className={styles.timelineContent}>
-                      <h4>{item.title}</h4>
-                      {'company' in item && <p className={styles.company}>{item.company}</p>}
-                      <p>{item.desc}</p>
+                          <h4>{item.title}</h4>
+                          {'company' in item && <p className={styles.company}>{item.company}</p>}
+                          <p>{item.desc}</p>
                         </div>
-                    </div>
-                  )
-                })}
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             </div>
@@ -470,17 +473,17 @@ export default function Home() {
             <div className={styles.portfolioLeft}>
               <div className={styles.projectsGrid}>
                 {currentProjectPage > 0 && (
-                  <button 
+                  <button
                     className={styles.gridNavLeft}
-                    onClick={() => prevPage('projects')}
+                    onClick={() => prevPage()}
                     disabled={isTransitioning}
                   >
-                     <svg width="100" height="100" viewBox="0 0 100 100">
-                       <path d="M67,85 L33,50 L67,15" fill="none" stroke="currentColor" strokeWidth="2" />
-                     </svg>
+                    <svg width="100" height="100" viewBox="0 0 100 100">
+                      <path d="M67,85 L33,50 L67,15" fill="none" stroke="currentColor" strokeWidth="2" />
+                    </svg>
                   </button>
                 )}
-                
+
                 <div className={`${styles.gridContainer} ${projectAnimationClass ? styles[projectAnimationClass] : ''}`}>
                   {typedProjectsData.slice(currentProjectPage * 6, (currentProjectPage + 1) * 6).map((item: ProjectItem, index: number) => (
                     <div
@@ -501,108 +504,39 @@ export default function Home() {
                         <div className={styles.gridTags}>
                           <span className={styles.gridYear}>{item.year}</span>
                           <span className={`${styles.projectType} ${item.type === 'team' ? styles.team : styles.individual}`}>
-                            {item.type === 'team' ? 'Team Project' : 'Individual'}
+                            {item.type === 'team' ? 'Team Project' : item.type === 'blog' ? 'Blog' : 'Individual'}
                           </span>
                         </div>
                       </div>
                     </div>
                   ))}
+                  {/* 빈 칸 채우기용 placeholder (항상 6개 유지) */}
+                  {Array.from({ length: 6 - typedProjectsData.slice(currentProjectPage * 6, (currentProjectPage + 1) * 6).length }).map((_, index) => (
+                    <div
+                      key={`placeholder-${index}`}
+                      className={styles.gridItem}
+                      style={{ visibility: 'hidden', pointerEvents: 'none' }}
+                    ></div>
+                  ))}
                 </div>
-                
-                 {currentProjectPage < Math.ceil(typedProjectsData.length / 6) - 1 && (
-                   <button 
-                     className={styles.gridNavRight}
-                     onClick={() => nextPage('projects')}
-                     disabled={isTransitioning}
-                   >
-                     <svg width="100" height="100" viewBox="0 0 100 100">
-                       <path d="M33,15 L67,50 L33,85" fill="none" stroke="currentColor" strokeWidth="2" />
-                     </svg>
-                   </button>
-                 )}
+
+                {currentProjectPage < Math.ceil(typedProjectsData.length / 6) - 1 && (
+                  <button
+                    className={styles.gridNavRight}
+                    onClick={() => nextPage()}
+                    disabled={isTransitioning}
+                  >
+                    <svg width="100" height="100" viewBox="0 0 100 100">
+                      <path d="M33,15 L67,50 L33,85" fill="none" stroke="currentColor" strokeWidth="2" />
+                    </svg>
+                  </button>
+                )}
               </div>
             </div>
             <div className={styles.portfolioRight}>
               <h2 className={styles.portfolioTitle}>Featured Projects</h2>
               <p className={styles.portfolioSubtitle}>Building innovative solutions that make a difference. Each project represents a unique challenge solved with creativity and technical excellence.</p>
             </div>
-          </div>
-        </section>
-
-        {/* Study 섹션 - 그리드 형태로 변경 */}
-        <section id="study" className={styles.studySection}>
-          <div className={styles.portfolioLayout}>
-            <div className={styles.portfolioLeft}>
-              <h2 className={styles.portfolioTitle}>Learning & Blog</h2>
-              <p className={styles.portfolioSubtitle}>Sharing knowledge and insights from my journey as a software engineer. Continuous learning drives innovation.</p>
-            </div>
-            <div className={styles.portfolioRight}>
-              <div className={styles.projectsGrid}>
-                {currentStudyPage > 0 && (
-                  <button
-                    className={styles.gridNavLeft}
-                    onClick={() => prevPage('study')}
-                    disabled={isTransitioning}
-                  >
-                     <svg width="100" height="100" viewBox="0 0 100 100">
-                       <path d="M67,85 L33,50 L67,15" fill="none" stroke="currentColor" strokeWidth="2"/>
-                     </svg>
-                  </button>
-                )}
-
-                <div className={`${styles.gridContainer} ${studyAnimationClass ? styles[studyAnimationClass] : ''}`}>
-                  {typedStudyData.slice(currentStudyPage * 6, (currentStudyPage + 1) * 6).map((item: BlogItem, index: number) => (
-                    <div
-                      key={`${currentStudyPage}-${index}`}
-                      className={styles.gridItem}
-                      onClick={() => handleProjectSelect(item)}
-                    >
-                      <div className={styles.gridImage}>
-                        <img
-                          src={getImagePath(item.images?.[0] || '/images/sample.png')}
-                          alt={item.title}
-                          onError={handleImageError}
-                        />
-                      </div>
-                      <div className={styles.gridContent}>
-                        <h4>{item.title}</h4>
-                        <p>{item.desc}</p>
-                        <div className={styles.gridTags}>
-                          <span className={styles.gridYear}>{item.year}</span>
-                          <span className={`${styles.projectType} ${item.type === 'blog' ? styles.blog : ''}`}>
-                            {item.type === 'blog' ? 'Blog Post' : item.type}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                 {currentStudyPage < Math.ceil(typedStudyData.length / 6) - 1 && (
-                   <button
-                     className={styles.gridNavRight}
-                     onClick={() => nextPage('study')}
-                     disabled={isTransitioning}
-                   >
-                     <svg width="100" height="100" viewBox="0 0 100 100">
-                       <path d="M33,15 L67,50 L33,85" fill="none" stroke="currentColor" strokeWidth="2" />
-                     </svg>
-                   </button>
-                 )}
-              </div>
-            </div>
-          </div>
-
-          {/* 섹션 이동 버튼 */}
-          <div className={styles.scrollUpContainer}>
-            <button
-              className={styles.scrollUpButton}
-              onClick={() => handleNavClick('overview')}
-            >
-              <svg width="100" height="100" viewBox="0 0 100 100">
-                <path d="M15,67 L50,33 L85,67" fill="none" stroke="currentColor" strokeWidth="2" />
-              </svg>
-            </button>
           </div>
         </section>
 
@@ -635,11 +569,11 @@ export default function Home() {
                       <div className={styles.contactCardIcon}>
                         {item.title === 'Email' ? (
                           <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                           </svg>
                         ) : (
                           <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                           </svg>
                         )}
                       </div>
@@ -647,7 +581,7 @@ export default function Home() {
                       <p className={styles.contactCardDesc}>{item.desc}</p>
                       <div className={styles.contactCardDetails}>
                         <p>{item.details}</p>
-                      </div> 
+                      </div>
                     </div>
                   )
                 })}
@@ -657,6 +591,18 @@ export default function Home() {
               <h2 className={styles.portfolioTitle}>Get In Touch</h2>
               <p className={styles.portfolioSubtitle}>Let&apos;s collaborate and create something amazing together. I&apos;m always interested in new opportunities and exciting projects.</p>
             </div>
+          </div>
+
+          {/* 섹션 이동 버튼 */}
+          <div className={styles.scrollUpContainer}>
+            <button
+              className={styles.scrollUpButton}
+              onClick={() => handleNavClick('overview')}
+            >
+              <svg width="100" height="100" viewBox="0 0 100 100">
+                <path d="M15,67 L50,33 L85,67" fill="none" stroke="currentColor" strokeWidth="2" />
+              </svg>
+            </button>
           </div>
         </section>
 
@@ -674,7 +620,15 @@ export default function Home() {
               <div className={styles.overlayDetails}>
                 <h2>{selectedProject.title}</h2>
                 <p className={styles.overlayDesc}>{selectedProject.desc}</p>
-                <p className={styles.overlayDetailsText}>{selectedProject.details}</p>
+                <div className={styles.overlayDetailsText}>
+                  <div dangerouslySetInnerHTML={{
+                    __html: selectedProject.details
+                      .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+                      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                      .replace(/\n\n/g, '<br/>')
+                      .replace(/^- (.*$)/gm, '<li>$1</li>')
+                  }} />
+                </div>
                 <div className={styles.techStack}>
                   <h4>Technologies Used:</h4>
                   <div className={styles.techTags}>
@@ -687,7 +641,7 @@ export default function Home() {
                   <div className={styles.projectLink}>
                     <a href={selectedProject.link} target="_blank" rel="noopener noreferrer">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                       </svg>
                       View Project
                     </a>
@@ -710,11 +664,11 @@ export default function Home() {
 
         {/* 저작권 표시 - Overview 섹션에서만 표시 */}
         {activeSection === 'overview' && (
-        <div className={styles.copyright}>
-          © 2025 JiHwan Kim. All rights reserved.
-        </div>
+          <div className={styles.copyright}>
+            © 2025 JiHwan Kim. All rights reserved.
+          </div>
         )}
-    </main>
+      </main>
     </>
   )
 }
