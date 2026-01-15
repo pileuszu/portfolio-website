@@ -346,17 +346,87 @@
 .aboutContent {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 800px;
+  gap: 40px;
+  width: 100%;
+}
+
+.aboutIntro {
+  margin-bottom: 20px;
 }
 
 .aboutDesc {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.8;
-  color: #393E46;
+  color: #DFD0B8; // 밝은 베이지 (왼쪽 패널이 어두우므로)
   font-weight: 300;
   text-align: justify;
+}
+
+// Core Competencies Grid
+.competenciesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.competencyCard {
+  background: #F9F9F9;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #E0E0E0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: #222831;
+  }
+}
+
+.competencyTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222831;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #222831;
+  padding-bottom: 5px;
+  display: inline-block;
+}
+
+.competencyDesc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  color: #4a4a4a;
+  font-weight: 500;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.competencyExamples {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 15px;
+    line-height: 1.4;
+
+    &::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #222831;
+    }
+  }
 }
 
 .studySection .gridTags {
