@@ -76,15 +76,15 @@ export default function EmailForm({ onClose }: EmailFormProps) {
   }
 
   return (
-    <div className={`${styles.emailFormCard} glass`} onClick={(e) => e.stopPropagation()}>
+    <div className={styles.emailFormCard} onClick={(e) => e.stopPropagation()}>
       <button className={styles.formCloseBtn} onClick={onClose} aria-label="Close form">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
           <path d="M18 6L6 18M6 6l12 12" />
         </svg>
       </button>
 
       <div className={styles.formHeader}>
-        <h2 className={styles.formTitle}>Send a Message</h2>
+        <h2 className={styles.formTitle}>Get in Touch</h2>
         <p className={styles.formSubtitle}>Have a project in mind? Let&apos;s talk about it.</p>
       </div>
 
@@ -99,12 +99,12 @@ export default function EmailForm({ onClose }: EmailFormProps) {
             value={formData.from_name}
             onChange={handleChange}
             required
-            placeholder="What's your name?"
+            placeholder="John Doe"
           />
         </div>
 
         <div className={styles.inputGroup}>
-          <label htmlFor="from_email" className={styles.inputLabel}>Email</label>
+          <label htmlFor="from_email" className={styles.inputLabel}>Email Address</label>
           <input
             type="email"
             id="from_email"
@@ -113,7 +113,7 @@ export default function EmailForm({ onClose }: EmailFormProps) {
             value={formData.from_email}
             onChange={handleChange}
             required
-            placeholder="where can I reach you?"
+            placeholder="john@example.com"
           />
         </div>
 
@@ -126,8 +126,8 @@ export default function EmailForm({ onClose }: EmailFormProps) {
             value={formData.message}
             onChange={handleChange}
             required
-            placeholder="Tell me about your project..."
-            rows={5}
+            placeholder="Tell me more about your project goals and how I can help..."
+            rows={4}
           />
         </div>
 
@@ -142,9 +142,10 @@ export default function EmailForm({ onClose }: EmailFormProps) {
             <span className={styles.loader}></span>
           ) : (
             <>
-              Send Message
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+              <span>Send Message</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
               </svg>
             </>
           )}

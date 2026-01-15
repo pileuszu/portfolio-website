@@ -61,12 +61,6 @@ export default function Contact({ data, onScrollUp }: ContactProps) {
                     <div className={styles.footerBranding}>
                         <p>&copy; {new Date().getFullYear()} AI & Full-Stack Engineer Portfolio</p>
                     </div>
-                    <button className={styles.backToTop} onClick={onScrollUp} aria-label="Back to top">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M18 15l-6-6-6 6" />
-                        </svg>
-                        Top
-                    </button>
                 </footer>
             </div>
 
