@@ -1,8 +1,82 @@
 [
   {
+    "title": "Generation For NLP Project",
+    "desc": "A specialized SLM construction project for the Korean CSAT domain, focusing on overcoming data distribution shifts and ensuring generalization performance.",
+    "images": [
+      "/images/project_title_8.png"
+    ],
+    "details": "This project focused on building a Small Language Model (SLM) specialized for the Korean CSAT domain, ensuring domain-specific performance and resource efficiency compared to large LLMs.\n\nKey Challenges & Solutions:\n- **Distribution Mismatch:** Resolved performance degradation from training-evaluation data mismatch by adding external CSAT-like data and adjusting training order to improve generalization.\n- **Bias Mitigation:** Addressed selection bias from question type imbalance using under-represented type oversampling and choice shuffling.\n- **Prediction Stability:** Secured stability using Zero-shot CoT and Logits-based ensemble.\n- **Resource Optimization:** Overcame disk/inference time constraints by applying GPTQ/AWQ quantization and adopting Qwen3-VL. Designed a flexible pipeline and resolved model save/load bottlenecks with Distributed Sharding.\n\nKey Learnings:\nRealized that model performance heavily relies on structural data design and pipeline quality, and recognized the importance of optimization considering operational environments.",
+    "tech": [
+      "Python",
+      "PyTorch",
+      "Hugging Face",
+      "Qwen3-VL",
+      "GPTQ",
+      "AWQ"
+    ],
+    "year": "2026",
+    "type": "team",
+    "link": "https://github.com/boostcampaitech8/pro-nlp-generationfornlp-nlp-01"
+  },
+  {
+    "title": "MRC Project",
+    "desc": "A 2-stage Open-Domain Question Answering (ODQA) system utilizing a Retriever-Reader architecture to solve information retrieval tasks.",
+    "images": [
+      "/images/project_title_7.png"
+    ],
+    "details": "Constructed a 2-stage ODQA system with a Retriever + Reader structure.\n\nKey Challenges & Solutions:\n- **Hallucination & Discrimination:** Addressed Reader hallucination due to lack of Negative Passages and Retriever's poor discrimination.\n- **Data Engineering:** Led the improvement of Retriever training data quality through initial EDA. Designed a Hard Negative Sampling strategy and built a high-difficulty wrong answer dataset.\n- **Performance Boost:** Improved Dense Retriever discrimination via Hard Negative Mining and contributed to BM25 + Dense Hybrid Retrieval design. Participated in Soft Voting ensemble to improve leaderboard performance.\n\nKey Learnings:\nExperienced that data quality and structural design are more critical to performance than model complexity.",
+    "tech": [
+      "Python",
+      "PyTorch",
+      "Hugging Face",
+      "BERT",
+      "BM25"
+    ],
+    "year": "2025",
+    "type": "team",
+    "link": "https://github.com/boostcampaitech8/pro-nlp-mrc-nlp-01"
+  },
+  {
+    "title": "Laftel Watch Together",
+    "desc": "A Chrome extension enabling real-time synchronized video watching on Laftel with friends, featuring host control and WebSocket communication.",
+    "images": [
+      "/images/project_title_6.png"
+    ],
+    "details": "A Chrome extension designed to let users watch Laftel videos together in real-time. It features a robust synchronization system where a host controls playback for all participants.\n\nKey Features:\n- **Real-time Synchronization:** seamless syncing of play/pause and timestamp across all clients.\n- **Host Mode:** One user acts as host to control the playback flow.\n- **Resilience:** Auto-reconnect functionality and stable WebSocket-based communication.\n- **Easy Deployment:** Supports free hosting options like Render for the signaling server.\n\nTech Stack:\nBuilt with Chrome Extension Manifest V3 for the client and a Node.js WebSocket server for real-time communication.",
+    "tech": [
+      "Chrome Extension",
+      "WebSocket",
+      "Node.js",
+      "JavaScript"
+    ],
+    "year": "2025",
+    "type": "personal",
+    "link": "https://github.com/pileuszu/raftel-watch-together"
+  },
+  {
+    "title": "Movie Review Sentiment Analysis",
+    "desc": "An NLP classification project categorizing Korean movie reviews into 4 sentiment classes using various BERT-based models and TAPT.",
+    "images": [
+      "/images/project_title_5.png"
+    ],
+    "details": "Developed an NLP model to classify Korean movie reviews into 4 classes (Negative, Neutral, Positive, Strong Positive).\n\nKey Activities:\n- **Model Comparison:** Conducted fair comparison experiments of 5 Korean BERT-series models under identical hyperparameters.\n- **TAPT Verification:** Verified the effectiveness of Task-Adaptive Pre-Training (TAPT) on movie review data.\n- **Pipeline Design:** Designed a preprocessing pipeline focused on preserving sentiment expressions and analyzing data distribution.\n- **Experimentation:** Led Focal Loss experiments (found no improvement) and documented failure cases as empirical evidence.\n\nKey Learnings:\nLearned that domain-appropriate pre-training and data design are core to performance, and that analyzing failed experiments is just as valuable as successes.",
+    "tech": [
+      "Python",
+      "PyTorch",
+      "Hugging Face",
+      "BERT",
+      "TAPT"
+    ],
+    "year": "2025",
+    "type": "team",
+    "link": "https://github.com/pileuszu/boostcamp-movie-review-sentiment-analysis"
+  },
+  {
     "title": "Portfolio Website",
     "desc": "A sleek and modern portfolio website built with TypeScript, React, Next.js, and SCSS. Features a clean design with smooth animations and responsive layout.",
-    "images": ["/images/project_title_4.png"],
+    "images": [
+      "/images/project_title_4.png"
+    ],
     "details": "This portfolio website was developed using cutting-edge web technologies. Built on React 18 and Next.js 15 with TypeScript for type safety, and SCSS for sophisticated styling.\n\nKey Features:\n- Efficient routing using Next.js App Router\n- Modern design with CSS Modules and SCSS\n- Smooth animations and responsive layout\n- JSON-based content management system\n- Code quality management through ESLint\n\nThe project features a systematic directory structure and was designed with component reusability and maintainability in mind. In particular, JSON files were separated for data management to facilitate easy content updates.",
     "tech": [
       "TypeScript",
@@ -19,7 +93,9 @@
   {
     "title": "ChzzkStreamDeck",
     "desc": "A comprehensive streaming widget system for OBS Studio with real-time chat overlay, Spotify integration, and music bot functionality.",
-    "images": ["/images/project_title_3.png"],
+    "images": [
+      "/images/project_title_3.png"
+    ],
     "details": "ChzzkStreamDeck is a feature-rich streaming widget system designed for OBS Studio integration. The system provides real-time CHZZK chat overlay, Spotify music control, and an interactive music bot.\n\nKey Features:\n- Real-time chat overlay with SSE and CHZZK emoticon support\n- Spotify integration with OAuth 2.0 authentication\n- Music bot with chat commands for queue management\n- Server-based token management system\n- Multiple theme options (Simple Purple, Neon Green)\n- Comprehensive API endpoints for chat and music control\n\nThe project demonstrates advanced web development concepts including WebSocket communication, OAuth implementation, and real-time data streaming. The codebase features a modular architecture with clear separation between chat, music, and bot functionalities.",
     "tech": [
       "Node.js",
@@ -37,7 +113,9 @@
   {
     "title": "3D Train Simulator",
     "desc": "A real-time 3D train simulator built with WebGL and JavaScript, featuring customizable camera controls and track configurations",
-    "images": ["/images/project_title_2.png"],
+    "images": [
+      "/images/project_title_2.png"
+    ],
     "details": "This project implements a real-time 3D train simulator using WebGL and JavaScript. The simulator features highly customizable camera controls and easy-to-edit track configurations, allowing users to control their train and its routes in third-person view.\n\nKey features include:\n- 3D modeling with hierarchical structure using tree-based traversal\n- Realistic textures and animations for train components like doors and pantographs\n- Dynamic track generation with intuitive CSV-like syntax\n- Comprehensive camera controls with keyboard support\n- Customizable lighting parameters\n- Performance optimization with FPS limiting and conditional re-rendering\n\nThe project demonstrates advanced graphics programming concepts including WebGL rendering, shader programming, texture mapping, and 3D transformations. The codebase is well-structured with clear separation of concerns between rendering, physics, controls, and asset management.",
     "tech": [
       "JavaScript",
@@ -54,116 +132,33 @@
   {
     "title": "SSALON: Digital Badge Card-Based One-Time Gathering Management Service",
     "desc": "A web service providing one-time gathering communities based on 'Interactive 3D Badge Cards'",
-    "images": ["/images/project_title_1.png"],
+    "images": [
+      "/images/project_title_1.png"
+    ],
     "details": "Recently, people tend to be more individualistic rather than collectivistic, often hesitating to join new groups or form new relationships. Against this backdrop, the demand for one-time gatherings continues to grow. However, existing services in the market fail to fully satisfy consumer needs due to various issues such as inconvenient participant verification, difficulties in promoting gatherings, demand for additional memory preservation means, and unsatisfactory user experiences.\n\nTo address these problems, SSALON is a web service that provides one-time gathering communities based on 'Interactive 3D Badge Cards'. Users can conveniently engage in all activities related to one-time gatherings, including hosting, participating, managing, preserving memories, and verification, using digital badge cards. In particular, memory recording using badge cards serves as a unique selling point (USP) compared to other services, offering an easier and more enjoyable one-time gathering experience through SSALON's unique '3D badge cards'.\n\nThis project was developed from March to June 2024 by Team SKYTeam (Team 11) as part of the Ajou University SW Capstone Design course in the first semester of 2024.",
     "tech": [
-      "Javascript", "Angular", "React", "Three.js", "HTML5", "SCSS",
-      "Java", "Python", "Spring Boot", "Spring Security", "MySQL", "Redis", "MongoDB", "AWS", 
+      "Javascript",
+      "Angular",
+      "React",
+      "Three.js",
+      "HTML5",
+      "SCSS",
+      "Java",
+      "Python",
+      "Spring Boot",
+      "Spring Security",
+      "MySQL",
+      "Redis",
+      "MongoDB",
+      "AWS",
       "OpenAI",
-      "Github", "Github Actions", "Swagger", "Slack"
+      "Github",
+      "Github Actions",
+      "Swagger",
+      "Slack"
     ],
     "year": "2024",
     "type": "team",
     "link": "https://github.com/lee1684/SKYTeam"
-  },
-  {
-    "title": "테스트 프로젝트 1",
-    "desc": "테스트용 프로젝트 설명입니다",
-    "images": ["/images/sample.png"],
-    "details": "테스트 프로젝트 1의 상세 설명입니다.",
-    "tech": ["React", "Node.js"],
-    "year": "2024",
-    "type": "personal",
-    "link": "https://github.com/test/project1"
-  },
-  {
-    "title": "테스트 프로젝트 2", 
-    "desc": "두 번째 테스트 프로젝트입니다",
-    "images": ["/images/sample.png"],
-    "details": "테스트 프로젝트 2의 상세 설명입니다.",
-    "tech": ["Angular", "Express"],
-    "year": "2024",
-    "type": "team",
-    "link": "https://github.com/test/project2"
-  },
-  {
-    "title": "테스트 프로젝트 3",
-    "desc": "세 번째 테스트 프로젝트입니다",
-    "images": ["/images/sample.png"], 
-    "details": "테스트 프로젝트 3의 상세 설명입니다.",
-    "tech": ["Vue", "MongoDB"],
-    "year": "2023",
-    "type": "personal",
-    "link": "https://github.com/test/project3"
-  },
-  {
-    "title": "테스트 프로젝트 4",
-    "desc": "네 번째 테스트 프로젝트입니다",
-    "images": ["/images/sample.png"],
-    "details": "테스트 프로젝트 4의 상세 설명입니다.",
-    "tech": ["React Native", "Firebase"],
-    "year": "2023",
-    "type": "team",
-    "link": "https://github.com/test/project4"
-  },
-  {
-    "title": "테스트 프로젝트 5",
-    "desc": "다섯 번째 테스트 프로젝트입니다",
-    "images": ["/images/sample.png"],
-    "details": "테스트 프로젝트 5의 상세 설명입니다.",
-    "tech": ["Flutter", "MySQL"],
-    "year": "2023",
-    "type": "personal",
-    "link": "https://github.com/test/project5"
-  },
-  {
-    "title": "테스트 프로젝트 6",
-    "desc": "여섯 번째 테스트 프로젝트입니다",
-    "images": ["/images/sample.png"],
-    "details": "테스트 프로젝트 6의 상세 설명입니다.",
-    "tech": ["Django", "PostgreSQL"],
-    "year": "2022",
-    "type": "team",
-    "link": "https://github.com/test/project6"
-  },
-  {
-    "title": "테스트 프로젝트 7",
-    "desc": "일곱 번째 테스트 프로젝트입니다",
-    "images": ["/images/sample.png"],
-    "details": "테스트 프로젝트 7의 상세 설명입니다.",
-    "tech": ["Spring Boot", "Oracle"],
-    "year": "2022",
-    "type": "personal",
-    "link": "https://github.com/test/project7"
-  },
-  {
-    "title": "테스트 프로젝트 8",
-    "desc": "여덟 번째 테스트 프로젝트입니다",
-    "images": ["/images/sample.png"],
-    "details": "테스트 프로젝트 8의 상세 설명입니다.",
-    "tech": ["ASP.NET", "SQL Server"],
-    "year": "2022",
-    "type": "team",
-    "link": "https://github.com/test/project8"
-  },
-  {
-    "title": "테스트 프로젝트 9",
-    "desc": "아홉 번째 테스트 프로젝트입니다",
-    "images": ["/images/sample.png"],
-    "details": "테스트 프로젝트 9의 상세 설명입니다.",
-    "tech": ["Laravel", "Redis"],
-    "year": "2021",
-    "type": "personal",
-    "link": "https://github.com/test/project9"
-  },
-  {
-    "title": "테스트 프로젝트 10",
-    "desc": "열 번째 테스트 프로젝트입니다",
-    "images": ["/images/sample.png"],
-    "details": "테스트 프로젝트 10의 상세 설명입니다.",
-    "tech": ["Ruby on Rails", "MongoDB"],
-    "year": "2021",
-    "type": "team",
-    "link": "https://github.com/test/project10"
   }
 ]
