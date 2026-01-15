@@ -141,6 +141,3 @@ export default function Projects({ data }: ProjectsProps) {
         </section>
     )
 }
-        </section >
-    )
-}

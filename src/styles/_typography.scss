@@ -4,28 +4,30 @@
 // Typographic Hierarchy
 // -----------------------------------------------------------------------------
 
-:root {
-    --font-inter: 'Inter', sans-serif;
-    --font-outfit: 'Outfit', sans-serif;
-}
+:global {
+    :root {
+        --font-inter: 'Inter', sans-serif;
+        --font-outfit: 'Outfit', sans-serif;
+    }
 
-body {
-    font-family: var(--font-inter);
-    color: $text-primary;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-}
+    body {
+        font-family: var(--font-inter);
+        color: $text-primary;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: var(--font-outfit);
-    font-weight: 700;
-    line-height: 1.2;
-    color: $text-primary;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-outfit);
+        font-weight: 700;
+        line-height: 1.2;
+        color: $text-primary;
+    }
 }
 
 // Hero Title
