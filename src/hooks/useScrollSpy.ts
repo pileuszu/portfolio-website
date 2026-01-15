@@ -51,11 +51,7 @@ export const useScrollSpy = (sectionIds: string[]) => {
 
     // 배경 색상 로직 (화면 스크롤 비율 기반 + 섹션 기반)
     const updateBackground = useCallback(() => {
-        const scrollPosition = window.scrollY
-        const documentHeight = document.documentElement.scrollHeight - window.innerHeight
-        const scrollRatio = scrollPosition / documentHeight
-
-        // 스크롤 비율에 따른 배경색 로직 (기존 page.tsx 로직 이식)
+        // 배경 색상 로직 (섹션 기반)
         // Overview(Dark) -> About(Light) -> Experience(Dark) -> Projects(Light) -> Contact(Dark)
         // 비율은 실제 콘텐츠 길이에 따라 달라질 수 있으므로, 섹션 ID 기반으로 하는 것이 더 안전할 수 있음.
         // 하지만 기존 애니메이션 효과 유지를 위해 비율 로직을 유지하거나, activeSection에 종속시킬 수 있음.
