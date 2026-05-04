@@ -1,5 +1,71 @@
 [
   {
+    "title": "Aura AI Shader & Style Matcher",
+    "desc": "A high-performance stylized toon shader for Unity with an AI-powered tool that uses Gemini to automatically match rendering styles from reference images.",
+    "images": [
+      "/images/sample.png"
+    ],
+    "overview": "Aura AI is a professional-grade stylized toon shader for Unity, paired with an AI-powered look-dev tool. It bridges the gap between technical artistry and generative AI by allowing developers to automatically tune complex shader parameters to match a specific reference style using the Google Gemini API.",
+    "problem": "Achieving a specific stylized look in Unity often requires manual adjustment of dozens of shader parameters (rim light, SSS, shadows, etc.), which is time-consuming and requires significant technical expertise.",
+    "role": "Solo Developer",
+    "solution": "- **Stylized Shader:** Developed a feature-rich toon shader supporting multi-step cel shading, Kajiya-Kay hair specular, and stencil-based effects.\n- **AI Look-Dev Tool:** Built a Unity Editor tool that captures scene views and reference images, using Gemini's multimodal capabilities to reason about lighting and color.\n- **Semantic Parameter Tuning:** Implemented logic that recognizes material roles (e.g., skin, hair) to apply context-aware rendering adjustments automatically.",
+    "learnings": "Deepened expertise in HLSL and Unity's rendering pipeline. Learned to integrate multimodal LLMs into a traditional graphics workflow to automate creative decision-making processes.",
+    "tech": [
+      "Unity",
+      "HLSL",
+      "C#",
+      "Google Gemini API"
+    ],
+    "year": "2026",
+    "type": "personal",
+    "link": "https://github.com/pileuszu/aura-ai-shader"
+  },
+  {
+    "title": "Everything Job (모두취업)",
+    "desc": "AI-powered employment agent service providing tailored company recommendations and cover letter generation based on portfolio analysis.",
+    "images": [
+      "/images/sample.png"
+    ],
+    "overview": "A comprehensive AI agent solution that addresses the fatigue of job searching and repetitive cover letter writing. It analyzes user portfolios and GitHub repositories, combining them with real-time recruitment data (RAG) to recommend the best-fit companies and generate customized cover letter drafts.",
+    "problem": "Traditional job platforms often provide generic listings, requiring users to spend significant time manually filtering roles and tailoring applications for each company.",
+    "role": "Server Infrastructure, Portfolio Pipeline, and Deployment Environment",
+    "solution": "- **Portfolio Pipeline:** Automated extraction of project experience from GitHub, Notion, and PDFs using HyperCLOVA X.\n- **Recruitment RAG:** Hybrid search (Dense/Sparse) and intelligent re-ranking for precise job matching.\n- **Cover Letter Generation:** Strategy-based generation using STAR technique and hallucination control.",
+    "learnings": "Gained deep experience in cloud-native architecture (GCP), RAG system optimization, and the importance of data quality in AI service performance.",
+    "tech": [
+      "Next.js",
+      "FastAPI",
+      "HyperCLOVA X",
+      "LangChain",
+      "Supabase",
+      "GCP Cloud Run"
+    ],
+    "year": "2026",
+    "type": "team",
+    "link": "https://pileuszu.github.io/pro-nlp-finalproject-nlp-01/"
+  },
+  {
+    "title": "Gemma Glance",
+    "desc": "A context-aware real-time knowledge assistant built for the Gemma 4 Good Hackathon, running locally to provide instant explanations for on-screen content.",
+    "images": [
+      "/images/sample.png"
+    ],
+    "overview": "Gemma Glance is a lightweight, privacy-focused tool that uses Gemma 4 to explain complex terms and concepts on the screen. It's designed to bridge the digital divide by providing high-quality AI assistance on standard hardware without requiring cloud connectivity.",
+    "problem": "Many AI assistants require expensive GPUs or stable internet, making them inaccessible in certain educational or low-spec environments. Privacy is also a concern when capturing screen content for cloud-based AI.",
+    "role": "Solo Developer",
+    "solution": "- **Local Inference:** Optimized Gemma 4 E2B model using ONNX Runtime for CPU execution.\n- **Real-time UX:** Intelligent hover detection (0.8s) and multimodal context analysis for seamless interaction.\n- **Modern UI:** Built a hardware-accelerated transparent overlay using PySide6.",
+    "learnings": "Deepened knowledge in model quantization and optimization for edge devices. Learned to handle low-latency screen capture and system-level integration in Python.",
+    "tech": [
+      "Python",
+      "Gemma 4",
+      "ONNX Runtime",
+      "PySide6",
+      "Win32 API"
+    ],
+    "year": "2026",
+    "type": "personal",
+    "link": "https://github.com/pileuszu/kaggle-gemma-glance"
+  },
+  {
     "title": "Generation For NLP Project",
     "desc": "A specialized SLM construction project for the Korean CSAT domain, focusing on overcoming data distribution shifts and ensuring generalization performance.",
     "images": [
