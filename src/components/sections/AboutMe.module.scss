@@ -1,0 +1,225 @@
+@use 'variables' as *;
+@use 'animations' as *;
+
+// =============================================================================
+// AboutMe.module.scss — About Me 섹션 스타일
+// =============================================================================
+
+@include scroll-reveal;
+
+.aboutSection {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: $bg-primary;
+}
+
+.sectionHeader {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.sectionSubtitle {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  color: $text-secondary;
+}
+
+.aboutCenteredContent {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.aboutNarrativeCentered {
+  font-family: var(--font-inter);
+  max-width: 800px;
+  margin: 0 auto;
+
+  h3 {
+    font-family: var(--font-outfit);
+    font-size: 2rem;
+    color: $text-primary;
+    margin: 40px 0 24px;
+    font-weight: 700;
+  }
+
+  strong {
+    color: $accent-primary;
+    font-weight: 600;
+  }
+}
+
+.aboutDesc {
+  color: $text-secondary;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+// ── 기술 스택 무한 가로 롤링 배너 (Marquee) ───────────────────────────
+.skillsMarqueeSection {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; // 마키 컨테이너 간의 세로 간격 조정
+  width: 100%;
+  overflow: hidden;
+  padding: 16px 0; // 전체 마키 영역의 상하 패딩을 넉넉히 확보
+}
+
+.marqueeContainer {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  // 호버 시 칩이 윗부분으로 솟구칠 때(translateY(-4px)) 짤리지 않도록 세로 여백 추가
+  padding: 10px 0;
+  
+  // 좌우 끝 영역을 부드럽게 페이드아웃시키는 마스크 그라데이션
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(0, 0, 0) 10%,
+    rgb(0, 0, 0) 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(0, 0, 0) 10%,
+    rgb(0, 0, 0) 90%,
+    transparent 100%
+  );
+
+  @media (prefers-reduced-motion: reduce) {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+
+.marqueeTrack {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  will-change: transform;
+  
+  &:hover {
+    // 호버 시 애니메이션 일시 정지하여 가독성 증대
+    animation-play-state: paused !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+// 1열: 왼쪽 방향으로 흘러감 (3배 복제 상태에서 딱 33.3333% 만큼이 원본 W 너비)
+.marqueeLeft {
+  animation: marqueeLeft linear infinite;
+}
+
+// 2열: 오른쪽 방향으로 흘러감
+.marqueeRight {
+  animation: marqueeRight linear infinite;
+}
+
+@keyframes marqueeLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-33.3333%, 0, 0);
+  }
+}
+
+@keyframes marqueeRight {
+  0% {
+    transform: translate3d(-33.3333%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// 개별 스킬 칩 스타일 (Premium Glassmorphism & Micro-interactions)
+.integrationChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  color: $text-secondary;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.3s ease,
+              color 0.3s ease,
+              background 0.3s ease,
+              box-shadow 0.3s ease;
+  will-change: transform;
+  cursor: default;
+
+  // 다크모드 대응
+  :global(.dark-mode) & {
+    background: rgba(15, 23, 42, 0.6);
+    border-color: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  &:hover {
+    transform: translateY(-4px) scale(1.03);
+    border-color: $accent-primary;
+    color: $text-primary;
+    background: #ffffff;
+    box-shadow: $shadow-soft;
+
+    :global(.dark-mode) & {
+      background: rgba(30, 41, 59, 0.8);
+      color: #ffffff;
+      box-shadow: 0 10px 20px -10px rgba(99, 102, 241, 0.3);
+    }
+
+    .chipIconWrapper {
+      transform: scale(1.1) rotate(5deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+.chipIconWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  
+  @media (prefers-reduced-motion: reduce) {
+    transition: none !important;
+  }
+}
+
+.chipIcon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.chipText {
+  font-family: var(--font-inter);
+  letter-spacing: 0.02em;
+}
+

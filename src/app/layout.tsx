@@ -14,9 +14,66 @@ const outfit = Outfit({
   display: 'swap',
 })
 
+const BASE_URL = 'https://pileuszu.github.io/portfolio-website'
+
 export const metadata: Metadata = {
-  title: '포트폴리오 - 개발자',
-  description: '창의적인 웹 개발자의 포트폴리오',
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: 'JiHwan Kim — AI Engineer & Full-Stack Developer',
+    template: '%s | JiHwan Kim',
+  },
+  description:
+    'AI Engineer and Full-Stack Developer specializing in bridging advanced AI research and production-ready web systems. Proficient in Next.js, React, Python, and large-scale ML pipelines.',
+  keywords: [
+    'AI Engineer',
+    'Full-Stack Developer',
+    'Next.js',
+    'React',
+    'Python',
+    'Machine Learning',
+    'Portfolio',
+    'JiHwan Kim',
+  ],
+  authors: [{ name: 'JiHwan Kim', url: BASE_URL }],
+  creator: 'JiHwan Kim',
+  alternates: {
+    canonical: BASE_URL,
+  },
+  openGraph: {
+    type: 'website',
+    url: BASE_URL,
+    siteName: 'JiHwan Kim Portfolio',
+    title: 'JiHwan Kim — AI Engineer & Full-Stack Developer',
+    description:
+      'AI Engineer and Full-Stack Developer specializing in bridging advanced AI research and production-ready web systems.',
+    images: [
+      {
+        url: `${BASE_URL}/images/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: 'JiHwan Kim — AI Engineer & Full-Stack Developer',
+      },
+    ],
+    locale: 'ko_KR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'JiHwan Kim — AI Engineer & Full-Stack Developer',
+    description:
+      'AI Engineer and Full-Stack Developer specializing in bridging advanced AI research and production-ready web systems.',
+    images: [`${BASE_URL}/images/og-image.png`],
+    creator: '@pileuszu',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 }
 
 export default function RootLayout({

@@ -1,0 +1,9 @@
+{
+  "title": "About Me",
+  "items": [
+    {
+      "desc": "I am a developer who proactively leads the entire process of AI/NLP projects, from setting up the AI experimentation environment to data-centric model improvement, delivering tangible results."
+    }
+  ],
+  "skills": ["Python", "PyTorch", "NLP", "LLM", "Next.js", "React", "TypeScript", "SCSS", "Jest", "Docker", "Node.js", "Git"]
+}

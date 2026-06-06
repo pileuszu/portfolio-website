@@ -1,0 +1,77 @@
+// =============================================================================
+// _animations.scss — 공통 애니메이션 믹신 모음
+// @use 'animations' as * 로 불러와 @include scroll-reveal; 등으로 사용
+// =============================================================================
+
+// ── Scroll Reveal 시스템 ──────────────────────────────────────────────────────
+// useInView hook과 함께 사용: isVisible ? styles.visible : ''
+@mixin scroll-reveal {
+  .revealFadeUp,
+  .revealFadeLeft,
+  .revealFadeRight,
+  .revealScale,
+  .revealFade {
+    opacity: 0;
+    will-change: transform, opacity;
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .revealFadeUp    { transform: translateY(40px); }
+  .revealFadeLeft  { transform: translateX(50px); }
+  .revealFadeRight { transform: translateX(-50px); }
+  .revealScale     { transform: scale(0.88); }
+  .revealFade      { transform: none; }
+
+  .revealFadeUp.visible,
+  .revealFadeLeft.visible,
+  .revealFadeRight.visible,
+  .revealScale.visible,
+  .revealFade.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  // stagger: nth-child 기반 딜레이 (최대 8개)
+  @for $i from 1 through 8 {
+    .staggerItem:nth-child(#{$i}) {
+      transition-delay: #{($i - 1) * 0.1}s;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .revealFadeUp,
+    .revealFadeLeft,
+    .revealFadeRight,
+    .revealScale,
+    .revealFade {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+// ── Keyframes: 공통 페이드 ────────────────────────────────────────────────────
+@mixin common-keyframes {
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes modalEnter {
+    from { opacity: 0; transform: scale(0.95) translateY(20px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+}

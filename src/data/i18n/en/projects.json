@@ -1,0 +1,419 @@
+{
+  "title": "Selected Projects",
+  "subtitle": "A collection of full-stack AI systems and web applications, showcasing the synergy between model engineering and product delivery.",
+  "items": [
+    {
+      "title": "3D Mosquito Trajectory Prediction",
+      "desc": "A Dacon competition solution predicting 3D mosquito flight trajectories using Neural ODEs, Clifford Geometric Algebra, and ensemble methods under physical aerodynamic constraints.",
+      "overview": "This project tackles the Dacon competition challenge of predicting continuous 3D mosquito flight paths from noisy sensory measurements. The solution models continuous-time aerodynamics using Neural ODEs combined with Clifford Geometric Algebra to capture the physical rotational and translational dynamics of insect flight.",
+      "problem": "Mosquito trajectories are highly irregular due to aerodynamic forces, turbulence, and sensor noise. Standard sequence models fail to capture the underlying physical constraints governing insect flight dynamics.",
+      "solution": "- **Frenet-Serret Neural ODE:** Modeled flight geometry using differential geometry to enforce physical curvature constraints.\n- **Clifford Geometric Algebra CFM:** Applied geometric algebra for rotation-invariant trajectory representation.\n- **Ensemble:** Combined LightGBM, AutoGluon, and Neural ODE predictions using Powell weight optimization.\n- **Outlier Damping:** Implemented a classifier to detect and suppress anomalous trajectory segments.",
+      "learnings": "Deepened understanding of continuous-time dynamics modeling and geometric deep learning. Learned how to incorporate physical constraints as inductive biases in ML pipelines for improved generalization on physics-governed problems.",
+      "images": [
+        "/images/thumbnails/mosquito-trajectory.webp"
+      ],
+      "tech": [
+        "Python",
+        "PyTorch",
+        "Neural ODE",
+        "LightGBM",
+        "AutoGluon",
+        "Clifford Geometric Algebra"
+      ],
+      "period": "2026.06",
+      "type": "personal",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/pileuszu/dacon-mosquito-trajectory",
+          "type": "github"
+        }
+      ]
+    },
+    {
+      "title": "BIST Mini Project 1",
+      "desc": "A full-stack gamified social community platform with real-time WebSocket chat, SSE notifications, markdown posts, and a GitHub-style activity graph — built across 3 repositories (Frontend / Backend / Data Pipeline).",
+      "overview": "BIST Mini Project 1 is a full-stack social media web application built as a team mini-project for BIStelligence's job-linked education program. It combines classic community features (markdown posts, nested comments, follow system) with real-time communication (1:1 WebSocket chat, SSE push notifications) and gamification mechanics (GitHub-style contribution grass, character avatar that grows with activity). The system is split into three repositories: a Next.js frontend, a Spring Boot backend, and a Python data generation pipeline for realistic load testing.",
+      "problem": "Building a cohesive real-time social platform requires tight coordination across multiple systems: a responsive UI that handles live events, a high-concurrency backend that enforces data integrity and auth uniformly across both REST and WebSocket contexts, and a realistic test data environment that respects complex relational constraints (e.g., mutual follows before allowing DM chat rooms).",
+      "role": "Contributed to both frontend UI components (infinite feed, markdown editor, notification UX) and backend API design (domain-driven layered architecture, JWT auth handling, gamification analytics endpoints).",
+      "solution": "- **Frontend (Next.js 16 / React 19):** Implemented infinite-scroll post feed, markdown editor with image inserts, real-time SSE notification listener, STOMP WebSocket 1:1 chat client, and gamification UI (contribution grass + avatar).\n- **Backend (Spring Boot 3 / Oracle DB):** Designed Domain-Driven Layered Architecture; unified JWT auth via custom `@LoginMember` annotation covering both REST and WebSocket handlers; BLOB-based in-DB file storage; SSE event broadcaster; contribution/avatar analytics APIs.\n- **Data Pipeline (Python):** Automated seeding of 4,500+ nested comments, mutual follow relationships, and chat rooms into Oracle DB in strict FK-safe insertion order using Faker + oracledb.",
+      "learnings": "Learned the challenges of applying a unified auth strategy across HTTP and WebSocket contexts in Spring. Gained practical experience with STOMP over SockJS, SSE broadcasting patterns, and designing a relational seed pipeline that respects complex foreign-key constraints at scale.",
+      "images": [
+        "/images/thumbnails/bist-community-platform.webp"
+      ],
+      "tech": [
+        "Next.js",
+        "React",
+        "Spring Boot",
+        "Java",
+        "Oracle DB",
+        "MyBatis",
+        "JWT",
+        "WebSocket",
+        "SSE",
+        "Python"
+      ],
+      "period": "2026.05",
+      "type": "team",
+      "links": [
+        {
+          "label": "Frontend",
+          "url": "https://github.com/bist-mini-1/bist-mini-1-frontend",
+          "type": "github"
+        },
+        {
+          "label": "Backend",
+          "url": "https://github.com/bist-mini-1/bist-mini-1-backend",
+          "type": "github"
+        },
+        {
+          "label": "Data Pipeline",
+          "url": "https://github.com/bist-mini-1/bist-mini-1-data-generation",
+          "type": "github"
+        },
+        {
+          "label": "View Site",
+          "url": "https://pileuszu.github.io/bist-mini-1-frontend/",
+          "type": "demo"
+        }
+      ]
+    },
+    {
+      "title": "Gemma Glance",
+      "desc": "A context-aware real-time knowledge assistant built for the Gemma 4 Good Hackathon, running locally to provide instant explanations for on-screen content.",
+      "overview": "Gemma Glance is a lightweight, privacy-focused tool that uses Gemma 4 to explain complex terms and concepts on the screen. It's designed to bridge the digital divide by providing high-quality AI assistance on standard hardware without requiring cloud connectivity.",
+      "problem": "Many AI assistants require expensive GPUs or stable internet, making them inaccessible in certain educational or low-spec environments. Privacy is also a concern when capturing screen content for cloud-based AI.",
+      "solution": "- **Local Inference:** Optimized Gemma 4 E2B model using ONNX Runtime for CPU execution.\n- **Real-time UX:** Intelligent hover detection (0.8s) and multimodal context analysis for seamless interaction.\n- **Modern UI:** Built a hardware-accelerated transparent overlay using PySide6.",
+      "learnings": "Deepened knowledge in model quantization and optimization for edge devices. Learned to handle low-latency screen capture and system-level integration in Python.",
+      "images": [
+        "/images/thumbnails/gemma-glance.webp"
+      ],
+      "tech": [
+        "Python",
+        "Gemma 2B",
+        "ONNX Runtime",
+        "PySide6",
+        "Win32 API"
+      ],
+      "period": "2026.05",
+      "type": "personal",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/pileuszu/kaggle-gemma-glance",
+          "type": "github"
+        }
+      ]
+    },
+    {
+      "title": "Aura AI Shader & Style Matcher",
+      "desc": "A high-performance stylized toon shader for Unity with an AI-powered tool that uses Gemini to automatically match rendering styles from reference images.",
+      "overview": "Aura AI is a professional-grade stylized toon shader for Unity, paired with an AI-powered look-dev tool. It bridges the gap between technical artistry and generative AI by allowing developers to automatically tune complex shader parameters to match a specific reference style using the Google Gemini API.",
+      "problem": "Achieving a specific stylized look in Unity often requires manual adjustment of dozens of shader parameters (rim light, SSS, shadows, etc.), which is time-consuming and requires significant technical expertise.",
+      "solution": "- **Stylized Shader:** Developed a feature-rich toon shader supporting multi-step cel shading, Kajiya-Kay hair specular, and stencil-based effects.\n- **AI Look-Dev Tool:** Built a Unity Editor tool that captures scene views and reference images, using Gemini's multimodal capabilities to reason about lighting and color.\n- **Semantic Parameter Tuning:** Implemented logic that recognizes material roles (e.g., skin, hair) to apply context-aware rendering adjustments automatically.",
+      "learnings": "Deepened expertise in HLSL and Unity's rendering pipeline. Learned to integrate multimodal LLMs into a traditional graphics workflow to automate creative decision-making processes.",
+      "images": [
+        "/images/fallbacks/project_thumbnail_fallback_image.webp"
+      ],
+      "tech": [
+        "Unity",
+        "HLSL",
+        "C#",
+        "Google Gemini API"
+      ],
+      "period": "2026.02",
+      "type": "personal",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/pileuszu/aura-ai-shader",
+          "type": "github"
+        }
+      ]
+    },
+    {
+      "title": "Everything Job (모두취업)",
+      "desc": "AI-powered employment agent service providing tailored company recommendations and cover letter generation based on portfolio analysis.",
+      "overview": "A comprehensive AI agent solution that addresses the fatigue of job searching and repetitive cover letter writing. It analyzes user portfolios and GitHub repositories, combining them with real-time recruitment data (RAG) to recommend the best-fit companies and generate customized cover letter drafts.",
+      "problem": "Traditional job platforms often provide generic listings, requiring users to spend significant time manually filtering roles and tailoring applications for each company.",
+      "role": "Handled server infrastructure setup, portfolio data pipeline construction, and cloud deployment environment configuration on GCP.",
+      "solution": "- **Portfolio Pipeline:** Automated extraction of project experience from GitHub, Notion, and PDFs using HyperCLOVA X.\n- **Recruitment RAG:** Hybrid search (Dense/Sparse) and intelligent re-ranking for precise job matching.\n- **Cover Letter Generation:** Strategy-based generation using STAR technique and hallucination control.",
+      "learnings": "Gained deep experience in cloud-native architecture (GCP), RAG system optimization, and the importance of data quality in AI service performance.",
+      "images": [
+        "/images/thumbnails/everything-job.webp"
+      ],
+      "tech": [
+        "Next.js",
+        "FastAPI",
+        "HyperCLOVA X",
+        "LangChain",
+        "Supabase",
+        "GCP Cloud Run"
+      ],
+      "period": "2026.01",
+      "type": "team",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/boostcampaitech8/pro-nlp-finalproject-nlp-01",
+          "type": "github"
+        },
+        {
+          "label": "Live Demo",
+          "url": "https://pileuszu.github.io/pro-nlp-finalproject-nlp-01/",
+          "type": "demo"
+        }
+      ]
+    },
+    {
+      "title": "Generation For NLP Project",
+      "desc": "A specialized SLM construction project for the Korean CSAT domain, focusing on overcoming data distribution shifts and ensuring generalization performance.",
+      "overview": "This project focused on building a Small Language Model (SLM) specialized for the Korean CSAT domain. The goal was to ensure domain-specific performance and resource efficiency, creating a model capable of solving high-difficulty exams comparable to large LLMs.",
+      "problem": "Existing Large Language Models (LLMs) often suffer from performance degradation when applied to specific, highly specialized domains like the Korean CSAT due to distribution shifts. Key challenges included severe training-evaluation data mismatch, selection bias from unbalanced question types, and the need for high resource efficiency in inference.",
+      "role": "Focused on data engineering, bias mitigation strategies, and model pipeline optimization. Led the analysis of data distribution issues and designed the quantization strategy for efficient deployment.",
+      "solution": "- **Distribution Mismatch:** Resolved performance issues by adding external CSAT-like data and optimizing the training curriculum order.\n- **Bias Mitigation:** Addressed selection bias by oversampling under-represented question types and implementing choice shuffling.\n- **Prediction Stability:** Secured stability using Zero-shot Chain-of-Thought (CoT) and a Logits-based ensemble approach.\n- **Optimization:** Overcame resource constraints by applying GPTQ/AWQ quantization to Qwen3-VL and designing a Distributed Sharding pipeline.",
+      "learnings": "I learned that in specialized domains, model performance relies more heavily on structural data design and pipeline quality than just model size. I gained the ability to design model optimizations with the final operational environment's constraints in mind.",
+      "images": [
+        "/images/thumbnails/generation-nlp.webp"
+      ],
+      "tech": [
+        "Python",
+        "Pytorch",
+        "Hugging Face",
+        "WandB"
+      ],
+      "period": "2025.12",
+      "type": "team",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/boostcampaitech8/pro-nlp-generationfornlp-nlp-01",
+          "type": "github"
+        }
+      ]
+    },
+    {
+      "title": "MRC Project",
+      "desc": "A 2-stage Open-Domain Question Answering (ODQA) system utilizing a Retriever-Reader architecture to solve information retrieval tasks.",
+      "overview": "We constructed a 2-stage Open-Domain Question Answering (ODQA) system utilizing a Retriever-Reader architecture. The project aimed to accurately retrieve information and answer questions from a vast open-domain dataset.",
+      "problem": "The system initially faced significant challenges with Reader hallucination, primarily caused by a lack of Negative Passages in training and the Retriever's poor discrimination performance, which led to irrelevant context being fed to the Reader.",
+      "role": "Led data engineering efforts with comprehensive EDA to identify data quality issues. Designed the negative sampling strategy to improve the Retriever's discrimination capability.",
+      "solution": "- **Unknown Strategy:** Addressed hallucination issues by designing a Hard Negative Sampling strategy and building a high-difficulty wrong answer dataset.\n- **Retrieval Improvement:** Improved Dense Retriever discrimination via Hard Negative Mining and contributed to the design of a BM25 + Dense Hybrid Retrieval system.\n- **Ensemble:** Participated in implementing a Soft Voting ensemble to boost final leaderboard performance.",
+      "learnings": "This project taught me that data quality and robust structural design are often more determining factors for performance than simply increasing model complexity. I internalized the value of rigorous EDA in identifying the root causes of model failure.",
+      "images": [
+        "/images/thumbnails/mrc-project.webp"
+      ],
+      "tech": [
+        "Python",
+        "Pytorch",
+        "Hugging Face",
+        "WandB"
+      ],
+      "period": "2025.11",
+      "type": "team",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/boostcampaitech8/pro-nlp-mrc-nlp-01",
+          "type": "github"
+        }
+      ]
+    },
+    {
+      "title": "Movie Review Sentiment Analysis",
+      "desc": "An NLP classification project categorizing Korean movie reviews into 4 sentiment classes using various BERT-based models and TAPT.",
+      "overview": "This NLP project aimed to classify Korean movie reviews into four distinct sentiment classes (Negative, Neutral, Positive, Strong Positive) to analyze public opinion effectively.",
+      "problem": "The main challenge was accurately capturing subtle sentiment nuances in Korean text, especially given potential class imbalances and noise in user-generated reviews.",
+      "solution": "- **Fair Comparison:** Conducted controlled experiments on 5 Korean BERT-series models under identical hyperparameters to identify the best base model.\n- **TAPT:** Verified the effectiveness of Task-Adaptive Pre-Training (TAPT) on the specific movie review dataset.\n- **Pipeline:** Designed a preprocessing pipeline focused on preserving sentiment-heavy expressions.",
+      "learnings": "I learned that domain-appropriate pre-training and careful data design are core to NLP performance. I also gained an appreciation for analyzing failed experiments (like my Focal Loss attempts) as they provide valuable insights into model behavior.",
+      "images": [
+        "/images/thumbnails/movie-review-sentiment.webp"
+      ],
+      "tech": [
+        "Python",
+        "Pytorch",
+        "Hugging Face",
+        "WandB",
+        "TAPT"
+      ],
+      "period": "2025.10",
+      "type": "personal",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/pileuszu/boostcamp-movie-review-sentiment-analysis",
+          "type": "github"
+        }
+      ]
+    },
+    {
+      "title": "Laftel Watch Together",
+      "desc": "A Chrome extension enabling real-time synchronized video watching on Laftel with friends, featuring host control and WebSocket communication.",
+      "overview": "'Laftel Watch Together' is a Chrome extension designed to allow users to watch videos on the Laftel streaming platform simultaneously with friends in real-time. It mimics the experience of a 'watch party' remotely.",
+      "problem": "Users wanted to watch content together, but simply pressing play at the same time is unreliable. There was a need for a solution that strictly synchronizes playback state (play/pause/seek) across multiple clients with low latency.",
+      "solution": "- **Synchronization:** Implemented a robust sync system where a designated 'Host' controls the playback flow. Any action by the host is immediately broadcast to all participants.\n- **Real-time Communication:** Utilized WebSockets for low-latency state exchange.\n- **Resilience:** added auto-reconnect functionality to handle network interruptions smoothly.",
+      "learnings": "I gained a deep understanding of the Chrome Extension architecture (Manifest V3) and the challenges of real-time state synchronization. I learned how to handle edge cases in network communication to ensure a smooth user experience.",
+      "images": [
+        "/images/thumbnails/laftel-watch-together.webp"
+      ],
+      "tech": [
+        "JavaScript",
+        "Node.js",
+        "WebSocket",
+        "Chrome Extension"
+      ],
+      "period": "2025.08",
+      "type": "personal",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/pileuszu/raftel-watch-together",
+          "type": "github"
+        }
+      ]
+    },
+    {
+      "title": "Portfolio Website",
+      "desc": "A sleek and modern portfolio website built with TypeScript, React, Next.js, and SCSS.",
+      "overview": "This project is a personal portfolio website designed to showcase my projects, skills, and experience in a modern, interactive format.",
+      "problem": "I needed a clean, professional online presence to effectively present my work and resume to potential employers.",
+      "solution": "- **Tech Stack:** Built using React 18, Next.js 15, and TypeScript to ensure maintainability.\n- **Styling:** Utilized SCSS modules for a clean and conflict-free styling architecture.",
+      "learnings": "I strengthened my proficiency in Next.js App Router and responsive web design practices through this implementation.",
+      "images": [
+        "/images/thumbnails/portfolio-website.webp"
+      ],
+      "tech": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "SCSS"
+      ],
+      "period": "2025.06",
+      "type": "personal",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/pileuszu/portfolio-website",
+          "type": "github"
+        }
+      ]
+    },
+    {
+      "title": "ChzzkStreamDeck",
+      "desc": "A comprehensive streaming widget system for OBS Studio with real-time chat overlay, Spotify integration, and music bot functionality.",
+      "overview": "ChzzkStreamDeck is a comprehensive streaming widget system integrating OBS Studio with the CHZZK streaming platform, providing chat overlays and music controls.",
+      "problem": "Streamers often struggle to manage multiple disparate tools for chat, music, and alerts. There was a need for a unified dashboard that integrates these services seamlessly into OBS.",
+      "solution": "- **Real-time Overlay:** Implemented a chat overlay using Server-Sent Events (SSE) that supports CHZZK emoticons.\n- **Integrations:** Integrated Spotify API via OAuth 2.0 for music control and built a server-based chat bot for music queue management.\n- **Architecture:** Designed a modular architecture that cleanly separates chat, music, and bot functionalities.",
+      "learnings": "I gained significant expertise in WebSocket/SSE for real-time data streaming, OAuth 2.0 authentication flows, and integrating third-party APIs into a unified service ecosystem.",
+      "images": [
+        "/images/thumbnails/chzzk-stream-deck.webp"
+      ],
+      "tech": [
+        "Node.js",
+        "JavaScript",
+        "CSS",
+        "Chzzk API",
+        "Spotify API"
+      ],
+      "period": "2025.06",
+      "type": "personal",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/pileuszu/ChzzkStreamDeck",
+          "type": "github"
+        }
+      ]
+    },
+    {
+      "title": "3D Train Simulator",
+      "desc": "A real-time 3D train simulator built with WebGL and JavaScript, featuring customizable camera controls and track configurations",
+      "overview": "This project is a real-time 3D train simulator running directly in the web browser, allowing users to drive a train and customize tracks.",
+      "problem": "The challenge was to create a performant, interactive 3D simulation using raw WebGL and JavaScript, without relying on heavy game engines, to understand the fundamentals of 3D graphics.",
+      "role": "Focused on graphics programming aspects, including 3D rendering, hierarchy management, and performance optimization.",
+      "solution": "- **Rendering:** Implemented 3D modeling with hierarchical structures and tree-based traversal for the train components.\n- **Customization:** Developed a dynamic track generation system using an intuitive CSV-like syntax.\n- **Optimization:** Implemented conditional re-rendering and FPS limiting to ensure smooth performance in the browser.",
+      "learnings": "I deepened my understanding of the 3D graphics pipeline, including matrix transformations, shader programming (GLSL), and texture mapping. I learned how to optimize rendering loops for web applications.",
+      "images": [
+        "/images/thumbnails/3d-train-simulator.webp"
+      ],
+      "tech": [
+        "WebGL",
+        "glMatrix",
+        "JavaScript"
+      ],
+      "period": "2025.06",
+      "type": "team",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/pileuszu/study-webgl-train-simulation",
+          "type": "github"
+        },
+        {
+          "label": "View Demo",
+          "url": "https://pileuszu.github.io/study-webgl-train-simulation/",
+          "type": "demo"
+        }
+      ]
+    },
+    {
+      "title": "Prediction of Pregnancy Success",
+      "desc": "A machine learning model achieving 0.7347 accuracy in predicting pregnancy success rates for infertility patients using IVF and DI treatment data",
+      "overview": "This research project involved developing a machine learning model to predict pregnancy success rates for infertility patients, aiming to assist in clinical decision-making.",
+      "problem": "Predicting success rates for IVF and DI treatments is highly complex due to the multitude of biological factors involved (e.g., patient age, medical history, ovulation data). High prediction accuracy is crucial for optimizing treatment plans.",
+      "solution": "- **Targeted Modeling:** Built separate, optimized models for IVF and DI treatments to handle their distinct characteristics.\n- **Feature Engineering:** Performed extensive analysis on patient data to identify key predictors.\n- **Ensemble:** Utilized ensemble techniques to combine model strengths, achieving a final accuracy of 0.7347.",
+      "learnings": "This project provided practical experience in applying machine learning to sensitive healthcare data. I learned how to deal with real-world data noise and the importance of domain-specific feature engineering in medical AI.",
+      "images": [
+        "/images/thumbnails/pregnancy-prediction.webp"
+      ],
+      "tech": [
+        "Python",
+        "Scikit-learn",
+        "Pandas",
+        "NumPy",
+        "Machine Learning"
+      ],
+      "period": "2025.02",
+      "type": "personal",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/pileuszu/dacon-infertility-treatment-prediction",
+          "type": "github"
+        }
+      ]
+    },
+    {
+      "title": "SSALON",
+      "desc": "A web service providing one-time gathering communities based on 'Interactive 3D Badge Cards'",
+      "overview": "SSALON is a web platform for one-time social gatherings where user interaction centers around interactive 3D Badge Cards.",
+      "problem": "Traditional event platforms often lack engaging, interactive elements for profile representation. We wanted to create a unique way for users to showcase their identity and achievements.",
+      "role": "Handled backend development, including primary CRUD operations and QR code functionality using Express.js.",
+      "solution": "- **3D Interaction:** Developed interactive 3D badge cards with mouse-tracking effects using Three.js.\n- **Backend:** Built a robust REST API with Express.js to handle user data, badge collection, and event management.\n- **Database:** utilized MySQL/MariaDB for structured data storage.",
+      "learnings": "I learned the intricacies of integrating 3D graphics into a standard web interface and managing the performance implications. I also gained experience in designing scalable database schemas for social platforms.",
+      "images": [
+        "/images/thumbnails/ssalon.webp"
+      ],
+      "tech": [
+        "React",
+        "Three.js",
+        "Express.js",
+        "MariaDB"
+      ],
+      "period": "2024.07",
+      "type": "team",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/lee1684/SKYTeam",
+          "type": "github"
+        },
+        {
+          "label": "View Demo",
+          "url": "https://pileuszu.github.io/study-sw-capstone-design/",
+          "type": "demo"
+        }
+      ]
+    }
+  ]
+}

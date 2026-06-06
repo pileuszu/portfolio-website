@@ -119,3 +119,8 @@ coverage/
 # Custom
 nul
 *.backup
+
+# Custom test and agent directories
+playwright-report/
+test-results/
+.agents/

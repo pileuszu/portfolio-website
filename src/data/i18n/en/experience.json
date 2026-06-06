@@ -1,0 +1,21 @@
+{
+  "title": "Experience",
+  "subtitle": "A journey through engineering complex systems, from cutting-edge AI research to production-scale full-stack development.",
+  "items": [
+    {
+      "title": "Software Engineering, Ajou University",
+      "desc": "Acquired foundational computer science knowledge and practical development skills majoring in software engineering.",
+      "period": "2019.03 - 2025.08"
+    },
+    {
+      "title": "Boostcamp AI Tech 8th",
+      "desc": "Enhancing AI/ML practical capabilities through NAVER Connect Foundation's artificial intelligence education program.",
+      "period": "2025.09 - 2026.02"
+    },
+    {
+      "title": "BIStelligence AI Developer Program",
+      "desc": "Participating in KSTA's job-linked AI program, focusing on building production-ready AI systems and full-stack applications.",
+      "period": "2026.03 - Present"
+    }
+  ]
+}

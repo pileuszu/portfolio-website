@@ -1,10 +1,19 @@
 import { useState } from 'react'
 import emailjs from '@emailjs/browser'
-import styles from '../app/page.module.scss'
+import styles from './EmailForm.module.scss'
 
 interface EmailFormProps {
+  /** 폼 닫기 또는 전송 성공 시 호출되는 콜백 */
   onClose: () => void
 }
+
+/**
+ * EmailForm 컴포넌트.
+ *
+ * EmailJS를 통해 이메일을 전송하는 인라인 폼.
+ * 전송 성공 시 체크마크 애니메이션을 표시하고 2초 후 자동 닫힘.
+ * 이메일 서비스 키는 환경변수(`NEXT_PUBLIC_EMAILJS_*`)로 관리됩니다.
+ */
 
 export default function EmailForm({ onClose }: EmailFormProps) {
   const [formData, setFormData] = useState({

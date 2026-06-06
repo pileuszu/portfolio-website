@@ -1,0 +1,213 @@
+@use 'variables' as *;
+@use 'animations' as *;
+
+// =============================================================================
+// Contact.module.scss — 연락처 섹션 스타일
+// =============================================================================
+
+@include scroll-reveal;
+
+// ── 이메일 폼 모달 백드롭 (Contact.tsx가 렌더링) ───────────────────
+@keyframes backdropFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  padding: 20px;
+  animation: backdropFadeIn 0.3s ease-out;
+}
+
+.contactSection {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: $bg-secondary;
+}
+
+.sectionHeader {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.sectionSubtitle {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  color: $text-secondary;
+}
+
+// ── 연락처 카드 그리드 ───────────────────────────────────────────────
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1300px;
+  margin: 0 auto 80px;
+  
+  // 3D 입체 효과 구현을 위한 원근감 지정
+  perspective: 1200px;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr;
+    max-width: 800px;
+    perspective: none;
+  }
+}
+
+.contactCard {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 24px;
+  border: 1px solid $border-light;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: left;
+  gap: 20px;
+  height: 100%;
+
+  // 초기 상태 (3D 공간에 감춰진 상태)
+  opacity: 0;
+  transform-style: preserve-3d;
+  
+  // 1번째 카드: 왼쪽 뒤편에서 3D 궤적을 그리며 미세 회전 진입
+  &:nth-child(1) {
+    transform: translate3d(-100px, 30px, -150px) rotateY(20deg) rotateZ(-4deg);
+  }
+  // 2번째 카드: 중앙 저 멀리서 앞으로 다가오며 솟아오름
+  &:nth-child(2) {
+    transform: translate3d(0, 80px, -120px) rotateX(15deg);
+  }
+  // 3번째 카드: 오른쪽 뒤편에서 3D 궤적을 그리며 미세 회전 진입
+  &:nth-child(3) {
+    transform: translate3d(100px, 30px, -150px) rotateY(-20deg) rotateZ(4deg);
+  }
+
+  @media (max-width: 1100px) {
+    &:nth-child(1), &:nth-child(2), &:nth-child(3) {
+      transform: translate3d(0, 40px, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+// 뷰포트 내 노출 시 팬아웃 애니메이션 발동
+.gridVisible {
+  .contactCard {
+    opacity: 1;
+
+    // 3D 앵글에서 정면으로 매끄럽게 복원 + Stagger Delay
+    &:nth-child(1) {
+      transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    &:nth-child(2) {
+      transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+    }
+    &:nth-child(3) {
+      transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+    }
+
+    // 카드 호버 인터랙션 (호버 시에는 stagger 딜레이를 0s로 리프레시)
+    &:hover {
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+                  box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+                  border-color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      transform: translateY(-10px) translateZ(20px) scale(1.02);
+      box-shadow: $shadow-medium;
+      border-color: $accent-primary;
+
+      .contactIconWrapper {
+        background: $accent-primary;
+        color: #ffffff;
+        transform: rotate(10deg);
+      }
+    }
+  }
+}
+
+
+
+.contactIconWrapper {
+  width: 54px;
+  height: 54px;
+  background: $bg-secondary;
+  color: $accent-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  flex-shrink: 0;
+  transition: $transition-smooth;
+}
+
+.contactTextContent {
+  flex: 1;
+}
+
+.contactTitle {
+  font-family: var(--font-outfit);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: 8px;
+}
+
+.contactDesc {
+  font-size: 0.95rem;
+  color: $text-secondary;
+  margin-bottom: 15px;
+}
+
+.contactAction {
+  font-weight: 600;
+  color: $accent-primary;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  min-height: 92px; // 영어 4줄 기준 최소 높이 확보로 한영 전환 시 덜컥임 방지
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+// ── 푸터 ──────────────────────────────────────────────────────────
+.mainFooter {
+  border-top: 1px solid $border-light;
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.footerBranding {
+  p {
+    color: $text-secondary;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    opacity: 0.8;
+  }
+}
