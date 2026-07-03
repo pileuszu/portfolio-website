@@ -3,7 +3,7 @@
   "subtitle": "A collection of full-stack AI systems and web applications, showcasing the synergy between model engineering and product delivery.",
   "items": [
     {
-      "title": "Paper Agent",
+      "title": "BIST Mini Project 2",
       "desc": "An intelligent academic search and collaborative R&D support platform utilizing parallel RAG, PostgreSQL pgvector, and automated research gap analysis.",
       "overview": "Paper Agent is an intelligent research assistant platform that helps researchers explore academic knowledge and infer research gaps. It performs real-time parallel RAG queries across academic pgvector (HNSW) databases and external web searches. Additionally, it offers an asynchronous batch analyzer to extract limitations and future work from multiple papers, automatically mapping out recommended research roadmaps.",
       "problem": "Researchers face difficulty keeping up with massive literature databases and identifying unique research gaps. Querying multiple sources (local vectors and live web search) sequentially introduces heavy latency, and analyzing dozens of papers at once creates major I/O bottlenecks.",
