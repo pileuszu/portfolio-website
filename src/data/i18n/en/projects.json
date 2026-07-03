@@ -11,7 +11,7 @@
       "solution": "- **Domain RAG Pipeline:** Developed an efficient vector database query pipeline using PostgreSQL pgvector with HNSW indexing, managing over 17,000 papers.\n- **Research Gap Analyzer:** Designed an asynchronous batch analysis pipeline to extract core problems and limitations from multiple papers concurrently, synthesizing a research roadmap while mitigating LLM hallucination with structured outputs.\n- **Parallel Queries:** Integrated async database lookups with external web search APIs to feed a Markdown-formatted real-time stream.",
       "learnings": "Gained deep experience in PostgreSQL pgvector (HNSW) indexing optimization and managing physical data isolation. Mastered design of asynchronous batch pipelines to resolve I/O bottlenecks when processing high volumes of academic text with LLM structured output.",
       "images": [
-        "/images/fallbacks/project_thumbnail_fallback_image.webp"
+        "/images/thumbnails/bist-mini-2.webp"
       ],
       "tech": [
         "FastAPI",
